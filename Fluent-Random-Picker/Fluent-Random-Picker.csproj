@@ -8,7 +8,7 @@
 Probabilities can be specified, values can be weighted, ...</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SynchReleaseVersion>true</SynchReleaseVersion>
-    <ReleaseVersion>1.0.1</ReleaseVersion> <!-- change version in solution options! -->
+    <ReleaseVersion>1.0.2</ReleaseVersion> <!-- change version in solution options! -->
   </PropertyGroup>
 
   <PropertyGroup>
