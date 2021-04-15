@@ -4,10 +4,10 @@ using Fluent_Random_Picker;
 using Fluent_Random_Picker.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Fluent_Random_Picker_Tests
+namespace Fluent_Random_Picker_Tests.Picking
 {
     [TestClass]
-    public class PickingTests
+    public class PickDistinctTests
     {
         [TestMethod]
         public void PickDistinct_PicksSpecifiedNumberOfValues()

@@ -23,4 +23,7 @@
   <ItemGroup>
     <None Include="..\.editorconfig" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Picking\" />
+  </ItemGroup>
 </Project>

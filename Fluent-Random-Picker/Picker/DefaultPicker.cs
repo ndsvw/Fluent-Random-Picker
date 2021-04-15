@@ -39,6 +39,9 @@ namespace Fluent_Random_Picker.Picker
         /// <inheritdoc/>
         public PickResult<IEnumerable<T>> Pick()
         {
+            if (m_NumberOfElements > m_Pairs.Count())
+                throw new NotEnoughValuesToPickException();
+
             if (m_NumberOfElements < 0)
                 throw new PickingNegativeNumberOfValuesNotPossibleException();
 
