@@ -25,7 +25,7 @@ Probabilities can be specified, values can be weighted, ...</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/ndsvw/Fluent-Random-Picker</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>random;fluent;picker;choose;pick;probability</PackageTags>
+    <PackageTags>random;fluent;picker;choose;pick;probability;outof</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/ndsvw/Fluent-Random-Picker</RepositoryUrl>
     <Title>Fluent Random Picker</Title>
