@@ -88,7 +88,7 @@ namespace Fluent_Random_Picker.Picker
                 var pair = pPairs[i];
                 localSum += pair.Priority;
 
-                if (localSum >= n)
+                if (localSum >= n + 1)
                     return i;
             }
 
