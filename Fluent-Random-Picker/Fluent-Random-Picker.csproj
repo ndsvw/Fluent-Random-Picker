@@ -8,7 +8,7 @@
 Probabilities can be specified, values can be weighted, ...</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SynchReleaseVersion>true</SynchReleaseVersion>
-    <ReleaseVersion>1.0.3</ReleaseVersion> <!-- change version in solution options! -->
+    <ReleaseVersion>1.0.4</ReleaseVersion> <!-- change version in solution options! -->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -21,9 +21,11 @@ Probabilities can be specified, values can be weighted, ...</Description>
     </Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackOnBuild>true</PackOnBuild>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageVersion>$(ReleaseVersion)</PackageVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/ndsvw/Fluent-Random-Picker</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>random;fluent;picker;choose;pick;probability;outof</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -37,6 +39,11 @@ Probabilities can be specified, values can be weighted, ...</Description>
     <Folder Include="Interfaces\Percentage\" />
     <Folder Include="Picker\" />
     <Folder Include="Exceptions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="\" />
+    <None Include="icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
