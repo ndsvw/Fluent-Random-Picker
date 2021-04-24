@@ -3,6 +3,21 @@
 This library offers a nice, fluent way to pick random values.
 Probabilities can be specified, values can be weighted.
 
+## Getting started
+
+Install the nuget package (https://www.nuget.org/packages/FluentRandomPicker/)
+
+Add the using directive:
+```c#
+using Fluent_Random_Picker;
+```
+
+Begin with Out.Of() (see the examples).
+```c#
+Out.Of()...
+```
+
+
 ## Examples
 
 ```c#
