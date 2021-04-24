@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Fluent_Random_Picker;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -8,7 +9,7 @@ namespace Fluent_Random_Picker_Tests
     public class GeneralSyntaxTests
     {
         [TestMethod]
-        public void GeneralTests()
+        public void GeneralSeparateTests()
         {
             Out.Of().Value(8).AndValue(2).PickOne();
             Out.Of().Value(8).AndValue(2).AndValue(9).PickOne();
@@ -39,6 +40,34 @@ namespace Fluent_Random_Picker_Tests
                 .Value(TimeSpan.FromMilliseconds(100))
                 .AndValue(TimeSpan.FromMinutes(2))
                 .AndValue(TimeSpan.FromHours(4));
+        }
+
+        [TestMethod]
+        public void GeneralIEnumerableTests()
+        {
+            Out.Of().Values(Enumerable.Range(1, 1000)).PickOne();
+
+            Out.Of().Values(Enumerable.Range(1, 50))
+                .WithPercentages(Enumerable.Repeat(2, 50))
+                .PickOne();
+
+            Out.Of().Values(Enumerable.Range(1, 50))
+                .WithWeights(Enumerable.Range(1, 50).Select(x => x % 10))
+                .PickOne();
+        }
+
+        [TestMethod]
+        public void GeneralParamsTests()
+        {
+            Out.Of().Values(1, 2, 3, 4).PickOne();
+
+            Out.Of().Values(9, 8, 7, 6, 5, 4, 3, 2, 1)
+                .WithPercentages(50, 15, 5, 5, 5, 5, 5, 5, 5)
+                .PickOne();
+
+            Out.Of().Values(9, 8, 7, 6, 5, 4, 3, 2, 1)
+                .WithWeights(1, 10, 10, 100, 100, 100, 1000, 1000, 1000)
+                .PickOne();
         }
 
         [TestMethod]
