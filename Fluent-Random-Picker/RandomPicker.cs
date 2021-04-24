@@ -86,6 +86,9 @@ namespace Fluent_Random_Picker
         /// <returns>An <see cref="ICanHaveValuePrioritiesAndPick{T}"/> instance.</returns>
         public ICanHaveValuePrioritiesAndPick<T> Values(IEnumerable<T> ts)
         {
+            if (ts.Count() <= 1)
+                throw new NotEnoughValuesToPickException();
+
             foreach (var t in ts)
             {
                 AddValue(t);
@@ -109,7 +112,21 @@ namespace Fluent_Random_Picker
         }
 
         /// <inheritdoc/>
+        public ICanPick<T> WithPercentages(params int[] ps)
+        {
+            SetPriorities(ps, Priority.Percentage);
+            return this;
+        }
+
+        /// <inheritdoc/>
         public ICanPick<T> WithWeights(IEnumerable<int> ws)
+        {
+            SetPriorities(ws, Priority.Weight);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public ICanPick<T> WithWeights(params int[] ws)
         {
             SetPriorities(ws, Priority.Weight);
             return this;

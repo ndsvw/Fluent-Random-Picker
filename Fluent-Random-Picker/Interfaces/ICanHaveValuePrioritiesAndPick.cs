@@ -17,10 +17,24 @@ namespace Fluent_Random_Picker.Interfaces
         ICanPick<T> WithPercentages(IEnumerable<int> ps);
 
         /// <summary>
+        /// Specifies the percentages of all values.
+        /// </summary>
+        /// <param name="ps">The percentages.</param>
+        /// <returns>An <see cref="ICanPick{T}"/> instance.</returns>
+        ICanPick<T> WithPercentages(params int[] ps);
+
+        /// <summary>
         /// Specifies the weights of all values.
         /// </summary>
         /// <param name="ws">The weights.</param>
         /// <returns>An <see cref="ICanPick{T}"/> instance.</returns>
         ICanPick<T> WithWeights(IEnumerable<int> ws);
+
+        /// <summary>
+        /// Specifies the weights of all values.
+        /// </summary>
+        /// <param name="ws">The weights.</param>
+        /// <returns>An <see cref="ICanPick{T}"/> instance.</returns>
+        ICanPick<T> WithWeights(params int[] ws);
     }
 }
