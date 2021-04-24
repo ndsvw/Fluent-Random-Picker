@@ -1,4 +1,5 @@
-﻿using Fluent_Random_Picker.Interfaces;
+﻿using System.Collections.Generic;
+using Fluent_Random_Picker.Interfaces;
 
 namespace Fluent_Random_Picker
 {
@@ -31,6 +32,19 @@ namespace Fluent_Random_Picker
 #pragma warning restore CA1822 // Mark members as static
         {
             return new RandomPicker<T>().Value(t);
+        }
+
+        /// <summary>
+        /// Specifies multiple values.
+        /// </summary>
+        /// <typeparam name="T">The type of the values.</typeparam>
+        /// <param name="ts">The values.</param>
+        /// <returns>An object that can have optional value priorities.</returns>
+#pragma warning disable CA1822 // Mark members as static; Justification: Necessary for the fluent syntax.
+        public ICanHaveValuePrioritiesAndPick<T> Values<T>(IEnumerable<T> ts)
+#pragma warning restore CA1822 // Mark members as static
+        {
+            return new RandomPicker<T>().Values(ts);
         }
     }
 }

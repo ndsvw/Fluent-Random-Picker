@@ -1,4 +1,5 @@
-﻿using Fluent_Random_Picker.Interfaces;
+﻿using System.Collections.Generic;
+using Fluent_Random_Picker.Interfaces;
 
 namespace Fluent_Random_Picker
 {
@@ -29,6 +30,16 @@ namespace Fluent_Random_Picker
         public ICanHaveValuePriorityAndNeed1MoreValue<T> Value(T t)
         {
             return new RandomPicker<T>().Value(t);
+        }
+
+        /// <summary>
+        /// Specifies multiple values.
+        /// </summary>
+        /// <param name="ts">The values.</param>
+        /// <returns>An object that can have optional value priorities.</returns>
+        public ICanHaveValuePrioritiesAndPick<T> Values(IEnumerable<T> ts)
+        {
+            return new RandomPicker<T>().Values(ts);
         }
     }
 }

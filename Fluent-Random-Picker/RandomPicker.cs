@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Fluent_Random_Picker.Exceptions;
 using Fluent_Random_Picker.Interfaces;
 using Fluent_Random_Picker.Interfaces.Percentage;
 using Fluent_Random_Picker.Interfaces.Weight;
@@ -13,6 +14,7 @@ namespace Fluent_Random_Picker
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
     public sealed class RandomPicker<T> : ICanHaveValuePriorityAndNeed1MoreValue<T>,
+        ICanHaveValuePrioritiesAndPick<T>,
         ICanHaveAdditionalValueAndPick<T>,
 
         INeed1MorePercentageValue<T>,
@@ -47,12 +49,48 @@ namespace Fluent_Random_Picker
             m_Pairs.Priority = pType;
         }
 
+        private void SetPriorities(IEnumerable<int> pNumericPriorities, Priority pType)
+        {
+            if (pNumericPriorities.Count() != m_Pairs.Count())
+                throw new NumberOfValuesDoesNotMatchNumberOfPrioritiesException();
+
+            if (pNumericPriorities.Any(p => p < 0))
+                throw new ArgumentException("A negative value priority is not allowed.", nameof(pNumericPriorities));
+
+            var priorities = pNumericPriorities.ToList();
+            for (var i = 0; i < m_Pairs.Count(); i++)
+            {
+                m_Pairs[i].Priority = priorities[i];
+            }
+
+            m_Pairs.Priority = pType;
+        }
+
         // General
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Specifies the first value.
+        /// </summary>
+        /// <param name="t">The first value.</param>
+        /// <returns>An <see cref="ICanHaveValuePrioritiesAndPick{T}"/> instance.</returns>
         public ICanHaveValuePriorityAndNeed1MoreValue<T> Value(T t)
         {
             AddValue(t);
+            return this;
+        }
+
+        /// <summary>
+        /// Specifies all value.
+        /// </summary>
+        /// <param name="ts">The values.</param>
+        /// <returns>An <see cref="ICanHaveValuePrioritiesAndPick{T}"/> instance.</returns>
+        public ICanHaveValuePrioritiesAndPick<T> Values(IEnumerable<T> ts)
+        {
+            foreach (var t in ts)
+            {
+                AddValue(t);
+            }
+
             return this;
         }
 
@@ -60,6 +98,20 @@ namespace Fluent_Random_Picker
         public INeed1MorePercentageValue<T> WithPercentage(int p)
         {
             SetPriority(p, Priority.Percentage);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public ICanPick<T> WithPercentages(IEnumerable<int> ps)
+        {
+            SetPriorities(ps, Priority.Percentage);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public ICanPick<T> WithWeights(IEnumerable<int> ws)
+        {
+            SetPriorities(ws, Priority.Weight);
             return this;
         }
 
