@@ -36,7 +36,7 @@ namespace Fluent_Random_Picker
 
         private void AddValue(T t)
         {
-            m_Pairs.Add(new ValuePriorityPair<T> { Value = t });
+            m_Pairs.Add(new ValuePriorityPair<T>(t));
         }
 
         private void SetPriority(int pNumericPriority, Priority pType)

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
     <RootNamespace>Fluent_Random_Picker</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>This library offers a nice, fluent way to pick random values.
