@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>Fluent_Random_Picker</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -9,7 +11,7 @@
 Probabilities can be specified, values can be weighted, ...</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SynchReleaseVersion>true</SynchReleaseVersion>
-    <ReleaseVersion>1.1.0</ReleaseVersion> <!-- change version in solution options! -->
+    <ReleaseVersion>1.2.0</ReleaseVersion> <!-- change version in solution options! -->
   </PropertyGroup>
 
   <PropertyGroup>
