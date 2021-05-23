@@ -42,6 +42,7 @@ Probabilities can be specified, values can be weighted, ...</Description>
     <Folder Include="Interfaces\Percentage\" />
     <Folder Include="Picker\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Shuffle\" />
   </ItemGroup>
 
   <ItemGroup>

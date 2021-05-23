@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Fluent_Random_Picker.Exceptions;
+using Fluent_Random_Picker.Shuffle;
 
 namespace Fluent_Random_Picker.Picker
 {
@@ -48,31 +49,21 @@ namespace Fluent_Random_Picker.Picker
             if (m_NumberOfElements == 0)
                 return new PickResult<IEnumerable<T>>(Enumerable.Empty<T>());
 
+            if (m_Pairs.Priority == Priority.None)
+                return new PickResult<IEnumerable<T>>(PickDistinctElementsWithEqualPriority());
+
             var pickedElements = new List<T>();
             var remainingElements = new List<ValuePriorityPair<T>>(m_Pairs);
+            var prioritySum = m_Pairs.Sum(v => v.Priority);
+            if (m_Pairs.Priority == Priority.Percentage && prioritySum != 100)
+                throw new InvalidOperationException("The percentage values must sum up to 100.");
 
-            if (m_Pairs.Priority == Priority.None)
+            for (var i = 0; i < m_NumberOfElements; i++)
             {
-                for (var i = 0; i < m_NumberOfElements; i++)
-                {
-                    var n = m_Random.Next(remainingElements.Count);
-                    pickedElements.Add(remainingElements[n].Value);
-                    remainingElements.RemoveAt(n);
-                }
-            }
-            else
-            {
-                var prioritySum = m_Pairs.Sum(v => v.Priority);
-                if (m_Pairs.Priority == Priority.Percentage && prioritySum != 100)
-                    throw new InvalidOperationException("The percentage values must sum up to 100.");
-
-                for (var i = 0; i < m_NumberOfElements; i++)
-                {
-                    prioritySum = remainingElements.Sum(v => v.Priority);
-                    var index = PickPrioritizedIndex(prioritySum, m_Random, m_Pairs);
-                    pickedElements.Add(remainingElements[index].Value);
-                    remainingElements.RemoveAt(index);
-                }
+                prioritySum = remainingElements.Sum(v => v.Priority);
+                var index = PickPrioritizedIndex(prioritySum, m_Random, m_Pairs);
+                pickedElements.Add(remainingElements[index].Value);
+                remainingElements.RemoveAt(index);
             }
 
             return new PickResult<IEnumerable<T>>(pickedElements);
@@ -93,6 +84,13 @@ namespace Fluent_Random_Picker.Picker
             }
 
             throw new ArgumentException("Sum of priorities was wrong", nameof(pPrioritySum));
+        }
+
+        private IEnumerable<T> PickDistinctElementsWithEqualPriority()
+        {
+            var shuffle = new FisherYatesShuffle<T>();
+            var shuffledElements = shuffle.Shuffle(m_Pairs.Select(p => p.Value), m_NumberOfElements);
+            return shuffledElements.Take(m_NumberOfElements).ToList();
         }
     }
 }
