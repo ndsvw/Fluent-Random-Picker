@@ -21,7 +21,7 @@ namespace Fluent_Random_Picker.Shuffle
         {
             var rng = new Random();
             var list = new List<T>(pElements);
-            for (int i = 0; i < pFirstN - 2; i++)
+            for (int i = 0; i < pFirstN - 1; i++)
             {
                 int k = rng.Next(i, list.Count);
                 T tmp = list[i];
