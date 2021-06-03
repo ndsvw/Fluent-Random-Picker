@@ -3,7 +3,7 @@
     /// <summary>
     /// An enum for the different priorities.
     /// </summary>
-    public enum Priority
+    internal enum Priority
     {
         /// <summary>
         /// An enum value that represents the "None" option.

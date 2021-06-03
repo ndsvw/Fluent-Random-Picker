@@ -8,7 +8,7 @@ namespace Fluent_Random_Picker.Shuffle
     /// The Fisher-Yates shuffle algorithm.
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    public class FisherYatesShuffle<T> : IShuffle<T>
+    internal class FisherYatesShuffle<T> : IShuffle<T>
     {
         /// <inheritdoc/>
         public IEnumerable<T> Shuffle(IEnumerable<T> pElements)

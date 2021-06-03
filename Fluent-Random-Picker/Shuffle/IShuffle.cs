@@ -6,7 +6,7 @@ namespace Fluent_Random_Picker.Shuffle
     /// An interface for shuffle algorithms.
     /// </summary>
     /// <typeparam name="T">The type of the value.</typeparam>
-    public interface IShuffle<T>
+    internal interface IShuffle<T>
     {
         /// <summary>
         /// Shuffles the elements.
