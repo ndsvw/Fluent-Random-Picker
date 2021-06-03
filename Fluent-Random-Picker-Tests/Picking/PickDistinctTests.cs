@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Fluent_Random_Picker;
 using Fluent_Random_Picker.Exceptions;
@@ -94,6 +95,115 @@ namespace Fluent_Random_Picker_Tests.Picking
             }
 
             Assert.ThrowsException<PickingNegativeNumberOfValuesNotPossibleException>(Execute);
+        }
+
+        [TestMethod]
+        public void PickDistinctWithEqualProbability_ProbabilitiesMatter()
+        {
+            const int NumberOfTries = 1_000_000;
+            const double AcceptedDeviation = 0.1;
+
+            var counterABC = 0;
+            var counterACB = 0;
+            var counterBAC = 0;
+            var counterBCA = 0;
+            var counterCAB = 0;
+            var counterCBA = 0;
+
+            for (var i = 0; i < NumberOfTries; i++)
+            {
+                var values = Out.Of()
+                    .Value('a')
+                    .AndValue('b')
+                    .AndValue('c')
+                    .PickDistinct(3)
+                    .Select(e => e.ToString());
+                if (String.Join("", values).Equals("abc"))
+                    counterABC++;
+                if (String.Join("", values).Equals("acb"))
+                    counterACB++;
+                if (String.Join("", values).Equals("bac"))
+                    counterBAC++;
+                if (String.Join("", values).Equals("bca"))
+                    counterBCA++;
+                if (String.Join("", values).Equals("cab"))
+                    counterCAB++;
+                if (String.Join("", values).Equals("cba"))
+                    counterCBA++;
+            }
+
+            Assert.IsTrue(counterABC >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterABC <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterACB >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterACB <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterBAC >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterBAC <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterBCA >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterBCA <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterCAB >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterCAB <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterCBA >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterCBA <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+        }
+
+
+        [TestMethod]
+        public void PickDistinctWithDifferentProbabilities_ProbabilitiesMatter()
+        {
+            const int NumberOfTries = 1_000_000;
+            const double AcceptedDeviation = 0.1;
+
+            var counterABC = 0;
+            var counterACB = 0;
+            var counterBAC = 0;
+            var counterBCA = 0;
+            var counterCAB = 0;
+            var counterCBA = 0;
+
+            for (var i = 0; i < NumberOfTries; i++)
+            {
+                var values = Out.Of()
+                    .Value('a').WithPercentage(70)
+                    .AndValue('b').WithPercentage(20)
+                    .AndValue('c').WithPercentage(10)
+                    .PickDistinct(3)
+                    .Select(e => e.ToString());
+                if (String.Join("", values).Equals("abc"))
+                    counterABC++;
+                if (String.Join("", values).Equals("acb"))
+                    counterACB++;
+                if (String.Join("", values).Equals("bac"))
+                    counterBAC++;
+                if (String.Join("", values).Equals("bca"))
+                    counterBCA++;
+                if (String.Join("", values).Equals("cab"))
+                    counterCAB++;
+                if (String.Join("", values).Equals("cba"))
+                    counterCBA++;
+            }
+
+            Assert.IsTrue(counterABC >= NumberOfTries * (0.7 * 2 / 3d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterABC <= NumberOfTries * (0.7 * 2 / 3d) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterACB >= NumberOfTries * (0.7 * 1 / 3d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterACB <= NumberOfTries * (0.7 * 1 / 3d) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterBAC >= NumberOfTries * (0.2 * 7 / 8d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterBAC <= NumberOfTries * (0.2 * 7 / 8d) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterBCA >= NumberOfTries * (0.2 * 1 / 8d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterBCA <= NumberOfTries * (0.2 * 1 / 8d) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterCAB >= NumberOfTries * (0.1 * 7 / 9d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterCAB <= NumberOfTries * (0.1 * 7 / 9d) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterCBA >= NumberOfTries * (0.1 * 2 / 9d) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterCBA <= NumberOfTries * (0.1 * 2 / 9d) * (1 + AcceptedDeviation));
         }
     }
 }
