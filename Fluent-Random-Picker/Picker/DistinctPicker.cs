@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Fluent_Random_Picker.Exceptions;
+using Fluent_Random_Picker.Random;
 using Fluent_Random_Picker.Shuffle;
 
 namespace Fluent_Random_Picker.Picker
@@ -13,24 +14,28 @@ namespace Fluent_Random_Picker.Picker
     internal class DistinctPicker<T> : IPicker<IEnumerable<T>>
     {
         private readonly int m_NumberOfElements;
+        private readonly IRandomNumberGenerator m_Rng;
         private readonly ValuePriorityPairs<T> m_Pairs;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DistinctPicker{T}"/> class.
         /// </summary>
+        /// <param name="pRng">The random number generator.</param>
         /// <param name="pPairs">The value-priority paris to pick from.</param>
-        public DistinctPicker(ValuePriorityPairs<T> pPairs)
-            : this(pPairs, 1)
+        public DistinctPicker(IRandomNumberGenerator pRng, ValuePriorityPairs<T> pPairs)
+            : this(pRng, pPairs, 1)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DistinctPicker{T}"/> class.
         /// </summary>
+        /// <param name="pRng">The random number generator.</param>
         /// <param name="pPairs">The value-priority paris to pick from.</param>
         /// <param name="pNumberOfElements">The number of elements to pick.</param>
-        public DistinctPicker(ValuePriorityPairs<T> pPairs, int pNumberOfElements)
+        public DistinctPicker(IRandomNumberGenerator pRng, ValuePriorityPairs<T> pPairs, int pNumberOfElements)
         {
+            m_Rng = pRng;
             m_NumberOfElements = pNumberOfElements;
             m_Pairs = pPairs;
         }
@@ -58,14 +63,14 @@ namespace Fluent_Random_Picker.Picker
 
         private IEnumerable<T> PickDistinctElementsWithDifferentPriorities()
         {
-            var shuffle = new PrioritizedLeftShuffle<T>();
+            var shuffle = new PrioritizedLeftShuffle<T>(m_Rng);
             var shuffledElements = shuffle.Shuffle(m_Pairs, m_NumberOfElements);
             return shuffledElements.Take(m_NumberOfElements).ToList();
         }
 
         private IEnumerable<T> PickDistinctElementsWithEqualPriorities()
         {
-            var shuffle = new FisherYatesShuffle<T>();
+            var shuffle = new FisherYatesShuffle<T>(m_Rng);
             var shuffledElements = shuffle.Shuffle(m_Pairs.Select(p => p.Value), m_NumberOfElements);
             return shuffledElements.Take(m_NumberOfElements).ToList();
         }

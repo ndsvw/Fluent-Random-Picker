@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Fluent_Random_Picker.Exceptions;
+using Fluent_Random_Picker.Random;
 
 namespace Fluent_Random_Picker.Picker
 {
@@ -12,27 +13,29 @@ namespace Fluent_Random_Picker.Picker
     internal class DefaultPicker<T> : IPicker<IEnumerable<T>>
     {
         private readonly int m_NumberOfElements;
-        private readonly Random m_Random;
+        private readonly IRandomNumberGenerator m_Rng;
         private readonly ValuePriorityPairs<T> m_Pairs;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultPicker{T}"/> class.
         /// </summary>
+        /// <param name="pRng">The random number generator.</param>
         /// <param name="pPairs">The value-priority paris to pick from.</param>
-        public DefaultPicker(ValuePriorityPairs<T> pPairs)
-            : this(pPairs, 1)
+        public DefaultPicker(IRandomNumberGenerator pRng, ValuePriorityPairs<T> pPairs)
+            : this(pRng, pPairs, 1)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultPicker{T}"/> class.
         /// </summary>
+        /// <param name="pRng">The random number generator.</param>
         /// <param name="pPairs">The value-priority paris to pick from.</param>
         /// <param name="pNumberOfElements">The number of elements to pick.</param>
-        public DefaultPicker(ValuePriorityPairs<T> pPairs, int pNumberOfElements)
+        public DefaultPicker(IRandomNumberGenerator pRng, ValuePriorityPairs<T> pPairs, int pNumberOfElements)
         {
+            m_Rng = pRng;
             m_NumberOfElements = pNumberOfElements;
-            m_Random = new Random();
             m_Pairs = pPairs;
         }
 
@@ -50,7 +53,7 @@ namespace Fluent_Random_Picker.Picker
 
             if (m_Pairs.Priority == Priority.None)
             {
-                var elements = Enumerable.Repeat(m_Pairs[m_Random.Next(m_Pairs.Count())], m_NumberOfElements);
+                var elements = Enumerable.Repeat(m_Pairs[m_Rng.NextInt(m_Pairs.Count())], m_NumberOfElements);
                 return new PickResult<IEnumerable<T>>(elements.Select(e => e.Value));
             }
             else
@@ -65,7 +68,7 @@ namespace Fluent_Random_Picker.Picker
 
         private T PickPrioritized(int pPrioritySum)
         {
-            var n = m_Random.Next(pPrioritySum);
+            var n = m_Rng.NextInt(pPrioritySum);
 
             int localSum = 0;
             foreach (var pair in m_Pairs)

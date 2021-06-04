@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Fluent_Random_Picker.Random;
 
 namespace Fluent_Random_Picker.Shuffle
 {
@@ -12,7 +12,16 @@ namespace Fluent_Random_Picker.Shuffle
     /// <typeparam name="T">The type of the values.</typeparam>
     internal class PrioritizedLeftShuffle<T>
     {
-        private readonly Random m_Rng = new Random();
+        private readonly IRandomNumberGenerator m_Rng;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrioritizedLeftShuffle{T}"/> class.
+        /// </summary>
+        /// <param name="pRng">The random number generator.</param>
+        public PrioritizedLeftShuffle(IRandomNumberGenerator pRng)
+        {
+            m_Rng = pRng;
+        }
 
         /// <summary>
         /// Shuffles the elements and respects the probabilities in O(n) time.
@@ -48,7 +57,7 @@ namespace Fluent_Random_Picker.Shuffle
             while (true)
             {
                 var randomDouble = m_Rng.NextDouble();
-                var randomIndex = m_Rng.Next(pStartIndex, pPairs.Count);
+                var randomIndex = m_Rng.NextInt(pStartIndex, pPairs.Count);
                 if (randomDouble <= pPairs[randomIndex].Priority / (double)pMax)
                     return randomIndex;
             }

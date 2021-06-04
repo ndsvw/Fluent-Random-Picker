@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Fluent_Random_Picker.Interfaces;
+using Fluent_Random_Picker.Random;
 
 namespace Fluent_Random_Picker
 {
@@ -9,8 +10,16 @@ namespace Fluent_Random_Picker
     /// </summary>
     public class NonGenericOf
     {
+        private readonly IRandomNumberGenerator m_Rng;
+
         private NonGenericOf()
         {
+            m_Rng = new DefaultRandomNumberGenerator();
+        }
+
+        private NonGenericOf(int pSeed)
+        {
+            m_Rng = new DefaultRandomNumberGenerator(pSeed);
         }
 
         /// <summary>
@@ -23,6 +32,16 @@ namespace Fluent_Random_Picker
         }
 
         /// <summary>
+        /// Creates an instance of <see cref="NonGenericOf"/>.
+        /// </summary>
+        /// <param name="pSeed">The seed.</param>
+        /// <returns>A <see cref="NonGenericOf"/> instance.</returns>
+        public static NonGenericOf Create(int pSeed)
+        {
+            return new NonGenericOf(pSeed);
+        }
+
+        /// <summary>
         /// Specifies the first value.
         /// </summary>
         /// <typeparam name="T">The type of the value.</typeparam>
@@ -32,7 +51,7 @@ namespace Fluent_Random_Picker
         public ICanHaveValuePriorityAndNeed1MoreValue<T> Value<T>(T t)
 #pragma warning restore CA1822 // Mark members as static
         {
-            return new RandomPicker<T>().Value(t);
+            return new RandomPicker<T>(m_Rng).Value(t);
         }
 
         /// <summary>
@@ -45,7 +64,7 @@ namespace Fluent_Random_Picker
         public ICanHaveValuePrioritiesAndPick<T> Values<T>(IEnumerable<T> ts)
 #pragma warning restore CA1822 // Mark members as static
         {
-            return new RandomPicker<T>().Values(ts);
+            return new RandomPicker<T>(m_Rng).Values(ts);
         }
 
         /// <summary>

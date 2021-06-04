@@ -58,7 +58,7 @@ namespace Fluent_Random_Picker_Tests
         [TestMethod]
         public void ValuesArrayWithSeveralElements_AllSpecifiedValuesAndNoOthersArePossible()
         {
-            var random = new Random();
+            var random = new System.Random();
             var possibleValues = Enumerable.Range(1, 25).ToHashSet();
             Func<int> pickValues = () => Out.Of<int>().Values(possibleValues).PickOne();
             TestUtils.AssertAllSpecifiedValuesAndNoOthersArePossible(pickValues, possibleValues);

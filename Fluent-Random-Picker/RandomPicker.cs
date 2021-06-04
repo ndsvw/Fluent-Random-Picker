@@ -6,6 +6,7 @@ using Fluent_Random_Picker.Interfaces;
 using Fluent_Random_Picker.Interfaces.Percentage;
 using Fluent_Random_Picker.Interfaces.Weight;
 using Fluent_Random_Picker.Picker;
+using Fluent_Random_Picker.Random;
 
 namespace Fluent_Random_Picker
 {
@@ -25,6 +26,8 @@ namespace Fluent_Random_Picker
         INeedValueWeightAndCanHaveAdditionalWeightValueAndCanPick<T>,
         ICanHaveAdditionalWeightValueAndCanPick<T>
     {
+        private readonly IRandomNumberGenerator m_Rng;
+
         private readonly List<T> m_Values = new List<T>();
 
         private readonly List<int> m_Priorities = new List<int>();
@@ -34,8 +37,10 @@ namespace Fluent_Random_Picker
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomPicker{T}"/> class.
         /// </summary>
-        internal RandomPicker()
+        /// <param name="pRng">The random number generator.</param>
+        internal RandomPicker(IRandomNumberGenerator pRng)
         {
+            m_Rng = pRng;
         }
 
         private void AddValue(T t)
@@ -196,19 +201,19 @@ namespace Fluent_Random_Picker
         /// <inheritdoc/>
         public IEnumerable<T> Pick(int n)
         {
-            return new DefaultPicker<T>(GeneratePairs(), n).Pick().Result;
+            return new DefaultPicker<T>(m_Rng, GeneratePairs(), n).Pick().Result;
         }
 
         /// <inheritdoc/>
         public T PickOne()
         {
-            return new DefaultPicker<T>(GeneratePairs()).Pick().Result.First();
+            return new DefaultPicker<T>(m_Rng, GeneratePairs()).Pick().Result.First();
         }
 
         /// <inheritdoc/>
         public IEnumerable<T> PickDistinct(int n)
         {
-            return new DistinctPicker<T>(GeneratePairs(), n).Pick().Result;
+            return new DistinctPicker<T>(m_Rng, GeneratePairs(), n).Pick().Result;
         }
 
         // More
