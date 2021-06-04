@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Fluent_Random_Picker;
+using Fluent_Random_Picker.Random;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Fluent_Random_Picker_Tests.Random
@@ -39,6 +40,16 @@ namespace Fluent_Random_Picker_Tests.Random
         {
             var value = Out.Of(1234567).Values(new[] { 1, 2, 3, 4 }).PickDistinct(3).ToList();
             var value2 = Out.Of(1234567).Values(new[] { 1, 2, 3, 4 }).PickDistinct(3).ToList();
+
+            CollectionAssert.AreEqual(value, value2);
+        }
+
+        [TestMethod]
+        public void Of_WithRngReturnsValuesAccoringToTheRng()
+        {
+            var rng = new DefaultRandomNumberGenerator(987654);
+            var value = Out.Of(rng).Values(new[] { 1, 2, 3, 4 }).PickDistinct(3).ToList();
+            var value2 = Out.Of(rng).Values(new[] { 1, 2, 3, 4 }).PickDistinct(3).ToList();
 
             CollectionAssert.AreEqual(value, value2);
         }

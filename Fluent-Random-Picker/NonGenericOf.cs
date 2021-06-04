@@ -22,6 +22,11 @@ namespace Fluent_Random_Picker
             m_Rng = new DefaultRandomNumberGenerator(pSeed);
         }
 
+        private NonGenericOf(IRandomNumberGenerator pRng)
+        {
+            m_Rng = pRng;
+        }
+
         /// <summary>
         /// Creates an instance of <see cref="NonGenericOf"/>.
         /// </summary>
@@ -39,6 +44,16 @@ namespace Fluent_Random_Picker
         public static NonGenericOf Create(int pSeed)
         {
             return new NonGenericOf(pSeed);
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="NonGenericOf"/>.
+        /// </summary>
+        /// <param name="pRng">The random number generator.</param>
+        /// <returns>A <see cref="NonGenericOf"/> instance.</returns>
+        public static NonGenericOf Create(IRandomNumberGenerator pRng)
+        {
+            return new NonGenericOf(pRng);
         }
 
         /// <summary>
