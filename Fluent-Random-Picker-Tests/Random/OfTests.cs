@@ -47,9 +47,10 @@ namespace Fluent_Random_Picker_Tests.Random
         [TestMethod]
         public void Of_WithRngReturnsValuesAccoringToTheRng()
         {
-            var rng = new DefaultRandomNumberGenerator(987654);
-            var value = Out.Of(rng).Values(new[] { 1, 2, 3, 4 }).PickDistinct(3).ToList();
-            var value2 = Out.Of(rng).Values(new[] { 1, 2, 3, 4 }).PickDistinct(3).ToList();
+            var rng1 = new DefaultRandomNumberGenerator(987654);
+            var rng2 = new DefaultRandomNumberGenerator(987654);
+            var value = Out.Of(rng1).Values(new[] { 1, 2, 3, 4 }).PickDistinct(3).ToList();
+            var value2 = Out.Of(rng2).Values(new[] { 1, 2, 3, 4 }).PickDistinct(3).ToList();
 
             CollectionAssert.AreEqual(value, value2);
         }
