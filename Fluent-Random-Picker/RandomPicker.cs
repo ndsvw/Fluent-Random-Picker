@@ -59,7 +59,7 @@ namespace Fluent_Random_Picker
 
         private void SetPriorities(IEnumerable<int> pNumericPriorities, Priority pType)
         {
-            if (pNumericPriorities.Count() != m_Values.Count())
+            if (pNumericPriorities.Count() != m_Values.Count)
                 throw new NumberOfValuesDoesNotMatchNumberOfPrioritiesException();
 
             if (pNumericPriorities.Any(p => p < 0))
