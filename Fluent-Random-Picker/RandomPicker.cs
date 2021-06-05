@@ -50,8 +50,8 @@ namespace Fluent_Random_Picker
 
         private void SetPriority(int pNumericPriority, Priority pType)
         {
-            if (pNumericPriority < 0)
-                throw new ArgumentException("A negative value priority is not allowed.", nameof(pNumericPriority));
+            if (pNumericPriority <= 0)
+                throw new ArgumentException("Value priorities must be larger than 0.", nameof(pNumericPriority));
 
             m_Priorities.Add(pNumericPriority);
             m_Priority = pType;
@@ -62,8 +62,8 @@ namespace Fluent_Random_Picker
             if (pNumericPriorities.Count() != m_Values.Count)
                 throw new NumberOfValuesDoesNotMatchNumberOfPrioritiesException();
 
-            if (pNumericPriorities.Any(p => p < 0))
-                throw new ArgumentException("A negative value priority is not allowed.", nameof(pNumericPriorities));
+            if (pNumericPriorities.Any(p => p <= 0))
+                throw new ArgumentException("Value priorities must be larger than 0.", nameof(pNumericPriorities));
 
             m_Priorities.AddRange(pNumericPriorities);
 
