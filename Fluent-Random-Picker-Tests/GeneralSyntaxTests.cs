@@ -52,7 +52,7 @@ namespace Fluent_Random_Picker_Tests
                 .PickOne();
 
             Out.Of().Values(Enumerable.Range(1, 50))
-                .WithWeights(Enumerable.Range(1, 50).Select(x => x % 10))
+                .WithWeights(Enumerable.Range(1, 50).Select(x => x % 10 + 1))
                 .PickOne();
         }
 

@@ -54,5 +54,16 @@ namespace Fluent_Random_Picker_Tests.Random
 
             CollectionAssert.AreEqual(value, value2);
         }
+
+        [TestMethod]
+        public void OfOfT_WithRngReturnsValuesAccoringToTheRng()
+        {
+            var rng1 = new DefaultRandomNumberGenerator(987654);
+            var rng2 = new DefaultRandomNumberGenerator(987654);
+            var value = Out.Of<char>(rng1).Values(new[] { 'a', 'b', 'c', 'd' }).PickDistinct(3).ToList();
+            var value2 = Out.Of<char>(rng2).Values(new[] { 'a', 'b', 'c', 'd' }).PickDistinct(3).ToList();
+
+            CollectionAssert.AreEqual(value, value2);
+        }
     }
 }

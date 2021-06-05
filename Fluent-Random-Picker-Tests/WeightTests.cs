@@ -105,7 +105,6 @@ namespace Fluent_Random_Picker_Tests
             var counterA = 0;
             var counterB = 0;
             var counterC = 0;
-            var counterD = 0;
 
             for (var i = 0; i < NumberOfTries; i++)
             {
@@ -113,7 +112,6 @@ namespace Fluent_Random_Picker_Tests
                     .Value('a').WithWeight(7)
                     .AndValue('b').WithWeight(2)
                     .AndValue('c').WithWeight(1)
-                    .AndValue('d').WithWeight(0)
                     .PickOne();
                 if (value == 'a')
                     counterA++;
@@ -121,8 +119,6 @@ namespace Fluent_Random_Picker_Tests
                     counterB++;
                 if (value == 'c')
                     counterC++;
-                if (value == 'd')
-                    counterD++;
             }
 
             Assert.IsTrue(counterA >= NumberOfTries * 0.7 * (1 - AcceptedDeviation));
@@ -133,12 +129,10 @@ namespace Fluent_Random_Picker_Tests
 
             Assert.IsTrue(counterC >= NumberOfTries * 0.1 * (1 - AcceptedDeviation));
             Assert.IsTrue(counterC <= NumberOfTries * 0.1 * (1 + AcceptedDeviation));
-
-            Assert.AreEqual(0, counterD);
         }
 
         [TestMethod]
-        public void WeightAmoungIsNegative_ExceptionIsThrown()
+        public void WeightAmountIsNegative_ExceptionIsThrown()
         {
             static void Execute()
             {
@@ -146,6 +140,44 @@ namespace Fluent_Random_Picker_Tests
                     .Value('a').WithWeight(1)
                     .AndValue('b').WithWeight(-1)
                     .AndValue('c').WithWeight(2)
+                    .PickOne();
+            }
+            Assert.ThrowsException<ArgumentException>(Execute);
+        }
+
+        [TestMethod]
+        public void WeightAmountIsZero_ExceptionIsThrown()
+        {
+            static void Execute()
+            {
+                Out.Of()
+                    .Value('a').WithWeight(1)
+                    .AndValue('b').WithWeight(0)
+                    .AndValue('c').WithWeight(2)
+                    .PickOne();
+            }
+            Assert.ThrowsException<ArgumentException>(Execute);
+        }
+
+        [TestMethod]
+        public void WeightAmountsOneIsNegative_ExceptionIsThrown()
+        {
+            static void Execute()
+            {
+                Out.Of()
+                    .Values(new[] { 'a', 'b', 'c', 'd' }).WithWeights(new[] { 2, 2, -1, 1 })
+                    .PickOne();
+            }
+            Assert.ThrowsException<ArgumentException>(Execute);
+        }
+
+        [TestMethod]
+        public void WeightAmountsOneIsZero_ExceptionIsThrown()
+        {
+            static void Execute()
+            {
+                Out.Of()
+                    .Values(new[] { 'a', 'b', 'c', 'd' }).WithWeights(new[] { 2, 2, 0, 1 })
                     .PickOne();
             }
             Assert.ThrowsException<ArgumentException>(Execute);

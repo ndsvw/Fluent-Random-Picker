@@ -105,7 +105,6 @@ namespace Fluent_Random_Picker_Tests
             var counterA = 0;
             var counterB = 0;
             var counterC = 0;
-            var counterD = 0;
 
             for (var i = 0; i < NumberOfTries; i++)
             {
@@ -113,7 +112,6 @@ namespace Fluent_Random_Picker_Tests
                     .Value('a').WithPercentage(70)
                     .AndValue('b').WithPercentage(20)
                     .AndValue('c').WithPercentage(10)
-                    .AndValue('d').WithPercentage(0)
                     .PickOne();
                 if (value == 'a')
                     counterA++;
@@ -121,8 +119,6 @@ namespace Fluent_Random_Picker_Tests
                     counterB++;
                 if (value == 'c')
                     counterC++;
-                if (value == 'd')
-                    counterD++;
             }
 
             Assert.IsTrue(counterA >= NumberOfTries * 0.7 * (1 - AcceptedDeviation));
@@ -133,8 +129,6 @@ namespace Fluent_Random_Picker_Tests
 
             Assert.IsTrue(counterC >= NumberOfTries * 0.1 * (1 - AcceptedDeviation));
             Assert.IsTrue(counterC <= NumberOfTries * 0.1 * (1 + AcceptedDeviation));
-
-            Assert.AreEqual(0, counterD);
         }
 
         [TestMethod]
@@ -174,6 +168,44 @@ namespace Fluent_Random_Picker_Tests
                     .Value('a').WithPercentage(85)
                     .AndValue('b').WithPercentage(-25)
                     .AndValue('c').WithPercentage(15)
+                    .PickOne();
+            }
+            Assert.ThrowsException<ArgumentException>(Execute);
+        }
+
+        [TestMethod]
+        public void PercentageProbabilityIsZero_ExceptionIsThrown()
+        {
+            static void Execute()
+            {
+                Out.Of()
+                    .Value('a').WithPercentage(85)
+                    .AndValue('b').WithPercentage(0)
+                    .AndValue('c').WithPercentage(15)
+                    .PickOne();
+            }
+            Assert.ThrowsException<ArgumentException>(Execute);
+        }
+
+        [TestMethod]
+        public void PercentagesAProbabilityIsNegative_ExceptionIsThrown()
+        {
+            static void Execute()
+            {
+                Out.Of()
+                    .Values(new[] { 'a', 'b', 'c', 'd' }).WithPercentages(new[] { -25, 50, 50, 25 })
+                    .PickOne();
+            }
+            Assert.ThrowsException<ArgumentException>(Execute);
+        }
+
+        [TestMethod]
+        public void PercentagesAProbabilityIsZero_ExceptionIsThrown()
+        {
+            static void Execute()
+            {
+                Out.Of()
+                    .Values(new[] { 'a', 'b', 'c', 'd' }).WithPercentages(new[] { 0, 50, 50, 25 })
                     .PickOne();
             }
             Assert.ThrowsException<ArgumentException>(Execute);
