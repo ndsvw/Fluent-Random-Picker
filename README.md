@@ -5,6 +5,13 @@ Probabilities can be specified, values can be weighted.
 
 [![NuGet downloads](https://img.shields.io/nuget/dt/FluentRandomPicker.svg)](https://www.nuget.org/packages/FluentRandomPicker) ![Build](https://github.com/ndsvw/Fluent-Random-Picker/actions/workflows/dotnet.yml/badge.svg)
 
+- ✔️ .Net 5
+- ✔️ .Net Standard 2.0
+  - ✔️ .Net Core 2.0
+  - ✔️ .Net Framework 4.8
+  - ✔️ .Net Framework 4.7.2
+  - ❌ .Net Framework 4.6.X
+
 ## Getting started
 
 Install the nuget package (https://www.nuget.org/packages/FluentRandomPicker/)
