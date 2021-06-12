@@ -14,7 +14,7 @@ namespace Fluent_Random_Picker
     /// The main class.
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    public sealed class RandomPicker<T> : ICanHaveValuePriorityAndNeed1MoreValue<T>,
+    internal sealed class RandomPicker<T> : ICanHaveValuePriorityAndNeed1MoreValue<T>,
         ICanHaveValuePrioritiesAndPick<T>,
         ICanHaveAdditionalValueAndPick<T>,
 
