@@ -30,7 +30,7 @@ Probabilities can be specified, values can be weighted, ...</Description>
     <PackageProjectUrl>https://github.com/ndsvw/Fluent-Random-Picker</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>random;fluent;picker;choose;pick;probability;outof</PackageTags>
+    <PackageTags>random;fluent;picker;choice;pick;probability;outof;choose</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/ndsvw/Fluent-Random-Picker</RepositoryUrl>
     <Title>Fluent Random Picker</Title>
