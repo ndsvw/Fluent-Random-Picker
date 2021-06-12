@@ -3,6 +3,8 @@
 This library offers a nice, fluent way to pick random values.
 Probabilities can be specified, values can be weighted.
 
+[![NuGet downloads](https://img.shields.io/nuget/dt/FluentRandomPicker.svg)](https://www.nuget.org/packages/FluentRandomPicker) ![Build](https://github.com/ndsvw/Fluent-Random-Picker/actions/workflows/dotnet.yml/badge.svg)
+
 ## Getting started
 
 Install the nuget package (https://www.nuget.org/packages/FluentRandomPicker/)
