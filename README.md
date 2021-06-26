@@ -143,3 +143,20 @@ var myRng = new MyOwnRandomNumberGenerator();
 var value = Out.Of(myRng).Values(new[] { 1, 2, 3, 4 }).PickOne();
 // value gets picked via a specified random number generator.
 ```
+
+## Migration to v2.0
+
+The params array is not supported anymore for the Values method. Please replace 
+```c#
+Out.Of().Values(1, 2, 3)...
+```
+with
+```c#
+Out.Of().Value(1).AndValue(2).AndValue(3)...
+```
+or
+```c#
+Out.Of().Values(new List<int>{ 1, 2, 3 })...
+```
+
+Reason: https://github.com/ndsvw/Fluent-Random-Picker/commit/da9af06bda215d0983e428072febed8f33577041
