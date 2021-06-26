@@ -102,3 +102,44 @@ var operation = Out.Of<Func<long, long>>()
 var result = operation(10);
 // result equals 10 + 2 or 10 * 2 or 10^2 or 10^10. 
 ```
+
+## Advanced
+
+### Specifying a seed
+```c#
+var seed = 1234567;
+
+var value1 = Out.Of(seed).Values(new[] { 1, 2, 3, 4 }).PickOne();
+var value2 = Out.Of(seed).Values(new[] { 1, 2, 3, 4 }).PickOne();
+// value1 und value2 are always equal.
+```
+
+### Using a different random number generator (defaul is System.Random)
+```c#
+public class MyOwnRandomNumberGenerator : IRandomNumberGenerator
+{
+    public double NextDouble()
+    {
+        // ...
+    }
+
+    public int NextInt()
+    {
+        // ...
+    }
+
+    public int NextInt(int pN)
+    {
+        // ...
+    }
+
+    public int NextInt(int pMin, int pMax)
+    {
+        // ...
+    }
+}
+
+var myRng = new MyOwnRandomNumberGenerator();
+var value = Out.Of(myRng).Values(new[] { 1, 2, 3, 4 }).PickOne();
+// value gets picked via a specified random number generator.
+```
