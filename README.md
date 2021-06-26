@@ -1,6 +1,6 @@
 # Fluent Random Picker
 
-This library offers a nice, fluent way to pick random values.
+Fluent Random Picker is a nice, performant fluent way to pick random values.
 Probabilities can be specified, values can be weighted.
 
 [![NuGet downloads](https://img.shields.io/nuget/dt/FluentRandomPicker.svg)](https://www.nuget.org/packages/FluentRandomPicker) ![Build](https://github.com/ndsvw/Fluent-Random-Picker/actions/workflows/dotnet.yml/badge.svg)
@@ -30,7 +30,7 @@ Out.Of()...
 ## Examples
 
 ```c#
-var randomNumber = Out.Of().Values(5, 6).PickOne();
+var randomNumber = Out.Of().Value(5).AndValue(6).PickOne();
 // randomNumber is 5 or 6 with equal probability.
 ```
 
@@ -40,7 +40,7 @@ var randomChar = Out.Of()
                   .AndValue('b').WithPercentage(30)
                   .PickOne();
 // or
-var randomChar = Out.Of().Values('a', 'b')
+var randomChar = Out.Of().Values(new List<char> { 'a', 'b' })
                   .WithPercentages(70, 30)
                   .PickOne();
 // or
@@ -56,7 +56,7 @@ var randomString = Out.Of()
                   .AndValue("world").WithWeight(3)
                   .PickOne();
 // or
-var randomChar = Out.Of().Values("hello", "world")
+var randomChar = Out.Of().Values(new HashSet<string> { "hello", "world" })
                   .WithWeights(2, 3)
                   .PickOne();
 // or
@@ -79,7 +79,7 @@ var randomInts = Out.Of()
 
 ```c#
 var randomInts = Out.Of()
-                  .Values(1, 10, 100, 1000)
+                  .Values(new List<int> { 1, 10, 100, 1000 })
                   .WithPercentages(70, 15, 10, 5)
                   .PickDistinct(2);
 // randomInts can be [1, 10], [1, 100], [1, 1000] ... but not [1, 1], [10, 10], ...
