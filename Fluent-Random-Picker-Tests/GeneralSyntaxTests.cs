@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Fluent_Random_Picker;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -57,15 +58,13 @@ namespace Fluent_Random_Picker_Tests
         }
 
         [TestMethod]
-        public void GeneralParamsTests()
+        public void GeneralPriorityParamsTests()
         {
-            Out.Of().Values(1, 2, 3, 4).PickOne();
-
-            Out.Of().Values(9, 8, 7, 6, 5, 4, 3, 2, 1)
+            Out.Of().Values(new List<byte> { 9, 8, 7, 6, 5, 4, 3, 2, 1 })
                 .WithPercentages(50, 15, 5, 5, 5, 5, 5, 5, 5)
                 .PickOne();
 
-            Out.Of().Values(9, 8, 7, 6, 5, 4, 3, 2, 1)
+            Out.Of().Values(new List<byte> { 9, 8, 7, 6, 5, 4, 3, 2, 1 })
                 .WithWeights(1, 10, 10, 100, 100, 100, 1000, 1000, 1000)
                 .PickOne();
         }

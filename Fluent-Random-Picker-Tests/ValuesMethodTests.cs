@@ -11,18 +11,6 @@ namespace Fluent_Random_Picker_Tests
     public class ValuesMethodTests
     {
         [TestMethod]
-        public void ValuesEmptyParamsArray_ThrowsException()
-        {
-            Assert.ThrowsException<NotEnoughValuesToPickException>(() => Out.Of<int>().Values().PickOne());
-        }
-
-        [TestMethod]
-        public void ValuesParamsArrayWith1Element_ThrowsException()
-        {
-            Assert.ThrowsException<NotEnoughValuesToPickException>(() => Out.Of().Values(1).PickOne());
-        }
-
-        [TestMethod]
         public void ValuesEmptyEnumerable_ThrowsException()
         {
             Assert.ThrowsException<NotEnoughValuesToPickException>(() => Out.Of().Values(Enumerable.Empty<int>()).PickOne());
@@ -50,7 +38,7 @@ namespace Fluent_Random_Picker_Tests
         [TestMethod]
         public void ValuesArrayWith2Elements_AllSpecifiedValuesAndNoOthersArePossible()
         {
-            Func<int> pickValues = () => Out.Of().Values(1, 2).PickOne();
+            Func<int> pickValues = () => Out.Of().Value(1).AndValue(2).PickOne();
             var expectedValues = new HashSet<int> { 1, 2 };
             TestUtils.AssertAllSpecifiedValuesAndNoOthersArePossible(pickValues, expectedValues);
         }
@@ -68,37 +56,43 @@ namespace Fluent_Random_Picker_Tests
         [TestMethod]
         public void ValuesMoreValuesThanWeights_ThrowsException()
         {
-            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(1, 2, 3).WithWeights(1, 2).PickOne());
+            var values = new List<byte> { 1, 2, 3 };
+            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithWeights(1, 2).PickOne());
         }
 
         [TestMethod]
         public void ValuesLessValuesThanWeights_ThrowsException()
         {
-            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(1, 2).WithWeights(1, 2, 3).PickOne());
+            var values = new List<byte> { 1, 2 };
+            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithWeights(1, 2, 3).PickOne());
         }
 
         [TestMethod]
         public void ValuesNoWeights_ThrowsException()
         {
-            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(1, 2).WithWeights().PickOne());
+            var values = new List<byte> { 1, 2 };
+            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithWeights().PickOne());
         }
 
         [TestMethod]
         public void ValuesMoreValuesThanPercentages_ThrowsException()
         {
-            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(1, 2, 3).WithPercentages(75, 25).PickOne());
+            var values = new List<byte> { 1, 2, 3 };
+            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithPercentages(75, 25).PickOne());
         }
 
         [TestMethod]
         public void ValuesLessValuesThanPercentages_ThrowsException()
         {
-            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(1, 2).WithPercentages(50, 25, 25).PickOne());
+            var values = new List<byte> { 1, 2 };
+            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithPercentages(50, 25, 25).PickOne());
         }
 
         [TestMethod]
         public void ValuesNoPercentags_ThrowsException()
         {
-            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(1, 2).WithPercentages().PickOne());
+            var values = new List<byte> { 1, 2 };
+            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithPercentages().PickOne());
         }
     }
 }

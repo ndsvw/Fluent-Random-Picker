@@ -81,16 +81,5 @@ namespace Fluent_Random_Picker
         {
             return new RandomPicker<T>(m_Rng).Values(ts);
         }
-
-        /// <summary>
-        /// Specifies multiple values.
-        /// </summary>
-        /// <typeparam name="T">The type of the values.</typeparam>
-        /// <param name="ts">The values.</param>
-        /// <returns>An object that can have optional value priorities.</returns>
-        public ICanHaveValuePrioritiesAndPick<T> Values<T>(params T[] ts)
-        {
-            return Values<T>(ts.ToList()); // ToList() is necessary. Otherwise endless recursion
-        }
     }
 }
