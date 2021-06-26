@@ -5,6 +5,23 @@ Probabilities can be specified, values can be weighted.
 
 [![NuGet downloads](https://img.shields.io/nuget/dt/FluentRandomPicker.svg)](https://www.nuget.org/packages/FluentRandomPicker) ![Build](https://github.com/ndsvw/Fluent-Random-Picker/actions/workflows/dotnet.yml/badge.svg)
 
+- [Fluent Random Picker](#fluent-random-picker)
+  - [Compatibility](#compatibility)
+  - [Getting started](#getting-started)
+  - [Examples](#examples)
+    - [The easiest example](#the-easiest-example)
+    - [Specifying percentages](#specifying-percentages)
+    - [Specifying weights](#specifying-weights)
+    - [Picking multiple values](#picking-multiple-values)
+    - [Picking distinct values](#picking-distinct-values)
+    - [Specifying the returned type explicitly](#specifying-the-returned-type-explicitly)
+  - [Advanced](#advanced)
+    - [Specifying a seed](#specifying-a-seed)
+    - [Using a different random number generator](#using-a-different-random-number-generator)
+  - [Migration to version 2](#migration-to-version-2)
+
+## Compatibility
+
 - ✔️ .Net 5
 - ✔️ .Net Standard 2.0
   - ✔️ .Net Core 2.0
@@ -114,7 +131,8 @@ var value2 = Out.Of(seed).Values(new[] { 1, 2, 3, 4 }).PickOne();
 // value1 und value2 are always equal.
 ```
 
-### Using a different random number generator (defaul is System.Random)
+### Using a different random number generator
+The default random number generator is System.Random
 ```c#
 public class MyOwnRandomNumberGenerator : IRandomNumberGenerator
 {
@@ -144,7 +162,7 @@ var value = Out.Of(myRng).Values(new[] { 1, 2, 3, 4 }).PickOne();
 // value gets picked via a specified random number generator.
 ```
 
-## Migration to v2.0
+## Migration to version 2
 
 The params array is not supported anymore for the Values method. Please replace 
 ```c#
