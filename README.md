@@ -29,11 +29,13 @@ Out.Of()...
 
 ## Examples
 
+### The easiest example
 ```c#
 var randomNumber = Out.Of().Value(5).AndValue(6).PickOne();
 // randomNumber is 5 or 6 with equal probability.
 ```
 
+### Specifying percentages
 ```c#
 var randomChar = Out.Of()
                   .Value('a').WithPercentage(70)
@@ -50,6 +52,7 @@ var randomChar = Out.Of().Values(new List<char> { 'a', 'b' })
 // randomChar is 'a' with a probability of 70 % and 'b' with a probability of 30 %.
 ```
 
+### Specifying weights
 ```c#
 var randomString = Out.Of()
                   .Value("hello").WithWeight(2)
@@ -66,6 +69,7 @@ var randomChar = Out.Of().Values(new HashSet<string> { "hello", "world" })
 // randomString is "hello" or "world", but the probability for "world" is 1.5 times as high.
 ```
 
+### Picking multiple values
 ```c#
 var randomInts = Out.Of()
                   .Value(1).WithPercentage(80)
@@ -77,6 +81,7 @@ var randomInts = Out.Of()
 // or even [1000, 1000, 1000, 1000, 1000] with a very small probability.
 ```
 
+### Picking distinct values
 ```c#
 var randomInts = Out.Of()
                   .Values(new List<int> { 1, 10, 100, 1000 })
@@ -85,6 +90,7 @@ var randomInts = Out.Of()
 // randomInts can be [1, 10], [1, 100], [1, 1000] ... but not [1, 1], [10, 10], ...
 ```
 
+### Specifying the returned type explicitly
 ```c#
 var operation = Out.Of<Func<long, long>>()
                 .Value(i => i + 2)
