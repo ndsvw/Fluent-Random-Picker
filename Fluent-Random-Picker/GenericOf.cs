@@ -9,7 +9,7 @@ namespace Fluent_Random_Picker
     /// A generic implementation of the fluent part "Of".
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    internal class GenericOf<T>
+    public class GenericOf<T>
     {
         private readonly IRandomNumberGenerator m_Rng;
 
