@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Fluent_Random_Picker.Exceptions
+namespace FluentRandomPicker.Exceptions
 {
     /// <summary>
     /// An exception indicating that the number of specified values is less than the number of values to pick.

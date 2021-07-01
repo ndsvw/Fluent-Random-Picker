@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Fluent_Random_Picker
+namespace FluentRandomPicker
 {
     /// <summary>
     /// A collection of ValuePriorityPairs.

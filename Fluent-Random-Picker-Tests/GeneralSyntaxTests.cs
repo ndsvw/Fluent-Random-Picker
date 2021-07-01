@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fluent_Random_Picker;
+using FluentRandomPicker;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Fluent_Random_Picker_Tests
+namespace FluentRandomPickerTests
 {
     [TestClass]
     public class GeneralSyntaxTests

@@ -1,4 +1,4 @@
-﻿namespace Fluent_Random_Picker.Interfaces.Weight
+﻿namespace FluentRandomPicker.Interfaces.Weight
 {
     /// <summary>
     /// An interface to specify that a value was permitted and its weight

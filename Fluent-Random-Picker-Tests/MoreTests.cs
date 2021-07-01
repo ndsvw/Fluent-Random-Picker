@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Fluent_Random_Picker_Tests
+namespace FluentRandomPickerTests
 {
     public class MoreTests
     {

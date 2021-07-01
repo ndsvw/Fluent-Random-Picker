@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using Fluent_Random_Picker;
-using Fluent_Random_Picker.Random;
+using FluentRandomPicker;
+using FluentRandomPicker.Random;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Fluent_Random_Picker_Tests.Random
+namespace FluentRandomPickerTests.Random
 {
     [TestClass]
     public class OfTests

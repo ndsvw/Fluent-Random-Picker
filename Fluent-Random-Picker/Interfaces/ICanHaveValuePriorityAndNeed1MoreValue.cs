@@ -1,7 +1,7 @@
-﻿using Fluent_Random_Picker.Interfaces.Percentage;
-using Fluent_Random_Picker.Interfaces.Weight;
+﻿using FluentRandomPicker.Interfaces.Percentage;
+using FluentRandomPicker.Interfaces.Weight;
 
-namespace Fluent_Random_Picker.Interfaces
+namespace FluentRandomPicker.Interfaces
 {
     /// <summary>
     /// An interface to specify that the previous value can get a priority

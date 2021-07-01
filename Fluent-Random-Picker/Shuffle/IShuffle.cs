@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fluent_Random_Picker.Shuffle
+namespace FluentRandomPicker.Shuffle
 {
     /// <summary>
     /// An interface for shuffle algorithms.

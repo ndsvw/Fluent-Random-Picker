@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fluent_Random_Picker.Exceptions;
-using Fluent_Random_Picker.Random;
-using Fluent_Random_Picker.Shuffle;
+using FluentRandomPicker.Exceptions;
+using FluentRandomPicker.Random;
+using FluentRandomPicker.Shuffle;
 
-namespace Fluent_Random_Picker.Picker
+namespace FluentRandomPicker.Picker
 {
     /// <summary>
     /// An implementation of a picker that picks distinct values.

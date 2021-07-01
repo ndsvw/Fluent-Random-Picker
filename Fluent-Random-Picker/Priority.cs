@@ -1,4 +1,4 @@
-﻿namespace Fluent_Random_Picker
+﻿namespace FluentRandomPicker
 {
     /// <summary>
     /// An enum for the different priorities.

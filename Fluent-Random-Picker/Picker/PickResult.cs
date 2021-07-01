@@ -1,4 +1,4 @@
-﻿namespace Fluent_Random_Picker.Picker
+﻿namespace FluentRandomPicker.Picker
 {
     /// <summary>
     /// The result of a Pick operation.

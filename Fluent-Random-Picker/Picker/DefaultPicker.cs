@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fluent_Random_Picker.Exceptions;
-using Fluent_Random_Picker.Random;
+using FluentRandomPicker.Exceptions;
+using FluentRandomPicker.Random;
 
-namespace Fluent_Random_Picker.Picker
+namespace FluentRandomPicker.Picker
 {
     /// <summary>
     /// A default implementation of a picker.

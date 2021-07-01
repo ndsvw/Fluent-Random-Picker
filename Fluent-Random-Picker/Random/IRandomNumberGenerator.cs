@@ -1,4 +1,4 @@
-﻿namespace Fluent_Random_Picker.Random
+﻿namespace FluentRandomPicker.Random
 {
     /// <summary>
     /// Generates random numbers.

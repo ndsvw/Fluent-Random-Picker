@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Fluent_Random_Picker.Interfaces;
-using Fluent_Random_Picker.Random;
+using FluentRandomPicker.Interfaces;
+using FluentRandomPicker.Random;
 
-namespace Fluent_Random_Picker
+namespace FluentRandomPicker
 {
     /// <summary>
     /// A generic implementation of the fluent part "Of".

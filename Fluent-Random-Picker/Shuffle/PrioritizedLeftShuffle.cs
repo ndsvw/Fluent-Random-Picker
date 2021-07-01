@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Fluent_Random_Picker.Random;
+using FluentRandomPicker.Random;
 
-namespace Fluent_Random_Picker.Shuffle
+namespace FluentRandomPicker.Shuffle
 {
     /// <summary>
     /// A shuffle algorithm that respects probabilities.

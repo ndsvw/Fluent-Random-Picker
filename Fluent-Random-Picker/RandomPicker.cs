@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fluent_Random_Picker.Exceptions;
-using Fluent_Random_Picker.Interfaces;
-using Fluent_Random_Picker.Interfaces.Percentage;
-using Fluent_Random_Picker.Interfaces.Weight;
-using Fluent_Random_Picker.Picker;
-using Fluent_Random_Picker.Random;
+using FluentRandomPicker.Exceptions;
+using FluentRandomPicker.Interfaces;
+using FluentRandomPicker.Interfaces.Percentage;
+using FluentRandomPicker.Interfaces.Weight;
+using FluentRandomPicker.Picker;
+using FluentRandomPicker.Random;
 
-namespace Fluent_Random_Picker
+namespace FluentRandomPicker
 {
     /// <summary>
     /// The main class.

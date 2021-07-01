@@ -1,7 +1,7 @@
-﻿using Fluent_Random_Picker;
+﻿using FluentRandomPicker;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Fluent_Random_Picker_Tests
+namespace FluentRandomPickerTests
 {
     [TestClass]
     public class NoPrioritiesTests

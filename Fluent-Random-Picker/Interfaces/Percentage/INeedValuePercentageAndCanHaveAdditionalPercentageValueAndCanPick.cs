@@ -1,4 +1,4 @@
-﻿namespace Fluent_Random_Picker.Interfaces.Percentage
+﻿namespace FluentRandomPicker.Interfaces.Percentage
 {
     /// <summary>
     /// An interface to specify that a value was permitted and its percentage

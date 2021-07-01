@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fluent_Random_Picker.Interfaces
+namespace FluentRandomPicker.Interfaces
 {
     /// <summary>
     /// An interface to specify that priorities can be chosen optionally

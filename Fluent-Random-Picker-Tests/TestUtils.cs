@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Fluent_Random_Picker_Tests
+namespace FluentRandomPickerTests
 {
     public static class TestUtils
     {

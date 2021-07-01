@@ -1,6 +1,6 @@
-﻿using Fluent_Random_Picker.Random;
+﻿using FluentRandomPicker.Random;
 
-namespace Fluent_Random_Picker
+namespace FluentRandomPicker
 {
     /// <summary>
     /// The "Out" part of the "Out.Of" syntax.

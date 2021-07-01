@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Fluent_Random_Picker.Exceptions
+namespace FluentRandomPicker.Exceptions
 {
     /// <summary>
     /// An exception indicating that the number of values does not match the number of provided priorities.

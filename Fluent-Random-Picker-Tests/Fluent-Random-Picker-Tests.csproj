@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>Fluent_Random_Picker_Tests</RootNamespace>
+    <RootNamespace>FluentRandomPickerTests</RootNamespace>
 
     <IsPackable>false</IsPackable>
     <ReleaseVersion>2.0.1</ReleaseVersion>
