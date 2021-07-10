@@ -41,7 +41,7 @@ Install the nuget package (https://www.nuget.org/packages/FluentRandomPicker/)
 
 Add the using directive:
 ```c#
-using Fluent_Random_Picker;
+using FluentRandomPicker;
 ```
 
 Begin with Out.Of() (see the examples).
