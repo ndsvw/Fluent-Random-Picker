@@ -23,7 +23,6 @@ namespace FluentRandomPicker
         public ValuePriorityPair<T> this[int i]
         {
             get { return m_Pairs[i]; }
-            set { m_Pairs[i] = value; }
         }
 
         /// <inheritdoc/>
