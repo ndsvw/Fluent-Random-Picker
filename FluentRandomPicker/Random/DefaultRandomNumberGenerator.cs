@@ -5,14 +5,14 @@
     /// </summary>
     public class DefaultRandomNumberGenerator : IRandomNumberGenerator
     {
-        private readonly System.Random m_Random;
+        private readonly System.Random _random;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultRandomNumberGenerator"/> class.
         /// </summary>
         public DefaultRandomNumberGenerator()
         {
-            m_Random = new System.Random();
+            _random = new System.Random();
         }
 
         /// <summary>
@@ -21,31 +21,31 @@
         /// <param name="pSeed">The seed.</param>
         public DefaultRandomNumberGenerator(int pSeed)
         {
-            m_Random = new System.Random(pSeed);
+            _random = new System.Random(pSeed);
         }
 
         /// <inheritdoc/>
         public double NextDouble()
         {
-            return m_Random.NextDouble();
+            return _random.NextDouble();
         }
 
         /// <inheritdoc/>
         public int NextInt()
         {
-            return m_Random.Next();
+            return _random.Next();
         }
 
         /// <inheritdoc/>
         public int NextInt(int pN)
         {
-            return m_Random.Next(pN);
+            return _random.Next(pN);
         }
 
         /// <inheritdoc/>
         public int NextInt(int pMin, int pMax)
         {
-            return m_Random.Next(pMin, pMax);
+            return _random.Next(pMin, pMax);
         }
     }
 }

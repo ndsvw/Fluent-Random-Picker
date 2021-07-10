@@ -9,7 +9,7 @@ namespace FluentRandomPicker
     /// <typeparam name="T">The type of the values.</typeparam>
     internal class ValuePriorityPairs<T> : IEnumerable<ValuePriorityPair<T>>
     {
-        private readonly List<ValuePriorityPair<T>> m_Pairs = new List<ValuePriorityPair<T>>();
+        private readonly List<ValuePriorityPair<T>> _pairs = new List<ValuePriorityPair<T>>();
 
         /// <summary>
         /// Gets or sets the priority.
@@ -22,25 +22,25 @@ namespace FluentRandomPicker
         /// <param name="i">The index.</param>
         public ValuePriorityPair<T> this[int i]
         {
-            get { return m_Pairs[i]; }
+            get { return _pairs[i]; }
         }
 
         /// <inheritdoc/>
         public void Add(ValuePriorityPair<T> pPair)
         {
-            m_Pairs.Add(pPair);
+            _pairs.Add(pPair);
         }
 
         /// <inheritdoc/>
         public IEnumerator<ValuePriorityPair<T>> GetEnumerator()
         {
-            return m_Pairs.GetEnumerator();
+            return _pairs.GetEnumerator();
         }
 
         /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return m_Pairs.GetEnumerator();
+            return _pairs.GetEnumerator();
         }
     }
 }

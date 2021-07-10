@@ -1,4 +1,4 @@
-﻿[*.cs]
+[*.cs]
 
 # SA1200: Using directives should be placed correctly
 dotnet_diagnostic.SA1200.severity = none
@@ -20,3 +20,20 @@ dotnet_diagnostic.SA1202.severity = none
 
 # SA1648: inheritdoc should be used with inheriting class
 dotnet_diagnostic.SA1648.severity = none
+
+# SA1309: field names must not begin with underscore
+dotnet_diagnostic.SA1309.severity = none
+
+[*.cs]
+dotnet_naming_rule.private_members_with_underscore.symbols  = private_fields
+dotnet_naming_rule.private_members_with_underscore.style    = prefix_underscore
+dotnet_naming_rule.private_members_with_underscore.severity = suggestion
+
+dotnet_naming_symbols.private_fields.applicable_kinds           = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+
+dotnet_naming_style.prefix_underscore.capitalization = camel_case
+dotnet_naming_style.prefix_underscore.required_prefix = _
+
+# SA1309: Field names should not begin with underscore
+dotnet_diagnostic.SA1309.severity = none

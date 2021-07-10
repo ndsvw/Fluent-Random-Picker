@@ -26,13 +26,13 @@ namespace FluentRandomPicker
         INeedValueWeightAndCanHaveAdditionalWeightValueAndCanPick<T>,
         ICanHaveAdditionalWeightValueAndCanPick<T>
     {
-        private readonly IRandomNumberGenerator m_Rng;
+        private readonly IRandomNumberGenerator _rng;
 
-        private readonly List<T> m_Values = new List<T>();
+        private readonly List<T> _values = new List<T>();
 
-        private readonly List<int> m_Priorities = new List<int>();
+        private readonly List<int> _priorities = new List<int>();
 
-        private Priority m_Priority;
+        private Priority _priority;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomPicker{T}"/> class.
@@ -40,12 +40,12 @@ namespace FluentRandomPicker
         /// <param name="pRng">The random number generator.</param>
         internal RandomPicker(IRandomNumberGenerator pRng)
         {
-            m_Rng = pRng;
+            _rng = pRng;
         }
 
         private void AddValue(T t)
         {
-            m_Values.Add(t);
+            _values.Add(t);
         }
 
         private void SetPriority(int pNumericPriority, Priority pType)
@@ -53,21 +53,21 @@ namespace FluentRandomPicker
             if (pNumericPriority <= 0)
                 throw new ArgumentException("Value priorities must be larger than 0.", nameof(pNumericPriority));
 
-            m_Priorities.Add(pNumericPriority);
-            m_Priority = pType;
+            _priorities.Add(pNumericPriority);
+            _priority = pType;
         }
 
         private void SetPriorities(IEnumerable<int> pNumericPriorities, Priority pType)
         {
-            if (pNumericPriorities.Count() != m_Values.Count)
+            if (pNumericPriorities.Count() != _values.Count)
                 throw new NumberOfValuesDoesNotMatchNumberOfPrioritiesException();
 
             if (pNumericPriorities.Any(p => p <= 0))
                 throw new ArgumentException("Value priorities must be larger than 0.", nameof(pNumericPriorities));
 
-            m_Priorities.AddRange(pNumericPriorities);
+            _priorities.AddRange(pNumericPriorities);
 
-            m_Priority = pType;
+            _priority = pType;
         }
 
         // General
@@ -201,28 +201,28 @@ namespace FluentRandomPicker
         /// <inheritdoc/>
         public IEnumerable<T> Pick(int n)
         {
-            return new DefaultPicker<T>(m_Rng, GeneratePairs(), n).Pick().Result;
+            return new DefaultPicker<T>(_rng, GeneratePairs(), n).Pick().Result;
         }
 
         /// <inheritdoc/>
         public T PickOne()
         {
-            return new DefaultPicker<T>(m_Rng, GeneratePairs()).Pick().Result.First();
+            return new DefaultPicker<T>(_rng, GeneratePairs()).Pick().Result.First();
         }
 
         /// <inheritdoc/>
         public IEnumerable<T> PickDistinct(int n)
         {
-            return new DistinctPicker<T>(m_Rng, GeneratePairs(), n).Pick().Result;
+            return new DistinctPicker<T>(_rng, GeneratePairs(), n).Pick().Result;
         }
 
         // More
         private ValuePriorityPairs<T> GeneratePairs()
         {
             var valuePriorityPairs = new ValuePriorityPairs<T>();
-            valuePriorityPairs.Priority = m_Priority;
-            var priorityEnumerator = m_Priorities.GetEnumerator();
-            foreach (var value in m_Values)
+            valuePriorityPairs.Priority = _priority;
+            var priorityEnumerator = _priorities.GetEnumerator();
+            foreach (var value in _values)
             {
                 priorityEnumerator.MoveNext();
                 valuePriorityPairs.Add(new ValuePriorityPair<T>(value, priorityEnumerator.Current));

@@ -10,21 +10,21 @@ namespace FluentRandomPicker
     /// </summary>
     public class NonGenericOf
     {
-        private readonly IRandomNumberGenerator m_Rng;
+        private readonly IRandomNumberGenerator _rng;
 
         private NonGenericOf()
         {
-            m_Rng = new DefaultRandomNumberGenerator();
+            _rng = new DefaultRandomNumberGenerator();
         }
 
         private NonGenericOf(int pSeed)
         {
-            m_Rng = new DefaultRandomNumberGenerator(pSeed);
+            _rng = new DefaultRandomNumberGenerator(pSeed);
         }
 
         private NonGenericOf(IRandomNumberGenerator pRng)
         {
-            m_Rng = pRng;
+            _rng = pRng;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FluentRandomPicker
         public ICanHaveValuePriorityAndNeed1MoreValue<T> Value<T>(T t)
 #pragma warning restore CA1822 // Mark members as static
         {
-            return new RandomPicker<T>(m_Rng).Value(t);
+            return new RandomPicker<T>(_rng).Value(t);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace FluentRandomPicker
         public ICanHaveValuePrioritiesAndPick<T> Values<T>(IEnumerable<T> ts)
 #pragma warning restore CA1822 // Mark members as static
         {
-            return new RandomPicker<T>(m_Rng).Values(ts);
+            return new RandomPicker<T>(_rng).Values(ts);
         }
     }
 }

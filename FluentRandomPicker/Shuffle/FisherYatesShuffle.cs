@@ -10,7 +10,7 @@ namespace FluentRandomPicker.Shuffle
     /// <typeparam name="T">The type of the values.</typeparam>
     internal class FisherYatesShuffle<T> : IShuffle<T>
     {
-        private readonly IRandomNumberGenerator m_Rng;
+        private readonly IRandomNumberGenerator _rng;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FisherYatesShuffle{T}"/> class.
@@ -18,7 +18,7 @@ namespace FluentRandomPicker.Shuffle
         /// <param name="pRng">The random number generator.</param>
         public FisherYatesShuffle(IRandomNumberGenerator pRng)
         {
-            m_Rng = pRng;
+            _rng = pRng;
         }
 
         /// <inheritdoc/>
@@ -33,7 +33,7 @@ namespace FluentRandomPicker.Shuffle
             var list = new List<T>(pElements);
             for (int i = 0; i < pFirstN - 1; i++)
             {
-                int k = m_Rng.NextInt(i, list.Count);
+                int k = _rng.NextInt(i, list.Count);
                 T tmp = list[i];
                 list[i] = list[k];
                 list[k] = tmp;

@@ -12,7 +12,7 @@ namespace FluentRandomPicker.Shuffle
     /// <typeparam name="T">The type of the values.</typeparam>
     internal class PrioritizedLeftShuffle<T>
     {
-        private readonly IRandomNumberGenerator m_Rng;
+        private readonly IRandomNumberGenerator _rng;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PrioritizedLeftShuffle{T}"/> class.
@@ -20,7 +20,7 @@ namespace FluentRandomPicker.Shuffle
         /// <param name="pRng">The random number generator.</param>
         public PrioritizedLeftShuffle(IRandomNumberGenerator pRng)
         {
-            m_Rng = pRng;
+            _rng = pRng;
         }
 
         /// <summary>
@@ -56,8 +56,8 @@ namespace FluentRandomPicker.Shuffle
         {
             while (true)
             {
-                var randomDouble = m_Rng.NextDouble();
-                var randomIndex = m_Rng.NextInt(pStartIndex, pPairs.Count);
+                var randomDouble = _rng.NextDouble();
+                var randomIndex = _rng.NextInt(pStartIndex, pPairs.Count);
                 if (randomDouble <= pPairs[randomIndex].Priority / (double)pMax)
                     return randomIndex;
             }

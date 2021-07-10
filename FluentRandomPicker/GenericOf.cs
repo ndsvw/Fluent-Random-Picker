@@ -11,21 +11,21 @@ namespace FluentRandomPicker
     /// <typeparam name="T">The type of the values.</typeparam>
     public class GenericOf<T>
     {
-        private readonly IRandomNumberGenerator m_Rng;
+        private readonly IRandomNumberGenerator _rng;
 
         private GenericOf()
         {
-            m_Rng = new DefaultRandomNumberGenerator();
+            _rng = new DefaultRandomNumberGenerator();
         }
 
         private GenericOf(int pSeed)
         {
-            m_Rng = new DefaultRandomNumberGenerator(pSeed);
+            _rng = new DefaultRandomNumberGenerator(pSeed);
         }
 
         private GenericOf(IRandomNumberGenerator pRng)
         {
-            m_Rng = pRng;
+            _rng = pRng;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace FluentRandomPicker
         /// <returns>An object that can have an optional value priority and needs at least one more value.</returns>
         public ICanHaveValuePriorityAndNeed1MoreValue<T> Value(T t)
         {
-            return new RandomPicker<T>(m_Rng).Value(t);
+            return new RandomPicker<T>(_rng).Value(t);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace FluentRandomPicker
         /// <returns>An object that can have optional value priorities.</returns>
         public ICanHaveValuePrioritiesAndPick<T> Values(IEnumerable<T> ts)
         {
-            return new RandomPicker<T>(m_Rng).Values(ts);
+            return new RandomPicker<T>(_rng).Values(ts);
         }
     }
 }
