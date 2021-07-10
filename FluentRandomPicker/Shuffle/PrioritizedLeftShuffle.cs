@@ -17,24 +17,24 @@ namespace FluentRandomPicker.Shuffle
         /// <summary>
         /// Initializes a new instance of the <see cref="PrioritizedLeftShuffle{T}"/> class.
         /// </summary>
-        /// <param name="pRng">The random number generator.</param>
-        public PrioritizedLeftShuffle(IRandomNumberGenerator pRng)
+        /// <param name="rng">The random number generator.</param>
+        public PrioritizedLeftShuffle(IRandomNumberGenerator rng)
         {
-            _rng = pRng;
+            _rng = rng;
         }
 
         /// <summary>
         /// Shuffles the elements and respects the probabilities in O(n) time.
         /// </summary>
-        /// <param name="pPairs">The elements (value and probability) to shuffle.</param>
-        /// <param name="pFirstN">Limits how many of the first elements to shuffle.</param>
+        /// <param name="pairs">The elements (value and probability) to shuffle.</param>
+        /// <param name="firstN">Limits how many of the first elements to shuffle.</param>
         /// <returns>The shuffled elements.</returns>
-        public IEnumerable<T> Shuffle(IEnumerable<ValuePriorityPair<T>> pPairs, int pFirstN)
+        public IEnumerable<T> Shuffle(IEnumerable<ValuePriorityPair<T>> pairs, int firstN)
         {
-            var max = pPairs.Max(v => v.Priority);
+            var max = pairs.Max(v => v.Priority);
 
-            var list = new List<ValuePriorityPair<T>>(pPairs);
-            for (int i = 0; i < pFirstN - 1; i++)
+            var list = new List<ValuePriorityPair<T>>(pairs);
+            for (int i = 0; i < firstN - 1; i++)
             {
                 int randomIndex = RouletteWheelSelection(list, i, max);
                 Swap(list, i, randomIndex);
@@ -45,20 +45,20 @@ namespace FluentRandomPicker.Shuffle
             return list.Select(p => p.Value);
         }
 
-        private static void Swap<TEelment>(IList<TEelment> pElements, int pIndex1, int pIndex2)
+        private static void Swap<TEelment>(IList<TEelment> elements, int index1, int index2)
         {
-            var tmp = pElements[pIndex1];
-            pElements[pIndex1] = pElements[pIndex2];
-            pElements[pIndex2] = tmp;
+            var tmp = elements[index1];
+            elements[index1] = elements[index2];
+            elements[index2] = tmp;
         }
 
-        private int RouletteWheelSelection(IList<ValuePriorityPair<T>> pPairs, int pStartIndex, int pMax)
+        private int RouletteWheelSelection(IList<ValuePriorityPair<T>> pairs, int startIndex, int max)
         {
             while (true)
             {
                 var randomDouble = _rng.NextDouble();
-                var randomIndex = _rng.NextInt(pStartIndex, pPairs.Count);
-                if (randomDouble <= pPairs[randomIndex].Priority / (double)pMax)
+                var randomIndex = _rng.NextInt(startIndex, pairs.Count);
+                if (randomDouble <= pairs[randomIndex].Priority / (double)max)
                     return randomIndex;
             }
         }

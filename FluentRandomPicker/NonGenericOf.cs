@@ -17,14 +17,14 @@ namespace FluentRandomPicker
             _rng = new DefaultRandomNumberGenerator();
         }
 
-        private NonGenericOf(int pSeed)
+        private NonGenericOf(int seed)
         {
-            _rng = new DefaultRandomNumberGenerator(pSeed);
+            _rng = new DefaultRandomNumberGenerator(seed);
         }
 
-        private NonGenericOf(IRandomNumberGenerator pRng)
+        private NonGenericOf(IRandomNumberGenerator rng)
         {
-            _rng = pRng;
+            _rng = rng;
         }
 
         /// <summary>
@@ -39,21 +39,21 @@ namespace FluentRandomPicker
         /// <summary>
         /// Creates an instance of <see cref="NonGenericOf"/>.
         /// </summary>
-        /// <param name="pSeed">The seed.</param>
+        /// <param name="seed">The seed.</param>
         /// <returns>A <see cref="NonGenericOf"/> instance.</returns>
-        public static NonGenericOf Create(int pSeed)
+        public static NonGenericOf Create(int seed)
         {
-            return new NonGenericOf(pSeed);
+            return new NonGenericOf(seed);
         }
 
         /// <summary>
         /// Creates an instance of <see cref="NonGenericOf"/>.
         /// </summary>
-        /// <param name="pRng">The random number generator.</param>
+        /// <param name="rng">The random number generator.</param>
         /// <returns>A <see cref="NonGenericOf"/> instance.</returns>
-        public static NonGenericOf Create(IRandomNumberGenerator pRng)
+        public static NonGenericOf Create(IRandomNumberGenerator rng)
         {
-            return new NonGenericOf(pRng);
+            return new NonGenericOf(rng);
         }
 
         /// <summary>

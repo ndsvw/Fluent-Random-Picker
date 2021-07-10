@@ -18,10 +18,10 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultRandomNumberGenerator"/> class.
         /// </summary>
-        /// <param name="pSeed">The seed.</param>
-        public DefaultRandomNumberGenerator(int pSeed)
+        /// <param name="seed">The seed.</param>
+        public DefaultRandomNumberGenerator(int seed)
         {
-            _random = new System.Random(pSeed);
+            _random = new System.Random(seed);
         }
 
         /// <inheritdoc/>
@@ -37,15 +37,15 @@
         }
 
         /// <inheritdoc/>
-        public int NextInt(int pN)
+        public int NextInt(int n)
         {
-            return _random.Next(pN);
+            return _random.Next(n);
         }
 
         /// <inheritdoc/>
-        public int NextInt(int pMin, int pMax)
+        public int NextInt(int min, int max)
         {
-            return _random.Next(pMin, pMax);
+            return _random.Next(min, max);
         }
     }
 }

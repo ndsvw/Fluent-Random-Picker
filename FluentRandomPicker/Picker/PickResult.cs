@@ -9,10 +9,10 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PickResult{T}"/> class.
         /// </summary>
-        /// <param name="pResult">The result.</param>
-        public PickResult(T pResult)
+        /// <param name="result">The result.</param>
+        public PickResult(T result)
         {
-            Result = pResult;
+            Result = result;
         }
 
         /// <summary>

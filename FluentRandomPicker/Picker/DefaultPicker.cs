@@ -19,24 +19,24 @@ namespace FluentRandomPicker.Picker
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultPicker{T}"/> class.
         /// </summary>
-        /// <param name="pRng">The random number generator.</param>
-        /// <param name="pPairs">The value-priority paris to pick from.</param>
-        public DefaultPicker(IRandomNumberGenerator pRng, ValuePriorityPairs<T> pPairs)
-            : this(pRng, pPairs, 1)
+        /// <param name="rng">The random number generator.</param>
+        /// <param name="pairs">The value-priority paris to pick from.</param>
+        public DefaultPicker(IRandomNumberGenerator rng, ValuePriorityPairs<T> pairs)
+            : this(rng, pairs, 1)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultPicker{T}"/> class.
         /// </summary>
-        /// <param name="pRng">The random number generator.</param>
-        /// <param name="pPairs">The value-priority paris to pick from.</param>
-        /// <param name="pNumberOfElements">The number of elements to pick.</param>
-        public DefaultPicker(IRandomNumberGenerator pRng, ValuePriorityPairs<T> pPairs, int pNumberOfElements)
+        /// <param name="rng">The random number generator.</param>
+        /// <param name="pairs">The value-priority paris to pick from.</param>
+        /// <param name="numberOfElements">The number of elements to pick.</param>
+        public DefaultPicker(IRandomNumberGenerator rng, ValuePriorityPairs<T> pairs, int numberOfElements)
         {
-            _rng = pRng;
-            _numberOfElements = pNumberOfElements;
-            _pairs = pPairs;
+            _rng = rng;
+            _numberOfElements = numberOfElements;
+            _pairs = pairs;
         }
 
         /// <inheritdoc/>
@@ -66,9 +66,9 @@ namespace FluentRandomPicker.Picker
             }
         }
 
-        private T PickPrioritized(int pPrioritySum)
+        private T PickPrioritized(int prioritySum)
         {
-            var n = _rng.NextInt(pPrioritySum);
+            var n = _rng.NextInt(prioritySum);
 
             int localSum = 0;
             foreach (var pair in _pairs)
@@ -79,7 +79,7 @@ namespace FluentRandomPicker.Picker
                     return pair.Value;
             }
 
-            throw new ArgumentException("Sum of priorities was wrong", nameof(pPrioritySum));
+            throw new ArgumentException("Sum of priorities was wrong", nameof(prioritySum));
         }
     }
 }

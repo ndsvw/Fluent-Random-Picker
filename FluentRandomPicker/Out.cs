@@ -16,16 +16,16 @@ namespace FluentRandomPicker
         /// <summary>
         /// The "Of" part of the "Out.Of" syntax.
         /// </summary>
-        /// <param name="pSeed">The seed.</param>
+        /// <param name="seed">The seed.</param>
         /// <returns>An "Of" instance.</returns>
-        public static NonGenericOf Of(int pSeed) => NonGenericOf.Create(pSeed);
+        public static NonGenericOf Of(int seed) => NonGenericOf.Create(seed);
 
         /// <summary>
         /// The "Of" part of the "Out.Of" syntax.
         /// </summary>
-        /// <param name="pRng">A random number generator.</param>
+        /// <param name="rng">A random number generator.</param>
         /// <returns>An "Of" instance.</returns>
-        public static NonGenericOf Of(IRandomNumberGenerator pRng) => NonGenericOf.Create(pRng);
+        public static NonGenericOf Of(IRandomNumberGenerator rng) => NonGenericOf.Create(rng);
 
         /// <summary>
         /// The "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
@@ -38,16 +38,16 @@ namespace FluentRandomPicker
         /// The "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
         /// </summary>
         /// <typeparam name="T">The type of the values.</typeparam>
-        /// <param name="pSeed">The seed.</param>
+        /// <param name="seed">The seed.</param>
         /// <returns>An "Of" instance.</returns>
-        public static GenericOf<T> Of<T>(int pSeed) => GenericOf<T>.Create(pSeed);
+        public static GenericOf<T> Of<T>(int seed) => GenericOf<T>.Create(seed);
 
         /// <summary>
         /// The "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
         /// </summary>
         /// <typeparam name="T">The type of the values.</typeparam>
-        /// <param name="pRng">A random number generator.</param>
+        /// <param name="rng">A random number generator.</param>
         /// <returns>An "Of" instance.</returns>
-        public static GenericOf<T> Of<T>(IRandomNumberGenerator pRng) => GenericOf<T>.Create(pRng);
+        public static GenericOf<T> Of<T>(IRandomNumberGenerator rng) => GenericOf<T>.Create(rng);
     }
 }

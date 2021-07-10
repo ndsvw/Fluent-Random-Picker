@@ -20,24 +20,24 @@ namespace FluentRandomPicker.Picker
         /// <summary>
         /// Initializes a new instance of the <see cref="DistinctPicker{T}"/> class.
         /// </summary>
-        /// <param name="pRng">The random number generator.</param>
-        /// <param name="pPairs">The value-priority paris to pick from.</param>
-        public DistinctPicker(IRandomNumberGenerator pRng, ValuePriorityPairs<T> pPairs)
-            : this(pRng, pPairs, 1)
+        /// <param name="rng">The random number generator.</param>
+        /// <param name="pairs">The value-priority paris to pick from.</param>
+        public DistinctPicker(IRandomNumberGenerator rng, ValuePriorityPairs<T> pairs)
+            : this(rng, pairs, 1)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DistinctPicker{T}"/> class.
         /// </summary>
-        /// <param name="pRng">The random number generator.</param>
-        /// <param name="pPairs">The value-priority paris to pick from.</param>
-        /// <param name="pNumberOfElements">The number of elements to pick.</param>
-        public DistinctPicker(IRandomNumberGenerator pRng, ValuePriorityPairs<T> pPairs, int pNumberOfElements)
+        /// <param name="rng">The random number generator.</param>
+        /// <param name="pairs">The value-priority paris to pick from.</param>
+        /// <param name="numberOfElements">The number of elements to pick.</param>
+        public DistinctPicker(IRandomNumberGenerator rng, ValuePriorityPairs<T> pairs, int numberOfElements)
         {
-            _rng = pRng;
-            _numberOfElements = pNumberOfElements;
-            _pairs = pPairs;
+            _rng = rng;
+            _numberOfElements = numberOfElements;
+            _pairs = pairs;
         }
 
         /// <inheritdoc/>

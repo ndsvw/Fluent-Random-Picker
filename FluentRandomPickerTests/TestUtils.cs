@@ -7,19 +7,19 @@ namespace FluentRandomPickerTests
 {
     public static class TestUtils
     {
-        public static void AssertAllSpecifiedValuesAndNoOthersArePossible<T>(Func<T> pPicking, ISet<T> pPossibleValues)
+        public static void AssertAllSpecifiedValuesAndNoOthersArePossible<T>(Func<T> picking, ISet<T> possibleValues)
         {
             const int NumberOfTries = 1_000_000;
             var pickedValues = new HashSet<T>();
 
             for (var i = 0; i < NumberOfTries; i++)
             {
-                var value = pPicking();
+                var value = picking();
                 pickedValues.Add(value);
             }
 
-            Assert.IsFalse(pPossibleValues.Except(pickedValues).Any(), "Not all values can be picked.");
-            Assert.IsFalse(pickedValues.Except(pPossibleValues).Any(), "More values han expected can be picked.");
+            Assert.IsFalse(possibleValues.Except(pickedValues).Any(), "Not all values can be picked.");
+            Assert.IsFalse(pickedValues.Except(possibleValues).Any(), "More values han expected can be picked.");
         }
     }
 }

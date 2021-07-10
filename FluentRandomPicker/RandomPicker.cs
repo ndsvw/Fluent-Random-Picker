@@ -37,10 +37,10 @@ namespace FluentRandomPicker
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomPicker{T}"/> class.
         /// </summary>
-        /// <param name="pRng">The random number generator.</param>
-        internal RandomPicker(IRandomNumberGenerator pRng)
+        /// <param name="rng">The random number generator.</param>
+        internal RandomPicker(IRandomNumberGenerator rng)
         {
-            _rng = pRng;
+            _rng = rng;
         }
 
         private void AddValue(T t)
@@ -48,26 +48,26 @@ namespace FluentRandomPicker
             _values.Add(t);
         }
 
-        private void SetPriority(int pNumericPriority, Priority pType)
+        private void SetPriority(int numericPriority, Priority type)
         {
-            if (pNumericPriority <= 0)
-                throw new ArgumentException("Value priorities must be larger than 0.", nameof(pNumericPriority));
+            if (numericPriority <= 0)
+                throw new ArgumentException("Value priorities must be larger than 0.", nameof(numericPriority));
 
-            _priorities.Add(pNumericPriority);
-            _priority = pType;
+            _priorities.Add(numericPriority);
+            _priority = type;
         }
 
-        private void SetPriorities(IEnumerable<int> pNumericPriorities, Priority pType)
+        private void SetPriorities(IEnumerable<int> numericPriorities, Priority type)
         {
-            if (pNumericPriorities.Count() != _values.Count)
+            if (numericPriorities.Count() != _values.Count)
                 throw new NumberOfValuesDoesNotMatchNumberOfPrioritiesException();
 
-            if (pNumericPriorities.Any(p => p <= 0))
-                throw new ArgumentException("Value priorities must be larger than 0.", nameof(pNumericPriorities));
+            if (numericPriorities.Any(p => p <= 0))
+                throw new ArgumentException("Value priorities must be larger than 0.", nameof(numericPriorities));
 
-            _priorities.AddRange(pNumericPriorities);
+            _priorities.AddRange(numericPriorities);
 
-            _priority = pType;
+            _priority = type;
         }
 
         // General

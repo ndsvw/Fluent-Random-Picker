@@ -11,16 +11,16 @@ namespace FluentRandomPicker.Shuffle
         /// <summary>
         /// Shuffles the elements.
         /// </summary>
-        /// <param name="pElements">The elements to shuffle.</param>
+        /// <param name="elements">The elements to shuffle.</param>
         /// <returns>The same elements in a random order.</returns>
-        IEnumerable<T> Shuffle(IEnumerable<T> pElements);
+        IEnumerable<T> Shuffle(IEnumerable<T> elements);
 
         /// <summary>
         /// Shuffles the elements.
         /// </summary>
-        /// <param name="pElements">The elements to shuffle.</param>
-        /// <param name="pFirstN">Specifies that only the first n elements will be shuffled.</param>
+        /// <param name="elements">The elements to shuffle.</param>
+        /// <param name="firstN">Specifies that only the first n elements will be shuffled.</param>
         /// <returns>The same elements in a random order.</returns>
-        IEnumerable<T> Shuffle(IEnumerable<T> pElements, int pFirstN);
+        IEnumerable<T> Shuffle(IEnumerable<T> elements, int firstN);
     }
 }

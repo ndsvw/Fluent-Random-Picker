@@ -152,12 +152,12 @@ public class MyOwnRandomNumberGenerator : IRandomNumberGenerator
         // ...
     }
 
-    public int NextInt(int pN)
+    public int NextInt(int n)
     {
         // ...
     }
 
-    public int NextInt(int pMin, int pMax)
+    public int NextInt(int min, int max)
     {
         // ...
     }

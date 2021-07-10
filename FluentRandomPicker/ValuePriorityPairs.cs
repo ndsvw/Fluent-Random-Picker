@@ -26,9 +26,9 @@ namespace FluentRandomPicker
         }
 
         /// <inheritdoc/>
-        public void Add(ValuePriorityPair<T> pPair)
+        public void Add(ValuePriorityPair<T> pair)
         {
-            _pairs.Add(pPair);
+            _pairs.Add(pair);
         }
 
         /// <inheritdoc/>

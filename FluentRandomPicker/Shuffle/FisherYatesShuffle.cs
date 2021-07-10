@@ -15,23 +15,23 @@ namespace FluentRandomPicker.Shuffle
         /// <summary>
         /// Initializes a new instance of the <see cref="FisherYatesShuffle{T}"/> class.
         /// </summary>
-        /// <param name="pRng">The random number generator.</param>
-        public FisherYatesShuffle(IRandomNumberGenerator pRng)
+        /// <param name="rng">The random number generator.</param>
+        public FisherYatesShuffle(IRandomNumberGenerator rng)
         {
-            _rng = pRng;
+            _rng = rng;
         }
 
         /// <inheritdoc/>
-        public IEnumerable<T> Shuffle(IEnumerable<T> pElements)
+        public IEnumerable<T> Shuffle(IEnumerable<T> elements)
         {
-            return Shuffle(pElements, pElements.Count());
+            return Shuffle(elements, elements.Count());
         }
 
         /// <inheritdoc/>
-        public IEnumerable<T> Shuffle(IEnumerable<T> pElements, int pFirstN)
+        public IEnumerable<T> Shuffle(IEnumerable<T> elements, int firstN)
         {
-            var list = new List<T>(pElements);
-            for (int i = 0; i < pFirstN - 1; i++)
+            var list = new List<T>(elements);
+            for (int i = 0; i < firstN - 1; i++)
             {
                 int k = _rng.NextInt(i, list.Count);
                 T tmp = list[i];

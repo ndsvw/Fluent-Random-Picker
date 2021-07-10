@@ -9,12 +9,12 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ValuePriorityPair{T}"/> class.
         /// </summary>
-        /// <param name="pValue">The value.</param>
-        /// <param name="pPriority">The priority.</param>
-        public ValuePriorityPair(T pValue, int pPriority)
+        /// <param name="value">The value.</param>
+        /// <param name="priority">The priority.</param>
+        public ValuePriorityPair(T value, int priority)
         {
-            Value = pValue;
-            Priority = pPriority;
+            Value = value;
+            Priority = priority;
         }
 
         /// <summary>

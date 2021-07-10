@@ -18,14 +18,14 @@ namespace FluentRandomPicker
             _rng = new DefaultRandomNumberGenerator();
         }
 
-        private GenericOf(int pSeed)
+        private GenericOf(int seed)
         {
-            _rng = new DefaultRandomNumberGenerator(pSeed);
+            _rng = new DefaultRandomNumberGenerator(seed);
         }
 
-        private GenericOf(IRandomNumberGenerator pRng)
+        private GenericOf(IRandomNumberGenerator rng)
         {
-            _rng = pRng;
+            _rng = rng;
         }
 
         /// <summary>
@@ -40,21 +40,21 @@ namespace FluentRandomPicker
         /// <summary>
         /// Creates an instance of <see cref="GenericOf{T}"/>.
         /// </summary>
-        /// <param name="pSeed">The seed.</param>
+        /// <param name="seed">The seed.</param>
         /// <returns>A <see cref="GenericOf{T}"/> instance.</returns>
-        public static GenericOf<T> Create(int pSeed)
+        public static GenericOf<T> Create(int seed)
         {
-            return new GenericOf<T>(pSeed);
+            return new GenericOf<T>(seed);
         }
 
         /// <summary>
         /// Creates an instance of <see cref="GenericOf{T}"/>.
         /// </summary>
-        /// <param name="pRng">The random number generator.</param>
+        /// <param name="rng">The random number generator.</param>
         /// <returns>A <see cref="GenericOf{T}"/> instance.</returns>
-        public static GenericOf<T> Create(IRandomNumberGenerator pRng)
+        public static GenericOf<T> Create(IRandomNumberGenerator rng)
         {
-            return new GenericOf<T>(pRng);
+            return new GenericOf<T>(rng);
         }
 
         /// <summary>
