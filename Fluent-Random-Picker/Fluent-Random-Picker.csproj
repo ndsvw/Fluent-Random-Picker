@@ -11,7 +11,12 @@
 Probabilities can be specified, values can be weighted, ...</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SynchReleaseVersion>true</SynchReleaseVersion>
-    <ReleaseVersion>2.0.1</ReleaseVersion> <!-- change version in solution options! -->
+    <ReleaseVersion>2.1.0</ReleaseVersion> <!-- change version in solution options! -->
+    <PackageReleaseNotes>Alpha Release</PackageReleaseNotes>
+    <LibraryVersion>$(ReleaseVersion)</LibraryVersion>
+    <VersionPrefix>$(ReleaseVersion)</VersionPrefix>
+    <AssemblyVersion>$(ReleaseVersion)</AssemblyVersion>
+    <FileVersion>$(ReleaseVersion)</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -33,7 +38,13 @@ Probabilities can be specified, values can be weighted, ...</Description>
     <PackageTags>random;fluent;picker;choice;pick;probability;outof;choose</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/ndsvw/Fluent-Random-Picker</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <Title>Fluent Random Picker</Title>
+
+    <!-- Creates separate package with symbol files -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,15 +62,29 @@ Probabilities can be specified, values can be weighted, ...</Description>
     <None Include="icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
+  <PropertyGroup Label="Release (ci-cd) nuget settings" Condition="'$(Configuration)' == 'Release'">
+    <!-- https://github.com/dotnet/sourcelink/blob/main/docs/README.md#continuousintegrationbuild -->
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <!-- https://github.com/dotnet/sourcelink/blob/main/docs/README.md#deterministicsourcepaths -->
+    <DeterministicSourcePaths>true</DeterministicSourcePaths>
+    <!-- Embeds files created/compile during build process (like AssemblyInfo) in final package. Required if you want to have all green marks in nuget package explorer program (https://github.com/dotnet/sourcelink/blob/main/docs/README.md#embeduntrackedsources)  -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.9.1"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-<PrivateAssets>all</PrivateAssets>
-</PackageReference>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup Label="Source link - dev only asset. It adds source link (https://github.com/dotnet/sourcelink) capabilities to the nuget package.">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <InternalsVisibleTo Include="Fluent-Random-Picker-Tests" />
