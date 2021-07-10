@@ -1,6 +1,6 @@
 # Fluent Random Picker
 
-<img src="https://raw.githubusercontent.com/ndsvw/Fluent-Random-Picker/main/Fluent-Random-Picker/icon.png" alt="drawing" width="50"/>
+![Fluent Random Picker](https://raw.githubusercontent.com/ndsvw/Fluent-Random-Picker/main/FluentRandomPicker/icon48x48.png "Fluent Random Picker")
 
 Fluent Random Picker is a nice, performant fluent way to pick random values.
 Probabilities can be specified, values can be weighted.
