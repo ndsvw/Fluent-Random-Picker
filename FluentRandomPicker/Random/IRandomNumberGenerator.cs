@@ -27,7 +27,7 @@
         int NextInt(int pMin, int pMax);
 
         /// <summary>
-        /// Generates a random double value.
+        /// Generates a random double value larger or equal to 0.0 and smaller than 1.0.
         /// </summary>
         /// <returns>The random double value.</returns>
         double NextDouble();
