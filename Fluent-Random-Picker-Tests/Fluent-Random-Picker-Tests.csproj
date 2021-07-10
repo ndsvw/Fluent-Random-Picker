@@ -5,7 +5,7 @@
     <RootNamespace>Fluent_Random_Picker_Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
-    <ReleaseVersion>2.0.1</ReleaseVersion>
+    <ReleaseVersion>2.1.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>

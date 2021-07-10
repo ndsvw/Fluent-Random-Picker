@@ -12,7 +12,6 @@ Probabilities can be specified, values can be weighted, ...</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SynchReleaseVersion>true</SynchReleaseVersion>
     <ReleaseVersion>2.1.0</ReleaseVersion> <!-- change version in solution options! -->
-    <PackageReleaseNotes>Alpha Release</PackageReleaseNotes>
     <LibraryVersion>$(ReleaseVersion)</LibraryVersion>
     <VersionPrefix>$(ReleaseVersion)</VersionPrefix>
     <AssemblyVersion>$(ReleaseVersion)</AssemblyVersion>
@@ -23,6 +22,7 @@ Probabilities can be specified, values can be weighted, ...</Description>
     <PackageId>FluentRandomPicker</PackageId>
 
     <Authors>ndsvw</Authors>
+    <Copyright>ndsvw</Copyright>
     <Description>
       This library offers a nice, fluent way to pick random values.
       Probabilities can be specified, values can be weighted.
@@ -45,6 +45,8 @@ Probabilities can be specified, values can be weighted, ...</Description>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
+    <PackageReleaseNotes>v 2.1.0
+- Improved package generation process, used SourceLink, fixed version differences of dll, package, ...</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
