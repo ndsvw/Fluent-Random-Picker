@@ -11,28 +11,28 @@ namespace Fluent_Random_Picker
         /// The "Of" part of the "Out.Of" syntax.
         /// </summary>
         /// <returns>An "Of" instance.</returns>
-        internal static NonGenericOf Of() => NonGenericOf.Create();
+        public static NonGenericOf Of() => NonGenericOf.Create();
 
         /// <summary>
         /// The "Of" part of the "Out.Of" syntax.
         /// </summary>
         /// <param name="pSeed">The seed.</param>
         /// <returns>An "Of" instance.</returns>
-        internal static NonGenericOf Of(int pSeed) => NonGenericOf.Create(pSeed);
+        public static NonGenericOf Of(int pSeed) => NonGenericOf.Create(pSeed);
 
         /// <summary>
         /// The "Of" part of the "Out.Of" syntax.
         /// </summary>
         /// <param name="pRng">A random number generator.</param>
         /// <returns>An "Of" instance.</returns>
-        internal static NonGenericOf Of(IRandomNumberGenerator pRng) => NonGenericOf.Create(pRng);
+        public static NonGenericOf Of(IRandomNumberGenerator pRng) => NonGenericOf.Create(pRng);
 
         /// <summary>
         /// The "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
         /// </summary>
         /// <typeparam name="T">The type of the values.</typeparam>
         /// <returns>An "Of" instance.</returns>
-        internal static GenericOf<T> Of<T>() => GenericOf<T>.Create();
+        public static GenericOf<T> Of<T>() => GenericOf<T>.Create();
 
         /// <summary>
         /// The "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
@@ -40,7 +40,7 @@ namespace Fluent_Random_Picker
         /// <typeparam name="T">The type of the values.</typeparam>
         /// <param name="pSeed">The seed.</param>
         /// <returns>An "Of" instance.</returns>
-        internal static GenericOf<T> Of<T>(int pSeed) => GenericOf<T>.Create(pSeed);
+        public static GenericOf<T> Of<T>(int pSeed) => GenericOf<T>.Create(pSeed);
 
         /// <summary>
         /// The "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
@@ -48,6 +48,6 @@ namespace Fluent_Random_Picker
         /// <typeparam name="T">The type of the values.</typeparam>
         /// <param name="pRng">A random number generator.</param>
         /// <returns>An "Of" instance.</returns>
-        internal static GenericOf<T> Of<T>(IRandomNumberGenerator pRng) => GenericOf<T>.Create(pRng);
+        public static GenericOf<T> Of<T>(IRandomNumberGenerator pRng) => GenericOf<T>.Create(pRng);
     }
 }

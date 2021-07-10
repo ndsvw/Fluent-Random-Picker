@@ -8,7 +8,7 @@ namespace Fluent_Random_Picker
     /// <summary>
     /// A non-generic implementation of the fluent part "Of".
     /// </summary>
-    internal class NonGenericOf
+    public class NonGenericOf
     {
         private readonly IRandomNumberGenerator m_Rng;
 
