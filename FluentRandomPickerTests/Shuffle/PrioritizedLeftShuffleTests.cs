@@ -36,9 +36,9 @@ namespace FluentRandomPickerTests.Shuffle
             for (var i = 0; i < _iterations; i++)
             {
                 var shuffled = shuffle.Shuffle(elements, 3).ToList();
-                value1Set.Add(shuffled[0]);
-                value2Set.Add(shuffled[1]);
-                value3Set.Add(shuffled[2]);
+                value1Set.Add(shuffled[0].Value);
+                value2Set.Add(shuffled[1].Value);
+                value3Set.Add(shuffled[2].Value);
             }
 
             Assert.AreEqual(elements.Count(), value1Set.Count);

@@ -10,7 +10,7 @@ namespace FluentRandomPicker.Shuffle
     /// More: https://www.researchgate.net/publication/51962025_Roulette-wheel_selection_via_stochastic_acceptance.
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    internal class PrioritizedLeftShuffle<T>
+    internal class PrioritizedLeftShuffle<T> : IShuffle<ValuePriorityPair<T>>
     {
         private readonly IRandomNumberGenerator _rng;
 
@@ -27,9 +27,19 @@ namespace FluentRandomPicker.Shuffle
         /// Shuffles the elements and respects the probabilities in O(n) time.
         /// </summary>
         /// <param name="pairs">The elements (value and probability) to shuffle.</param>
+        /// <returns>The shuffled elements.</returns>
+        public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> pairs)
+        {
+            return Shuffle(pairs, pairs.Count());
+        }
+
+        /// <summary>
+        /// Shuffles the first n elements and respects the probabilities in O(n) time.
+        /// </summary>
+        /// <param name="pairs">The elements (value and probability) to shuffle.</param>
         /// <param name="firstN">Limits how many of the first elements to shuffle.</param>
         /// <returns>The shuffled elements.</returns>
-        public IEnumerable<T> Shuffle(IEnumerable<ValuePriorityPair<T>> pairs, int firstN)
+        public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> pairs, int firstN)
         {
             var max = pairs.Max(v => v.Priority);
 
@@ -43,7 +53,7 @@ namespace FluentRandomPicker.Shuffle
                 // could be optimized by updating the max sometimes, but it's O(n)..
             }
 
-            return list.Select(p => p.Value);
+            return list;
         }
 
         private static void Swap<TEelment>(IList<TEelment> elements, int index1, int index2)

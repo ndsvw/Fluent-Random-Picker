@@ -65,7 +65,7 @@ namespace FluentRandomPicker.Picker
         {
             var shuffle = new PrioritizedLeftShuffle<T>(_rng);
             var shuffledElements = shuffle.Shuffle(_pairs, _numberOfElements);
-            return shuffledElements.Take(_numberOfElements).ToList();
+            return shuffledElements.Take(_numberOfElements).Select(x => x.Value).ToList();
         }
 
         private IEnumerable<T> PickDistinctElementsWithEqualPriorities()
