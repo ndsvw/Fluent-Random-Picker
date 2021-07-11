@@ -34,7 +34,8 @@ namespace FluentRandomPicker.Shuffle
             var max = pairs.Max(v => v.Priority);
 
             var list = new List<ValuePriorityPair<T>>(pairs);
-            for (int i = 0; i < firstN - 1; i++)
+            var lastIndex = firstN < pairs.Count() ? firstN - 1 : firstN - 2;
+            for (int i = 0; i <= lastIndex; i++)
             {
                 int randomIndex = RouletteWheelSelection(list, i, max);
                 Swap(list, i, randomIndex);

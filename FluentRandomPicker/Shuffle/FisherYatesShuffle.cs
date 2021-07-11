@@ -31,7 +31,8 @@ namespace FluentRandomPicker.Shuffle
         public IEnumerable<T> Shuffle(IEnumerable<T> elements, int firstN)
         {
             var list = new List<T>(elements);
-            for (int i = 0; i < firstN - 1; i++)
+            var lastIndex = firstN < elements.Count() ? firstN - 1 : firstN - 2;
+            for (int i = 0; i <= lastIndex; i++)
             {
                 int k = _rng.NextInt(i, list.Count);
                 T tmp = list[i];

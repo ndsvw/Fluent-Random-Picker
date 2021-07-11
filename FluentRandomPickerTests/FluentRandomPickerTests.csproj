@@ -26,10 +26,14 @@
     <ProjectReference Include="..\FluentRandomPicker\FluentRandomPicker.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Shuffle\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\.editorconfig" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Picking\" />
     <Folder Include="Random\" />
+    <Folder Include="Shuffle\" />
   </ItemGroup>
 </Project>
