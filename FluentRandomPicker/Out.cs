@@ -3,51 +3,58 @@
 namespace FluentRandomPicker
 {
     /// <summary>
-    /// The "Out" part of the "Out.Of" syntax.
+    /// The static "Out" part of the "Out.Of" syntax.<br />
+    /// Call one of the <see cref="Of()"/> methods to continue.
     /// </summary>
     public static class Out
     {
         /// <summary>
-        /// The "Of" part of the "Out.Of" syntax.
+        /// The static "Of" part of the "Out.Of" syntax.
         /// </summary>
-        /// <returns>An "Of" instance.</returns>
+        /// <returns>A <see cref="NonGenericOf"/> instance that allows specifying
+        /// one or more values.</returns>
         public static NonGenericOf Of() => NonGenericOf.Create();
 
         /// <summary>
-        /// The "Of" part of the "Out.Of" syntax.
+        /// The static "Of" part of the "Out.Of" syntax.
         /// </summary>
         /// <param name="seed">The seed.</param>
-        /// <returns>An "Of" instance.</returns>
+        /// <returns>A <see cref="NonGenericOf"/> instance that allows specifying
+        /// one or more values.</returns>
         public static NonGenericOf Of(int seed) => NonGenericOf.Create(seed);
 
         /// <summary>
-        /// The "Of" part of the "Out.Of" syntax.
+        /// The static "Of" part of the "Out.Of" syntax.
         /// </summary>
         /// <param name="rng">A random number generator.</param>
-        /// <returns>An "Of" instance.</returns>
+        /// <returns>A <see cref="NonGenericOf"/> instance that allows specifying
+        /// one or more values.</returns>
         public static NonGenericOf Of(IRandomNumberGenerator rng) => NonGenericOf.Create(rng);
 
         /// <summary>
-        /// The "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
+        /// The static "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
         /// </summary>
         /// <typeparam name="T">The type of the values.</typeparam>
-        /// <returns>An "Of" instance.</returns>
+        /// <returns>A <see cref="GenericOf{T}"/> instance that allows specifying
+        /// one or more values.</returns>
         public static GenericOf<T> Of<T>() => GenericOf<T>.Create();
 
         /// <summary>
-        /// The "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
+        /// The static "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
         /// </summary>
         /// <typeparam name="T">The type of the values.</typeparam>
         /// <param name="seed">The seed.</param>
-        /// <returns>An "Of" instance.</returns>
+        /// <returns>A <see cref="GenericOf{T}"/> instance that allows specifying
+        /// one or more values.</returns>
         public static GenericOf<T> Of<T>(int seed) => GenericOf<T>.Create(seed);
 
         /// <summary>
-        /// The "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
+        /// The static "Of&lt;T&gt;" part of the generic "Out.Of" syntax.
         /// </summary>
         /// <typeparam name="T">The type of the values.</typeparam>
         /// <param name="rng">A random number generator.</param>
-        /// <returns>An "Of" instance.</returns>
+        /// <returns>A <see cref="GenericOf{T}"/> instance that allows specifying
+        /// one or more values.</returns>
         public static GenericOf<T> Of<T>(IRandomNumberGenerator rng) => GenericOf<T>.Create(rng);
     }
 }
