@@ -72,9 +72,9 @@ namespace FluentRandomPicker
         /// </summary>
         /// <param name="ts">The values.</param>
         /// <returns>An object that can have optional value priorities.</returns>
-        //public ICanHaveValuePrioritiesAndPick<T> Values(IEnumerable<T> ts)
-        //{
-        //    return new RandomPicker<T>(_rng).Values(ts);
-        //}
+        public ISpecifyValuePrioritiesOrPick<T> Values(IEnumerable<T> ts)
+        {
+            return new RandomPicker<T>(_rng).Values(ts);
+        }
     }
 }

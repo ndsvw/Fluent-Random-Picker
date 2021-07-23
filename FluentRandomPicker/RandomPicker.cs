@@ -18,6 +18,7 @@ namespace FluentRandomPicker
     internal sealed class RandomPicker<T> : ISpecifyValueOrGenesisValuePriority<T>,
         ISpecifyValueOrValuePriorityOrPick<T>,
         ISpecifyValueOrValuePriority<T>,
+        ISpecifyValuePrioritiesOrPick<T>,
 
         ISpecifyPercentageValue<T>,
         ISpecifyPercentageValueOrPick<T>,
@@ -71,7 +72,7 @@ namespace FluentRandomPicker
             _priority = type;
         }
 
-        // General
+        // Adding initial value(s)
 
         /// <summary>
         /// Specifies the first value.
@@ -84,17 +85,108 @@ namespace FluentRandomPicker
             return this;
         }
 
-        public ISpecifyPercentageValueOrValuePercentageOrPick<T> AndValue(T value)
+        /// <summary>
+        /// Specifies all value.
+        /// </summary>
+        /// <param name="ts">The values.</param>
+        /// <returns>An <see cref="ICanHaveValuePrioritiesAndPick{T}"/> instance.</returns>
+        public ISpecifyValuePrioritiesOrPick<T> Values(IEnumerable<T> ts)
         {
-            throw new NotImplementedException();
+            if (ts.Count() <= 1)
+                throw new NotEnoughValuesToPickException();
+
+            foreach (var t in ts)
+            {
+                AddValue(t);
+            }
+
+            return this;
         }
 
+        // Adding additional value(s)
+
+        /// <inheritdoc/>
+        public ISpecifyValueOrValuePriorityOrPick<T> AndValue(T value)
+        {
+            AddValue(value);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        ISpecifyPercentageValueOrValuePercentageOrPick<T> ISpecifyAdditionalValue<T, ISpecifyPercentageValueOrValuePercentageOrPick<T>>.AndValue(T value)
+        {
+            AddValue(value);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        ISpecifyWeightValueOrValueWeightOrPick<T> ISpecifyAdditionalValue<T, ISpecifyWeightValueOrValueWeightOrPick<T>>.AndValue(T value)
+        {
+            AddValue(value);
+            return this;
+        }
+
+        // Specifying percentage(s)
+
+        /// <inheritdoc/>
+        public ISpecifyPercentageValue<T> WithPercentage(int p)
+        {
+            SetPriority(p, Priority.Percentage);
+            return this;
+        }
+
+        /// <inheritdoc/>
         ISpecifyPercentageValueOrPick<T> ISpecifyPercentage<T, ISpecifyPercentageValueOrPick<T>>.WithPercentage(int p)
         {
-            throw new NotImplementedException();
+            SetPriority(p, Priority.Percentage);
+            return this;
         }
 
-        // Pick
+        /// <inheritdoc/>
+        public IPick<T> WithPercentages(IEnumerable<int> ps)
+        {
+            SetPriorities(ps, Priority.Percentage);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public IPick<T> WithPercentages(params int[] ps)
+        {
+            SetPriorities(ps, Priority.Percentage);
+            return this;
+        }
+
+        // Specifying weight(s)
+
+        /// <inheritdoc/>
+        public ISpecifyWeightValue<T> WithWeight(int w)
+        {
+            SetPriority(w, Priority.Weight);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        ISpecifyWeightValueOrPick<T> ISpecifyWeight<T, ISpecifyWeightValueOrPick<T>>.WithWeight(int w)
+        {
+            SetPriority(w, Priority.Weight);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public IPick<T> WithWeights(IEnumerable<int> ws)
+        {
+            SetPriorities(ws, Priority.Weight);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public IPick<T> WithWeights(params int[] ws)
+        {
+            SetPriorities(ws, Priority.Weight);
+            return this;
+        }
+
+        // Picking
 
         /// <inheritdoc/>
         public IEnumerable<T> Pick(int n)
@@ -127,31 +219,6 @@ namespace FluentRandomPicker
             }
 
             return valuePriorityPairs;
-        }
-
-        ISpecifyValueOrValuePriorityOrPick<T> ISpecifyAdditionalValue<T, ISpecifyValueOrValuePriorityOrPick<T>>.AndValue(T value)
-        {
-            return this;
-        }
-
-        public ISpecifyPercentageValue<T> WithPercentage(int p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ISpecifyWeightValue<T> WithWeight(int p)
-        {
-            throw new NotImplementedException();
-        }
-
-        ISpecifyWeightValueOrPick<T> ISpecifyWeight<T, ISpecifyWeightValueOrPick<T>>.WithWeight(int p)
-        {
-            throw new NotImplementedException();
-        }
-
-        ISpecifyWeightValueOrValueWeightOrPick<T> ISpecifyAdditionalValue<T, ISpecifyWeightValueOrValueWeightOrPick<T>>.AndValue(T value)
-        {
-            throw new NotImplementedException();
         }
     }
 }
