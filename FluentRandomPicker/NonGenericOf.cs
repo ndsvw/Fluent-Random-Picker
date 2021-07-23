@@ -63,7 +63,7 @@ namespace FluentRandomPicker
         /// <param name="t">The value.</param>
         /// <returns>An object that can have an optional value priority and needs at least one more value.</returns>
 #pragma warning disable CA1822 // Mark members as static; Justification: Necessary for the fluent syntax.
-        public ICanHaveValuePriorityAndNeed1MoreValue<T> Value<T>(T t)
+        public ISpecifyValueOrGenesisValuePriority<T> Value<T>(T t)
 #pragma warning restore CA1822 // Mark members as static
         {
             return new RandomPicker<T>(_rng).Value(t);
@@ -75,11 +75,11 @@ namespace FluentRandomPicker
         /// <typeparam name="T">The type of the values.</typeparam>
         /// <param name="ts">The values.</param>
         /// <returns>An object that can have optional value priorities.</returns>
-#pragma warning disable CA1822 // Mark members as static; Justification: Necessary for the fluent syntax.
-        public ICanHaveValuePrioritiesAndPick<T> Values<T>(IEnumerable<T> ts)
-#pragma warning restore CA1822 // Mark members as static
-        {
-            return new RandomPicker<T>(_rng).Values(ts);
-        }
+//#pragma warning disable CA1822 // Mark members as static; Justification: Necessary for the fluent syntax.
+//        public ICanHaveValuePrioritiesAndPick<T> Values<T>(IEnumerable<T> ts)
+//#pragma warning restore CA1822 // Mark members as static
+//        {
+//            return new RandomPicker<T>(_rng).Values(ts);
+//        }
     }
 }

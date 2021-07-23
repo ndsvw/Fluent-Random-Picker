@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentRandomPicker.Exceptions;
 using FluentRandomPicker.Interfaces;
+using FluentRandomPicker.Interfaces.General;
 using FluentRandomPicker.Interfaces.Percentage;
 using FluentRandomPicker.Interfaces.Weight;
 using FluentRandomPicker.Picker;
@@ -14,17 +15,17 @@ namespace FluentRandomPicker
     /// The main class.
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    internal sealed class RandomPicker<T> : ICanHaveValuePriorityAndNeed1MoreValue<T>,
-        ICanHaveValuePrioritiesAndPick<T>,
-        ICanHaveAdditionalValueAndPick<T>,
+    internal sealed class RandomPicker<T> : ISpecifyValueOrGenesisValuePriority<T>,
+        ISpecifyValueOrValuePriorityOrPick<T>,
+        ISpecifyValueOrValuePriority<T>,
 
-        INeed1MorePercentageValue<T>,
-        INeedValuePercentageAndCanHaveAdditionalPercentageValueAndCanPick<T>,
-        ICanHaveAdditionalPercentageValueAndCanPick<T>,
+        ISpecifyPercentageValue<T>,
+        ISpecifyPercentageValueOrPick<T>,
+        ISpecifyPercentageValueOrValuePercentageOrPick<T>,
 
-        INeed1MoreWeightValue<T>,
-        INeedValueWeightAndCanHaveAdditionalWeightValueAndCanPick<T>,
-        ICanHaveAdditionalWeightValueAndCanPick<T>
+        ISpecifyWeightValue<T>,
+        ISpecifyWeightValueOrPick<T>,
+        ISpecifyWeightValueOrValueWeightOrPick<T>
     {
         private readonly IRandomNumberGenerator _rng;
 
@@ -77,123 +78,20 @@ namespace FluentRandomPicker
         /// </summary>
         /// <param name="t">The first value.</param>
         /// <returns>An <see cref="ICanHaveValuePrioritiesAndPick{T}"/> instance.</returns>
-        public ICanHaveValuePriorityAndNeed1MoreValue<T> Value(T t)
+        public ISpecifyValueOrGenesisValuePriority<T> Value(T t)
         {
             AddValue(t);
             return this;
         }
 
-        /// <summary>
-        /// Specifies all value.
-        /// </summary>
-        /// <param name="ts">The values.</param>
-        /// <returns>An <see cref="ICanHaveValuePrioritiesAndPick{T}"/> instance.</returns>
-        public ICanHaveValuePrioritiesAndPick<T> Values(IEnumerable<T> ts)
+        public ISpecifyPercentageValueOrValuePercentageOrPick<T> AndValue(T value)
         {
-            if (ts.Count() <= 1)
-                throw new NotEnoughValuesToPickException();
-
-            foreach (var t in ts)
-            {
-                AddValue(t);
-            }
-
-            return this;
+            throw new NotImplementedException();
         }
 
-        /// <inheritdoc/>
-        public INeed1MorePercentageValue<T> WithPercentage(int p)
+        ISpecifyPercentageValueOrPick<T> ISpecifyPercentage<T, ISpecifyPercentageValueOrPick<T>>.WithPercentage(int p)
         {
-            SetPriority(p, Priority.Percentage);
-            return this;
-        }
-
-        /// <inheritdoc/>
-        public ICanPick<T> WithPercentages(IEnumerable<int> ps)
-        {
-            SetPriorities(ps, Priority.Percentage);
-            return this;
-        }
-
-        /// <inheritdoc/>
-        public ICanPick<T> WithPercentages(params int[] ps)
-        {
-            SetPriorities(ps, Priority.Percentage);
-            return this;
-        }
-
-        /// <inheritdoc/>
-        public ICanPick<T> WithWeights(IEnumerable<int> ws)
-        {
-            SetPriorities(ws, Priority.Weight);
-            return this;
-        }
-
-        /// <inheritdoc/>
-        public ICanPick<T> WithWeights(params int[] ws)
-        {
-            SetPriorities(ws, Priority.Weight);
-            return this;
-        }
-
-        /// <inheritdoc/>
-        public INeed1MoreWeightValue<T> WithWeight(int w)
-        {
-            SetPriority(w, Priority.Weight);
-            return this;
-        }
-
-        /// <inheritdoc/>
-        public ICanHaveAdditionalValueAndPick<T> AndValue(T t)
-        {
-            AddValue(t);
-            return this;
-        }
-
-        // Percentage
-
-        /// <inheritdoc/>
-        INeedValuePercentageAndCanHaveAdditionalPercentageValueAndCanPick<T> INeed1MorePercentageValue<T>.AndValue(T t)
-        {
-            AddValue(t);
-            return this;
-        }
-
-        /// <inheritdoc/>
-        ICanHaveAdditionalPercentageValueAndCanPick<T> INeedValuePercentageAndCanHaveAdditionalPercentageValueAndCanPick<T>.WithPercentage(int p)
-        {
-            SetPriority(p, Priority.Percentage);
-            return this;
-        }
-
-        /// <inheritdoc/>
-        INeedValuePercentageAndCanHaveAdditionalPercentageValueAndCanPick<T> ICanHaveAdditionalPercentageValueAndCanPick<T>.AndValue(T t)
-        {
-            AddValue(t);
-            return this;
-        }
-
-        // Weight
-
-        /// <inheritdoc/>
-        INeedValueWeightAndCanHaveAdditionalWeightValueAndCanPick<T> INeed1MoreWeightValue<T>.AndValue(T t)
-        {
-            AddValue(t);
-            return this;
-        }
-
-        /// <inheritdoc/>
-        ICanHaveAdditionalWeightValueAndCanPick<T> INeedValueWeightAndCanHaveAdditionalWeightValueAndCanPick<T>.WithWeight(int w)
-        {
-            SetPriority(w, Priority.Weight);
-            return this;
-        }
-
-        /// <inheritdoc/>
-        INeedValueWeightAndCanHaveAdditionalWeightValueAndCanPick<T> ICanHaveAdditionalWeightValueAndCanPick<T>.AndValue(T t)
-        {
-            AddValue(t);
-            return this;
+            throw new NotImplementedException();
         }
 
         // Pick
@@ -229,6 +127,31 @@ namespace FluentRandomPicker
             }
 
             return valuePriorityPairs;
+        }
+
+        ISpecifyValueOrValuePriorityOrPick<T> ISpecifyAdditionalValue<T, ISpecifyValueOrValuePriorityOrPick<T>>.AndValue(T value)
+        {
+            return this;
+        }
+
+        public ISpecifyPercentageValue<T> WithPercentage(int p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ISpecifyWeightValue<T> WithWeight(int p)
+        {
+            throw new NotImplementedException();
+        }
+
+        ISpecifyWeightValueOrPick<T> ISpecifyWeight<T, ISpecifyWeightValueOrPick<T>>.WithWeight(int p)
+        {
+            throw new NotImplementedException();
+        }
+
+        ISpecifyWeightValueOrValueWeightOrPick<T> ISpecifyAdditionalValue<T, ISpecifyWeightValueOrValueWeightOrPick<T>>.AndValue(T value)
+        {
+            throw new NotImplementedException();
         }
     }
 }

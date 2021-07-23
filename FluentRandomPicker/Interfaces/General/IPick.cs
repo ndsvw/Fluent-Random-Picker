@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace FluentRandomPicker.Interfaces
+namespace FluentRandomPicker.Interfaces.General
 {
     /// <summary>
     /// An interface to specify that the Pick methods can be called.
     /// </summary>
     /// <typeparam name="T">The type of the value.</typeparam>
-    public interface ICanPick<out T>
+    public interface IPick<out T> : IFluentChainElement
     {
         /// <summary>
         /// Picks n values.
