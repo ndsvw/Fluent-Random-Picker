@@ -15,7 +15,7 @@ namespace FluentRandomPicker.ValuePriorities
             if (numberOfValues < numberOfPriorities)
                 throw new ArgumentException("The number of values must not be smaller than the number of priorities.", nameof(priorities));
 
-            priorities = priorities.Union(Enumerable.Repeat(default(int?), numberOfValues - numberOfPriorities));
+            priorities = priorities.Concat(Enumerable.Repeat(default(int?), numberOfValues - numberOfPriorities));
 
             return GeneratePairs(values, priorities);
         }
