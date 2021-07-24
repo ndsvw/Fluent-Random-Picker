@@ -4,8 +4,14 @@ using System.Linq;
 
 namespace FluentRandomPicker.ValuePriorities
 {
+    /// <summary>
+    /// An generator that generates value-priority-pairs for
+    /// values with percentages.
+    /// </summary>
+    /// <typeparam name="T">The type of the value(s).</typeparam>
     internal class PercentageValuePriorityPairsGenerator<T> : IValuePriorityPairsGenerator<T>
     {
+        /// <inheritdoc/>
         public ValuePriorityPairs<T> Generate(IEnumerable<T> values, IEnumerable<int?> priorities)
         {
             var numberOfValues = values.Count();

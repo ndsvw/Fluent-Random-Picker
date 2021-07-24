@@ -2,8 +2,19 @@
 
 namespace FluentRandomPicker.ValuePriorities
 {
+    /// <summary>
+    /// A factory that creates instances of <see cref="IValuePriorityPairsGenerator{T}"/>
+    /// based on the priority type it receives.
+    /// </summary>
+    /// <typeparam name="T">The type of the value(s).</typeparam>
     internal class ValuePriorityPairsGeneratorFactory<T>
     {
+        /// <summary>
+        /// Creates an <see cref="IValuePriorityPairsGenerator{T}"/> instance
+        /// based on the passed priority type.
+        /// </summary>
+        /// <param name="priorityType">The priority type.</param>
+        /// <returns>An <see cref="IValuePriorityPairsGenerator{T}"/> instance based on the passed priority type.</returns>
         public IValuePriorityPairsGenerator<T> Create(PriorityType priorityType)
         {
             switch (priorityType)

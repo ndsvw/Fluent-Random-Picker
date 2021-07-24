@@ -13,9 +13,11 @@ using FluentRandomPicker.ValuePriorities;
 namespace FluentRandomPicker
 {
     /// <summary>
-    /// The main class.
+    /// The starting point of the fluent syntax after Out.Of().
+    /// It implements all relevant interfaces to allow chaining
+    /// values, specifying priorities, picking, ...
     /// </summary>
-    /// <typeparam name="T">The type of the values.</typeparam>
+    /// <typeparam name="T">The type of the value(s).</typeparam>
     internal sealed class RandomPicker<T> : ISpecifyValueOrGenesisValuePriority<T>,
         ISpecifyValueOrValuePriorityOrPick<T>,
         ISpecifyValueOrValuePriority<T>,
