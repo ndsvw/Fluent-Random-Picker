@@ -99,36 +99,14 @@ namespace FluentRandomPickerTests
         [TestMethod]
         public void Weight3ValuesWith3DifferentWeights_WeightMatter()
         {
-            const int NumberOfTries = 1_000_000;
-            const double AcceptedDeviation = 0.25;
+            var pickable = Out.Of()
+                .Value('a').WithWeight(7)
+                .AndValue('b').WithWeight(2)
+                .AndValue('c').WithWeight(1);
 
-            var counterA = 0;
-            var counterB = 0;
-            var counterC = 0;
+            var valueChancesPairs = new[] { ('a', 0.7), ('b', 0.2), ('c', 0.1) };
 
-            for (var i = 0; i < NumberOfTries; i++)
-            {
-                var value = Out.Of()
-                    .Value('a').WithWeight(7)
-                    .AndValue('b').WithWeight(2)
-                    .AndValue('c').WithWeight(1)
-                    .PickOne();
-                if (value == 'a')
-                    counterA++;
-                if (value == 'b')
-                    counterB++;
-                if (value == 'c')
-                    counterC++;
-            }
-
-            Assert.IsTrue(counterA >= NumberOfTries * 0.7 * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterA <= NumberOfTries * 0.7 * (1 + AcceptedDeviation));
-
-            Assert.IsTrue(counterB >= NumberOfTries * 0.2 * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterB <= NumberOfTries * 0.2 * (1 + AcceptedDeviation));
-
-            Assert.IsTrue(counterC >= NumberOfTries * 0.1 * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterC <= NumberOfTries * 0.1 * (1 + AcceptedDeviation));
+            Assert.That.ProbabilitiesMatter(pickable, valueChancesPairs: valueChancesPairs);
         }
 
         [TestMethod]
