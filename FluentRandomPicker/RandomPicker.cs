@@ -83,7 +83,7 @@ namespace FluentRandomPicker
         /// Specifies the first value.
         /// </summary>
         /// <param name="t">The first value.</param>
-        /// <returns>An <see cref="ICanHaveValuePrioritiesAndPick{T}"/> instance.</returns>
+        /// <returns>An <see cref="ISpecifyValueOrGenesisValuePriority{T}"/> instance.</returns>
         public ISpecifyValueOrGenesisValuePriority<T> Value(T t)
         {
             AddValue(t);
@@ -94,7 +94,7 @@ namespace FluentRandomPicker
         /// Specifies all value.
         /// </summary>
         /// <param name="ts">The values.</param>
-        /// <returns>An <see cref="ICanHaveValuePrioritiesAndPick{T}"/> instance.</returns>
+        /// <returns>An <see cref="ISpecifyValuePrioritiesOrPick{T}"/> instance.</returns>
         public ISpecifyValuePrioritiesOrPick<T> Values(IEnumerable<T> ts)
         {
             if (ts.Count() <= 1)

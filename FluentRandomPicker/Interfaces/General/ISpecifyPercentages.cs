@@ -12,28 +12,28 @@ namespace FluentRandomPicker.Interfaces.General
         /// Specifies the percentages of all values.
         /// </summary>
         /// <param name="ps">The percentages.</param>
-        /// <returns>An <see cref="ICanPick{T}"/> instance.</returns>
+        /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
         IPick<T> WithPercentages(IEnumerable<int> ps);
 
         /// <summary>
         /// Specifies the percentages of all values.
         /// </summary>
         /// <param name="ps">The percentages.</param>
-        /// <returns>An <see cref="ICanPick{T}"/> instance.</returns>
+        /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
         IPick<T> WithPercentages(params int[] ps);
 
         /// <summary>
         /// Specifies the percentages of all values.
         /// </summary>
         /// <param name="ps">The percentages.</param>
-        /// <returns>An <see cref="ICanPick{T}"/> instance.</returns>
+        /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
         IPick<T> WithPercentages(IEnumerable<int?> ps);
 
         /// <summary>
         /// Specifies the percentages of all values.
         /// </summary>
         /// <param name="ps">The percentages.</param>
-        /// <returns>An <see cref="ICanPick{T}"/> instance.</returns>
+        /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
         IPick<T> WithPercentages(params int?[] ps);
     }
 }
