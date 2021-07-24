@@ -1,9 +1,9 @@
-﻿namespace FluentRandomPicker
+﻿namespace FluentRandomPicker.ValuePriorities
 {
     /// <summary>
     /// An enum for the different priorities.
     /// </summary>
-    internal enum Priority
+    internal enum PriorityType
     {
         /// <summary>
         /// An enum value that represents the "None" option.

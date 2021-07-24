@@ -35,7 +35,7 @@ namespace FluentRandomPicker
 
         private readonly List<int?> _priorities = new List<int?>();
 
-        private Priority _priority;
+        private PriorityType _priority;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomPicker{T}"/> class.
@@ -51,7 +51,7 @@ namespace FluentRandomPicker
             _values.Add(t);
         }
 
-        private void SetPriority(int numericPriority, Priority type)
+        private void SetPriority(int numericPriority, PriorityType type)
         {
             if (numericPriority <= 0)
                 throw new ArgumentException("Value priorities must be larger than 0.", nameof(numericPriority));
@@ -64,7 +64,7 @@ namespace FluentRandomPicker
             _priority = type;
         }
 
-        private void SetPriorities(IEnumerable<int?> numericPriorities, Priority type)
+        private void SetPriorities(IEnumerable<int?> numericPriorities, PriorityType type)
         {
             if (numericPriorities.Count() != _values.Count)
                 throw new NumberOfValuesDoesNotMatchNumberOfPrioritiesException();
@@ -136,42 +136,42 @@ namespace FluentRandomPicker
         /// <inheritdoc/>
         public ISpecifyPercentageValue<T> WithPercentage(int p)
         {
-            SetPriority(p, Priority.Percentage);
+            SetPriority(p, PriorityType.Percentage);
             return this;
         }
 
         /// <inheritdoc/>
         ISpecifyPercentageValueOrPick<T> ISpecifyPercentage<T, ISpecifyPercentageValueOrPick<T>>.WithPercentage(int p)
         {
-            SetPriority(p, Priority.Percentage);
+            SetPriority(p, PriorityType.Percentage);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithPercentages(IEnumerable<int> ps)
         {
-            SetPriorities(ps.Cast<int?>(), Priority.Percentage);
+            SetPriorities(ps.Cast<int?>(), PriorityType.Percentage);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithPercentages(params int[] ps)
         {
-            SetPriorities(ps.Cast<int?>(), Priority.Percentage);
+            SetPriorities(ps.Cast<int?>(), PriorityType.Percentage);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithPercentages(IEnumerable<int?> ps)
         {
-            SetPriorities(ps, Priority.Percentage);
+            SetPriorities(ps, PriorityType.Percentage);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithPercentages(params int?[] ps)
         {
-            SetPriorities(ps, Priority.Percentage);
+            SetPriorities(ps, PriorityType.Percentage);
             return this;
         }
 
@@ -180,42 +180,42 @@ namespace FluentRandomPicker
         /// <inheritdoc/>
         public ISpecifyWeightValue<T> WithWeight(int w)
         {
-            SetPriority(w, Priority.Weight);
+            SetPriority(w, PriorityType.Weight);
             return this;
         }
 
         /// <inheritdoc/>
         ISpecifyWeightValueOrPick<T> ISpecifyWeight<T, ISpecifyWeightValueOrPick<T>>.WithWeight(int w)
         {
-            SetPriority(w, Priority.Weight);
+            SetPriority(w, PriorityType.Weight);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithWeights(IEnumerable<int> ws)
         {
-            SetPriorities(ws.Cast<int?>(), Priority.Weight);
+            SetPriorities(ws.Cast<int?>(), PriorityType.Weight);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithWeights(params int[] ws)
         {
-            SetPriorities(ws.Cast<int?>(), Priority.Weight);
+            SetPriorities(ws.Cast<int?>(), PriorityType.Weight);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithWeights(IEnumerable<int?> ws)
         {
-            SetPriorities(ws, Priority.Weight);
+            SetPriorities(ws, PriorityType.Weight);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithWeights(params int?[] ws)
         {
-            SetPriorities(ws, Priority.Weight);
+            SetPriorities(ws, PriorityType.Weight);
             return this;
         }
 

@@ -4,15 +4,15 @@ namespace FluentRandomPicker.ValuePriorities
 {
     internal class ValuePriorityPairsGeneratorFactory<T>
     {
-        public IValuePriorityPairsGenerator<T> Create(Priority priorityType)
+        public IValuePriorityPairsGenerator<T> Create(PriorityType priorityType)
         {
             switch (priorityType)
             {
-                case Priority.None:
+                case PriorityType.None:
                     return new NoValuePrioriyPairsGenerator<T>();
-                case Priority.Percentage:
+                case PriorityType.Percentage:
                     return new PercentageValuePriorityPairsGenerator<T>();
-                case Priority.Weight:
+                case PriorityType.Weight:
                     return new WeightValuePriorityPairsGenerator<T>();
                 default:
                     throw new ArgumentException("Invalid priority type", nameof(priorityType));
