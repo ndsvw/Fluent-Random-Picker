@@ -2,6 +2,10 @@
 
 namespace FluentRandomPicker.Interfaces.General
 {
+    /// <summary>
+    /// Percentages for the specified values can be specified.
+    /// </summary>
+    /// <typeparam name="T">The type of the value(s).</typeparam>
     public interface ISpecifyPercentages<T> : IFluentChainElement
     {
         /// <summary>

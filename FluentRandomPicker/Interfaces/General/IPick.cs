@@ -3,9 +3,9 @@
 namespace FluentRandomPicker.Interfaces.General
 {
     /// <summary>
-    /// An interface to specify that the Pick methods can be called.
+    /// Methods can be called to pick one ore multiple of the specified values.
     /// </summary>
-    /// <typeparam name="T">The type of the value.</typeparam>
+    /// <typeparam name="T">The type of the value(s).</typeparam>
     public interface IPick<out T> : IFluentChainElement
     {
         /// <summary>
