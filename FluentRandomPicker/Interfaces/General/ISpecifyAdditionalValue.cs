@@ -8,6 +8,12 @@
     public interface ISpecifyAdditionalValue<TPickType, TReturnType> : IFluentChainElement
         where TReturnType : IFluentChainElement
     {
+        /// <summary>
+        /// Specifies an additional value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>An <see cref="IFluentChainElement"/> instance that allows specifying
+        /// additional information or executing actions via Fluent syntax.</returns>
         TReturnType AndValue(TPickType value);
     }
 }
