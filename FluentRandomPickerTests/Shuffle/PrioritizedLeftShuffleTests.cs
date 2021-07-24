@@ -4,6 +4,7 @@ using System.Linq;
 using FluentRandomPicker;
 using FluentRandomPicker.Random;
 using FluentRandomPicker.Shuffle;
+using FluentRandomPicker.ValuePriorities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FluentRandomPickerTests.Shuffle
@@ -26,7 +27,6 @@ namespace FluentRandomPickerTests.Shuffle
                 new ValuePriorityPair<int>(4, 4),
                 new ValuePriorityPair<int>(5, 5),
             };
-            elements.Priority = Priority.Weight;
 
             var value1Set = new HashSet<int>();
             var value2Set = new HashSet<int>();
@@ -64,7 +64,6 @@ namespace FluentRandomPickerTests.Shuffle
                 new ValuePriorityPair<int>(4, 4),
                 new ValuePriorityPair<int>(5, 5),
             };
-            elements.Priority = Priority.Weight;
 
             var value1Set = new HashSet<int>();
             var value2Set = new HashSet<int>();

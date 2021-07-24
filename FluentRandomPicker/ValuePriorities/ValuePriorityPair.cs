@@ -1,4 +1,4 @@
-﻿namespace FluentRandomPicker
+﻿namespace FluentRandomPicker.ValuePriorities
 {
     /// <summary>
     /// A pair of a value and its priority.

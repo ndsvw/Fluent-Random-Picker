@@ -71,7 +71,7 @@ namespace FluentRandomPickerTests
         public void ValuesNoWeights_ThrowsException()
         {
             var values = new List<byte> { 1, 2 };
-            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithWeights().PickOne());
+            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithWeights(Array.Empty<int>()).PickOne());
         }
 
         [TestMethod]
@@ -92,7 +92,7 @@ namespace FluentRandomPickerTests
         public void ValuesNoPercentags_ThrowsException()
         {
             var values = new List<byte> { 1, 2 };
-            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithPercentages().PickOne());
+            Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithPercentages(Array.Empty<int>()).PickOne());
         }
     }
 }

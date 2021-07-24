@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FluentRandomPicker.Random;
+using FluentRandomPicker.ValuePriorities;
 
 namespace FluentRandomPicker.Shuffle
 {

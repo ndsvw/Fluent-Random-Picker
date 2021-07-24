@@ -132,20 +132,6 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void PercentageProbabilitiesSumUpToLessThan100_ExceptionIsThrown()
-        {
-            static void Execute()
-            {
-                Out.Of()
-                    .Value('a').WithPercentage(70)
-                    .AndValue('b').WithPercentage(5)
-                    .AndValue('c').WithPercentage(2)
-                    .PickOne();
-            }
-            Assert.ThrowsException<InvalidOperationException>(Execute);
-        }
-
-        [TestMethod]
         public void PercentageProbabilitiesSumUpToMoreThan100_ExceptionIsThrown()
         {
             static void Execute()
@@ -156,7 +142,7 @@ namespace FluentRandomPickerTests
                     .AndValue('c').WithPercentage(15)
                     .PickOne();
             }
-            Assert.ThrowsException<InvalidOperationException>(Execute);
+            Assert.ThrowsException<ArgumentException>(Execute);
         }
 
         [TestMethod]

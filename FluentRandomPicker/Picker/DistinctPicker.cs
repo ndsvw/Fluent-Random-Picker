@@ -4,6 +4,7 @@ using System.Linq;
 using FluentRandomPicker.Exceptions;
 using FluentRandomPicker.Random;
 using FluentRandomPicker.Shuffle;
+using FluentRandomPicker.ValuePriorities;
 
 namespace FluentRandomPicker.Picker
 {
@@ -52,11 +53,9 @@ namespace FluentRandomPicker.Picker
             if (_numberOfElements == 0)
                 return new PickResult<IEnumerable<T>>(Enumerable.Empty<T>());
 
-            if (_pairs.Priority == Priority.None)
+            var firstPriority = _pairs.First().Priority;
+            if (_pairs.All(x => x.Priority == firstPriority))
                 return new PickResult<IEnumerable<T>>(PickDistinctElementsWithEqualPriorities());
-
-            if (_pairs.Priority == Priority.Percentage && _pairs.Sum(v => v.Priority) != 100)
-                throw new InvalidOperationException("The percentage values must sum up to 100.");
 
             return new PickResult<IEnumerable<T>>(PickDistinctElementsWithDifferentPriorities());
         }

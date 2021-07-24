@@ -17,5 +17,19 @@ namespace FluentRandomPicker.Interfaces.General
         /// <param name="ws">The weights.</param>
         /// <returns>An <see cref="ICanPick{T}"/> instance.</returns>
         IPick<T> WithWeights(params int[] ws);
+
+        /// <summary>
+        /// Specifies the weights of all values.
+        /// </summary>
+        /// <param name="ws">The weights.</param>
+        /// <returns>An <see cref="ICanPick{T}"/> instance.</returns>
+        IPick<T> WithWeights(IEnumerable<int?> ws);
+
+        /// <summary>
+        /// Specifies the weights of all values.
+        /// </summary>
+        /// <param name="ws">The weights.</param>
+        /// <returns>An <see cref="ICanPick{T}"/> instance.</returns>
+        IPick<T> WithWeights(params int?[] ws);
     }
 }

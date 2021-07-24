@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace FluentRandomPicker
+namespace FluentRandomPicker.ValuePriorities
 {
     /// <summary>
     /// A collection of ValuePriorityPairs.
@@ -10,11 +10,6 @@ namespace FluentRandomPicker
     internal class ValuePriorityPairs<T> : IEnumerable<ValuePriorityPair<T>>
     {
         private readonly List<ValuePriorityPair<T>> _pairs = new List<ValuePriorityPair<T>>();
-
-        /// <summary>
-        /// Gets or sets the priority.
-        /// </summary>
-        public Priority Priority { get; set; }
 
         /// <summary>
         /// Allows index access to the pairs.

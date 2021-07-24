@@ -58,10 +58,12 @@ Probabilities can be specified, values can be weighted, ...</Description>
     <Folder Include="Shuffle\" />
     <Folder Include="Random\" />
     <Folder Include="Interfaces\General\" />
+    <Folder Include="ValuePriorities\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Interfaces\General\" />
+    <None Remove="ValuePriorities\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="../README.md" Pack="true" PackagePath="\" />

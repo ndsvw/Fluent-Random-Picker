@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentRandomPicker.Exceptions;
 using FluentRandomPicker.Random;
+using FluentRandomPicker.ValuePriorities;
 
 namespace FluentRandomPicker.Picker
 {
@@ -51,19 +52,9 @@ namespace FluentRandomPicker.Picker
             if (_numberOfElements == 0)
                 return new PickResult<IEnumerable<T>>(Enumerable.Empty<T>());
 
-            if (_pairs.Priority == Priority.None)
-            {
-                var elements = Enumerable.Repeat(_pairs[_rng.NextInt(_pairs.Count())], _numberOfElements);
-                return new PickResult<IEnumerable<T>>(elements.Select(e => e.Value));
-            }
-            else
-            {
-                var prioritySum = _pairs.Sum(v => v.Priority);
-                if (_pairs.Priority == Priority.Percentage && prioritySum != 100)
-                    throw new InvalidOperationException("The percentage values must sum up to 100.");
-                var values = Enumerable.Repeat(PickPrioritized(prioritySum), _numberOfElements);
-                return new PickResult<IEnumerable<T>>(values);
-            }
+            var prioritySum = _pairs.Sum(v => v.Priority);
+            var values = Enumerable.Repeat(PickPrioritized(prioritySum), _numberOfElements);
+            return new PickResult<IEnumerable<T>>(values);
         }
 
         private T PickPrioritized(int prioritySum)

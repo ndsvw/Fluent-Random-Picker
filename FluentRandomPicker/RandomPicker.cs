@@ -8,6 +8,7 @@ using FluentRandomPicker.Interfaces.Percentage;
 using FluentRandomPicker.Interfaces.Weight;
 using FluentRandomPicker.Picker;
 using FluentRandomPicker.Random;
+using FluentRandomPicker.ValuePriorities;
 
 namespace FluentRandomPicker
 {
@@ -32,7 +33,7 @@ namespace FluentRandomPicker
 
         private readonly List<T> _values = new List<T>();
 
-        private readonly List<int> _priorities = new List<int>();
+        private readonly List<int?> _priorities = new List<int?>();
 
         private Priority _priority;
 
@@ -55,11 +56,15 @@ namespace FluentRandomPicker
             if (numericPriority <= 0)
                 throw new ArgumentException("Value priorities must be larger than 0.", nameof(numericPriority));
 
+            var additionalDefaultEntries = _values.Count - _priorities.Count - 1;
+            if (additionalDefaultEntries > 0)
+                _priorities.AddRange(Enumerable.Repeat(default(int?), additionalDefaultEntries));
+
             _priorities.Add(numericPriority);
             _priority = type;
         }
 
-        private void SetPriorities(IEnumerable<int> numericPriorities, Priority type)
+        private void SetPriorities(IEnumerable<int?> numericPriorities, Priority type)
         {
             if (numericPriorities.Count() != _values.Count)
                 throw new NumberOfValuesDoesNotMatchNumberOfPrioritiesException();
@@ -145,12 +150,26 @@ namespace FluentRandomPicker
         /// <inheritdoc/>
         public IPick<T> WithPercentages(IEnumerable<int> ps)
         {
-            SetPriorities(ps, Priority.Percentage);
+            SetPriorities(ps.Cast<int?>(), Priority.Percentage);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithPercentages(params int[] ps)
+        {
+            SetPriorities(ps.Cast<int?>(), Priority.Percentage);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public IPick<T> WithPercentages(IEnumerable<int?> ps)
+        {
+            SetPriorities(ps, Priority.Percentage);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public IPick<T> WithPercentages(params int?[] ps)
         {
             SetPriorities(ps, Priority.Percentage);
             return this;
@@ -175,12 +194,26 @@ namespace FluentRandomPicker
         /// <inheritdoc/>
         public IPick<T> WithWeights(IEnumerable<int> ws)
         {
-            SetPriorities(ws, Priority.Weight);
+            SetPriorities(ws.Cast<int?>(), Priority.Weight);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithWeights(params int[] ws)
+        {
+            SetPriorities(ws.Cast<int?>(), Priority.Weight);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public IPick<T> WithWeights(IEnumerable<int?> ws)
+        {
+            SetPriorities(ws, Priority.Weight);
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public IPick<T> WithWeights(params int?[] ws)
         {
             SetPriorities(ws, Priority.Weight);
             return this;
@@ -209,16 +242,9 @@ namespace FluentRandomPicker
         // More
         private ValuePriorityPairs<T> GeneratePairs()
         {
-            var valuePriorityPairs = new ValuePriorityPairs<T>();
-            valuePriorityPairs.Priority = _priority;
-            var priorityEnumerator = _priorities.GetEnumerator();
-            foreach (var value in _values)
-            {
-                priorityEnumerator.MoveNext();
-                valuePriorityPairs.Add(new ValuePriorityPair<T>(value, priorityEnumerator.Current));
-            }
-
-            return valuePriorityPairs;
+            var factory = new ValuePriorityPairsGeneratorFactory<T>();
+            var pairGenerator = factory.Create(_priority);
+            return pairGenerator.Generate(_values, _priorities);
         }
     }
 }
