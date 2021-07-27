@@ -1,4 +1,4 @@
-﻿namespace FluentRandomPicker.Interfaces.General
+﻿namespace FluentRandomPicker.FluentInterfaces.General
 {
     /// <summary>
     /// The root interface of all chainable interfaces.

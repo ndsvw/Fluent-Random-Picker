@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentRandomPicker.Exceptions;
-using FluentRandomPicker.Interfaces;
-using FluentRandomPicker.Interfaces.General;
-using FluentRandomPicker.Interfaces.Percentage;
-using FluentRandomPicker.Interfaces.Weight;
+using FluentRandomPicker.FluentInterfaces;
+using FluentRandomPicker.FluentInterfaces.General;
+using FluentRandomPicker.FluentInterfaces.Percentage;
+using FluentRandomPicker.FluentInterfaces.Weight;
 using FluentRandomPicker.Picker;
 using FluentRandomPicker.Random;
 using FluentRandomPicker.ValuePriorities;

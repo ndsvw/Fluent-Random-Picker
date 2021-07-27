@@ -1,4 +1,4 @@
-﻿namespace FluentRandomPicker.Interfaces.General
+﻿namespace FluentRandomPicker.FluentInterfaces.General
 {
     /// <summary>
     /// An additional value can be specified.

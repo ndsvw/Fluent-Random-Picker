@@ -1,4 +1,4 @@
-﻿namespace FluentRandomPicker.Interfaces.General
+﻿namespace FluentRandomPicker.FluentInterfaces.General
 {
     /// <summary>
     /// A percentage for the previous value can be specified.

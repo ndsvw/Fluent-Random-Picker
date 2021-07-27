@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FluentRandomPicker.Interfaces.General
+namespace FluentRandomPicker.FluentInterfaces.General
 {
     /// <summary>
     /// Methods can be called to pick one ore multiple of the specified values.

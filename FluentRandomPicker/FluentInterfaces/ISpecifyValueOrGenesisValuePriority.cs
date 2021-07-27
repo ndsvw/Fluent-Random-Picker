@@ -1,8 +1,8 @@
-﻿using FluentRandomPicker.Interfaces.General;
-using FluentRandomPicker.Interfaces.Percentage;
-using FluentRandomPicker.Interfaces.Weight;
+﻿using FluentRandomPicker.FluentInterfaces.General;
+using FluentRandomPicker.FluentInterfaces.Percentage;
+using FluentRandomPicker.FluentInterfaces.Weight;
 
-namespace FluentRandomPicker.Interfaces
+namespace FluentRandomPicker.FluentInterfaces
 {
     /// <summary>
     /// There are multiple options:
@@ -13,8 +13,8 @@ namespace FluentRandomPicker.Interfaces
     /// </list>
     /// </summary>
     /// <typeparam name="T">The type of the value(s).</typeparam>
-    public interface ISpecifyValueOrValuePriority<T> : ISpecifyAdditionalValue<T, ISpecifyValueOrValuePriorityOrPick<T>>,
-        ISpecifyPriority<T, ISpecifyPercentageValueOrPick<T>, ISpecifyWeightValueOrPick<T>>
+    public interface ISpecifyValueOrGenesisValuePriority<T> : ISpecifyAdditionalValue<T, ISpecifyValueOrValuePriorityOrPick<T>>,
+        ISpecifyPriority<T, ISpecifyPercentageValue<T>, ISpecifyWeightValue<T>>
     {
     }
 }

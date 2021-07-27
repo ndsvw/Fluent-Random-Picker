@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FluentRandomPicker.Interfaces.General
+namespace FluentRandomPicker.FluentInterfaces.General
 {
     /// <summary>
     /// Percentages for the specified values can be specified.

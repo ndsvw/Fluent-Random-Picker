@@ -1,6 +1,6 @@
-﻿using FluentRandomPicker.Interfaces.General;
+﻿using FluentRandomPicker.FluentInterfaces.General;
 
-namespace FluentRandomPicker.Interfaces.Percentage
+namespace FluentRandomPicker.FluentInterfaces.Percentage
 {
     /// <summary>
     /// There are multiple options:

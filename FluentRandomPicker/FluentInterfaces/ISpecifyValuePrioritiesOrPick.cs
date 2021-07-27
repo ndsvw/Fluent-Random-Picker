@@ -1,6 +1,6 @@
-﻿using FluentRandomPicker.Interfaces.General;
+﻿using FluentRandomPicker.FluentInterfaces.General;
 
-namespace FluentRandomPicker.Interfaces
+namespace FluentRandomPicker.FluentInterfaces
 {
     /// <summary>
     /// There are multiple options:

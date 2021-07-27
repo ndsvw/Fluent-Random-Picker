@@ -1,6 +1,6 @@
-﻿using FluentRandomPicker.Interfaces.General;
+﻿using FluentRandomPicker.FluentInterfaces.General;
 
-namespace FluentRandomPicker.Interfaces.Weight
+namespace FluentRandomPicker.FluentInterfaces.Weight
 {
     /// <summary>
     /// An additional weight value can be specified.

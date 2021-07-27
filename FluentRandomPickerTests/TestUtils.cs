@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FluentRandomPicker.Interfaces.General;
+using FluentRandomPicker.FluentInterfaces.General;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FluentRandomPickerTests

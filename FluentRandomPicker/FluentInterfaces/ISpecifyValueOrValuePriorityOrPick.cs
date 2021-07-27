@@ -1,8 +1,6 @@
-﻿using FluentRandomPicker.Interfaces.General;
-using FluentRandomPicker.Interfaces.Percentage;
-using FluentRandomPicker.Interfaces.Weight;
+﻿using FluentRandomPicker.FluentInterfaces.General;
 
-namespace FluentRandomPicker.Interfaces
+namespace FluentRandomPicker.FluentInterfaces
 {
     /// <summary>
     /// There are multiple options:
@@ -10,11 +8,11 @@ namespace FluentRandomPicker.Interfaces
     ///     <item>An additional value can be specified.</item>
     ///     <item>A weight for the previous value can be specified.</item>
     ///     <item>A percentage for the previous value can be specified.</item>
+    ///     <item>Methods can be called to pick one ore multiple of the specified values.</item>
     /// </list>
     /// </summary>
     /// <typeparam name="T">The type of the value(s).</typeparam>
-    public interface ISpecifyValueOrGenesisValuePriority<T> : ISpecifyAdditionalValue<T, ISpecifyValueOrValuePriorityOrPick<T>>,
-        ISpecifyPriority<T, ISpecifyPercentageValue<T>, ISpecifyWeightValue<T>>
+    public interface ISpecifyValueOrValuePriorityOrPick<T> : ISpecifyValueOrValuePriority<T>, IPick<T>
     {
     }
 }

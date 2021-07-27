@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using FluentRandomPicker.Interfaces;
+using FluentRandomPicker.FluentInterfaces;
 using FluentRandomPicker.Random;
 
 namespace FluentRandomPicker
