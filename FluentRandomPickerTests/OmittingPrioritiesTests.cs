@@ -1,6 +1,7 @@
 ﻿using FluentRandomPicker;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace FluentRandomPickerTests
 {
@@ -19,10 +20,21 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void OmittingPercentages_2Values_OmittedValueIsDifferenceTo100()
+        public void OmittingPercentagesAsParamsArray_2Values_OmittedValueIsDifferenceTo100()
         {
             var pickable1 = Out.Of().Values(new[] { 'a', 'b' }).WithPercentages(20, null);
             var pickable2 = Out.Of().Values(new[] { 'a', 'b' }).WithPercentages(null, 80);
+            var valueChancesPairs = new[] { ('a', 0.2), ('b', 0.8) };
+
+            Assert.That.ProbabilitiesMatter(pickable1, valueChancesPairs: valueChancesPairs);
+            Assert.That.ProbabilitiesMatter(pickable2, valueChancesPairs: valueChancesPairs);
+        }
+
+        [TestMethod]
+        public void OmittingPercentagesAsIEnumerable_2Values_OmittedValueIsDifferenceTo100()
+        {
+            var pickable1 = Out.Of().Values(new[] { 'a', 'b' }).WithPercentages(new List<int?> { 20, null });
+            var pickable2 = Out.Of().Values(new[] { 'a', 'b' }).WithPercentages(new List<int?> { null, 80 });
             var valueChancesPairs = new[] { ('a', 0.2), ('b', 0.8) };
 
             Assert.That.ProbabilitiesMatter(pickable1, valueChancesPairs: valueChancesPairs);
@@ -47,7 +59,7 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void OmittingPercentages_PermittedPercentgesSumUpTo100_ThrowsException()
+        public void OmittingPercentagesAsParamsArray_PermittedPercentgesSumUpTo100_ThrowsException()
         {
             var pickable1 = Out.Of()
                 .Values(new[] { 'a', 'b', 'c' })
@@ -56,6 +68,21 @@ namespace FluentRandomPickerTests
             var pickable2 = Out.Of()
                 .Values(new[] { 'a', 'b', 'c' })
                 .WithPercentages(20, null, 80);
+
+            Assert.ThrowsException<ArgumentException>(() => pickable1.PickOne());
+            Assert.ThrowsException<ArgumentException>(() => pickable2.PickOne());
+        }
+
+        [TestMethod]
+        public void OmittingPercentagesAsIEnumerable_PermittedPercentgesSumUpTo100_ThrowsException()
+        {
+            var pickable1 = Out.Of()
+                .Values(new[] { 'a', 'b', 'c' })
+                .WithPercentages(new List<int?> { 20, 80, null });
+
+            var pickable2 = Out.Of()
+                .Values(new[] { 'a', 'b', 'c' })
+                .WithPercentages(new List<int?> { 20, null, 80 });
 
             Assert.ThrowsException<ArgumentException>(() => pickable1.PickOne());
             Assert.ThrowsException<ArgumentException>(() => pickable2.PickOne());
@@ -80,7 +107,7 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void OmittingPercentages_RemainingPercentgesAreNotEquallyDivisible_ThrowsException()
+        public void OmittingPercentagesAsParamsArray_RemainingPercentgesAreNotEquallyDivisible_ThrowsException()
         {
             var pickable1 = Out.Of()
                 .Values(new[] { 'a', 'b', 'c' })
@@ -89,6 +116,21 @@ namespace FluentRandomPickerTests
             var pickable2 = Out.Of()
                 .Values(new[] { 'a', 'b', 'c', 'd' })
                 .WithPercentages(3, null, null, 90);
+
+            Assert.ThrowsException<ArgumentException>(() => pickable1.PickOne());
+            Assert.ThrowsException<ArgumentException>(() => pickable2.PickOne());
+        }
+
+        [TestMethod]
+        public void OmittingPercentagesAsIEnumerable_RemainingPercentgesAreNotEquallyDivisible_ThrowsException()
+        {
+            var pickable1 = Out.Of()
+                .Values(new[] { 'a', 'b', 'c' })
+                .WithPercentages(new List<int?> { 99, null, null });
+
+            var pickable2 = Out.Of()
+                .Values(new[] { 'a', 'b', 'c', 'd' })
+                .WithPercentages(new List<int?> { 3, null, null, 90 });
 
             Assert.ThrowsException<ArgumentException>(() => pickable1.PickOne());
             Assert.ThrowsException<ArgumentException>(() => pickable2.PickOne());
@@ -107,10 +149,22 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void OmittingWeights_2Values_OmittedWeightIsReplacedWith1()
+        public void OmittingWeightsAsParamsArray_2Values_OmittedWeightIsReplacedWith1()
         {
             var pickable1 = Out.Of().Values(new[] { 'a', 'b' }).WithWeights(3, null);
             var pickable2 = Out.Of().Values(new[] { 'a', 'b' }).WithWeights(null, 3);
+            var valueChancesPairs1 = new[] { ('a', 0.75), ('b', 0.25) };
+            var valueChancesPairs2 = new[] { ('a', 0.25), ('b', 0.75) };
+
+            Assert.That.ProbabilitiesMatter(pickable1, valueChancesPairs: valueChancesPairs1);
+            Assert.That.ProbabilitiesMatter(pickable2, valueChancesPairs: valueChancesPairs2);
+        }
+
+        [TestMethod]
+        public void OmittingWeightsAsIEnumerable_2Values_OmittedWeightIsReplacedWith1()
+        {
+            var pickable1 = Out.Of().Values(new[] { 'a', 'b' }).WithWeights(new List<int?> { 3, null });
+            var pickable2 = Out.Of().Values(new[] { 'a', 'b' }).WithWeights(new List<int?> { null, 3 });
             var valueChancesPairs1 = new[] { ('a', 0.75), ('b', 0.25) };
             var valueChancesPairs2 = new[] { ('a', 0.25), ('b', 0.75) };
 
