@@ -12,7 +12,7 @@ namespace FluentRandomPicker.FluentInterfaces.Percentage
     /// </summary>
     /// <typeparam name="T">The type of the value(s).</typeparam>
     public interface ISpecifyPercentageValueOrValuePercentageOrPick<T> : ISpecifyAdditionalValue<T, ISpecifyPercentageValueOrValuePercentageOrPick<T>>,
-        ISpecifyPercentage<T, ISpecifyPercentageValueOrPick<T>>,
+        ISpecifyPercentage<ISpecifyPercentageValueOrPick<T>>,
         IPick<T>
     {
     }

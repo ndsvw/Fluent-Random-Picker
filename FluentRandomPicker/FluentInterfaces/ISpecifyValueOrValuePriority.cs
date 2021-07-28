@@ -14,7 +14,7 @@ namespace FluentRandomPicker.FluentInterfaces
     /// </summary>
     /// <typeparam name="T">The type of the value(s).</typeparam>
     public interface ISpecifyValueOrValuePriority<T> : ISpecifyAdditionalValue<T, ISpecifyValueOrValuePriorityOrPick<T>>,
-        ISpecifyPriority<T, ISpecifyPercentageValueOrPick<T>, ISpecifyWeightValueOrPick<T>>
+        ISpecifyPriority<ISpecifyPercentageValueOrPick<T>, ISpecifyWeightValueOrPick<T>>
     {
     }
 }

@@ -143,7 +143,7 @@ namespace FluentRandomPicker
         }
 
         /// <inheritdoc/>
-        ISpecifyPercentageValueOrPick<T> ISpecifyPercentage<T, ISpecifyPercentageValueOrPick<T>>.WithPercentage(int p)
+        ISpecifyPercentageValueOrPick<T> ISpecifyPercentage<ISpecifyPercentageValueOrPick<T>>.WithPercentage(int p)
         {
             SetPriority(p, PriorityType.Percentage);
             return this;
@@ -187,7 +187,7 @@ namespace FluentRandomPicker
         }
 
         /// <inheritdoc/>
-        ISpecifyWeightValueOrPick<T> ISpecifyWeight<T, ISpecifyWeightValueOrPick<T>>.WithWeight(int w)
+        ISpecifyWeightValueOrPick<T> ISpecifyWeight<ISpecifyWeightValueOrPick<T>>.WithWeight(int w)
         {
             SetPriority(w, PriorityType.Weight);
             return this;

@@ -12,7 +12,7 @@ namespace FluentRandomPicker.FluentInterfaces.Weight
     /// </summary>
     /// <typeparam name="T">The type of the value(s).</typeparam>
     public interface ISpecifyWeightValueOrValueWeightOrPick<T> : ISpecifyAdditionalValue<T, ISpecifyWeightValueOrValueWeightOrPick<T>>,
-        ISpecifyWeight<T, ISpecifyWeightValueOrPick<T>>,
+        ISpecifyWeight<ISpecifyWeightValueOrPick<T>>,
         IPick<T>
     {
     }
