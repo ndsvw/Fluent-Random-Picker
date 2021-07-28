@@ -20,6 +20,7 @@ Probabilities can be specified, values can be weighted.
     - [Specifying weights](#specifying-weights)
     - [Picking multiple values](#picking-multiple-values)
     - [Picking distinct values](#picking-distinct-values)
+    - [Omitting percentages or weights](#omitting-percentages-or-weights)
     - [Specifying the returned type explicitly](#specifying-the-returned-type-explicitly)
   - [Advanced](#advanced)
     - [Specifying a seed](#specifying-a-seed)
@@ -112,6 +113,27 @@ var randomInts = Out.Of()
                   .WithPercentages(70, 15, 10, 5)
                   .PickDistinct(2);
 // randomInts can be [1, 10], [1, 100], [1, 1000] ... but not [1, 1], [10, 10], ...
+```
+
+### Omitting percentages or weights
+```c#
+var randomChar = Out.Of()
+                  .Value('a').WithPercentage(80)
+                  .AndValue('b') // no percentage
+                  .AndValue('c') // no percentage
+                  .PickOne();
+// The missing percentages to reach 100% are equally distributed on the values without specified percentages.
+// Attention! The missing percentages to reach 100% must be divisible without remainder through the number of values without percentages.
+// randomChar is 'a' with a probability of 80% or 'b' or 'c' with a probability of each 10%.
+```
+
+```c#
+var randomString = Out.Of()
+                  .Value("hello").WithWeight(4)
+                  .AndValue("world") // no weight
+                  .PickOne();
+// The default weight is 1.
+// randomString is "hello" with a probability of 80% (4 of 5) and "world" with a probability of 20% (1 of 5).
 ```
 
 ### Specifying the returned type explicitly
