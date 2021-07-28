@@ -11,7 +11,7 @@
 Probabilities can be specified, values can be weighted, ...</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SynchReleaseVersion>true</SynchReleaseVersion>
-    <ReleaseVersion>2.1.0</ReleaseVersion> <!-- change version in solution options! -->
+    <ReleaseVersion>3.0.0</ReleaseVersion> <!-- change version in solution options! -->
     <LibraryVersion>$(ReleaseVersion)</LibraryVersion>
     <VersionPrefix>$(ReleaseVersion)</VersionPrefix>
     <AssemblyVersion>$(ReleaseVersion)</AssemblyVersion>
