@@ -4,7 +4,7 @@
     /// A percentage for the previous value can be specified.
     /// </summary>
     /// <typeparam name="T">The return type of the <see cref="ISpecifyPercentage{T}.WithPercentage(int)"/> method.</typeparam>
-    public interface ISpecifyPercentage<T> : IFluentChainElement
+    public interface ISpecifyPercentage<out T> : IFluentChainElement
         where T : IFluentChainElement
     {
         /// <summary>

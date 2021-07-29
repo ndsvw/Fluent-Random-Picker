@@ -5,7 +5,7 @@
     /// </summary>
     /// <typeparam name="TPickType">The type of the value(s).</typeparam>
     /// <typeparam name="TReturnType">The return type of the <see cref="ISpecifyAdditionalValue{TPickType, TReturnType}.AndValue(TPickType)"/> method.</typeparam>
-    public interface ISpecifyAdditionalValue<TPickType, TReturnType> : IFluentChainElement
+    public interface ISpecifyAdditionalValue<in TPickType, out TReturnType> : IFluentChainElement
         where TReturnType : IFluentChainElement
     {
         /// <summary>

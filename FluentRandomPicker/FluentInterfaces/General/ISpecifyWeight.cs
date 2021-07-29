@@ -4,7 +4,7 @@
     /// A weight for the previous value can be specified.
     /// </summary>
     /// <typeparam name="T">The return type of the <see cref="ISpecifyWeight{T}.WithWeight(int)"/> method.</typeparam>
-    public interface ISpecifyWeight<T> : IFluentChainElement
+    public interface ISpecifyWeight<out T> : IFluentChainElement
         where T : IFluentChainElement
     {
         /// <summary>
