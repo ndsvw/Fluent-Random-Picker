@@ -37,3 +37,6 @@ dotnet_naming_style.prefix_underscore.required_prefix = _
 
 # SA1309: Field names should not begin with underscore
 dotnet_diagnostic.SA1309.severity = none
+
+# SA1204: Static elements should appear before instance elements
+dotnet_diagnostic.SA1204.severity = none

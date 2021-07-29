@@ -39,7 +39,7 @@ namespace FluentRandomPicker.ValuePriorities
             return Zip(values, priorities.Cast<int>());
         }
 
-        private ValuePriorityPairs<T> Zip(IEnumerable<T> values, IEnumerable<int> priorities)
+        private static ValuePriorityPairs<T> Zip(IEnumerable<T> values, IEnumerable<int> priorities)
         {
             var valuePriorityPairs = new ValuePriorityPairs<T>();
             var priorityEnumerator = priorities.GetEnumerator();
