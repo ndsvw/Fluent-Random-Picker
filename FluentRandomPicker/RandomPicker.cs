@@ -20,7 +20,7 @@ namespace FluentRandomPicker
     /// <typeparam name="T">The type of the value(s).</typeparam>
     internal sealed class RandomPicker<T> : ISpecifyValueOrGenesisValuePriority<T>,
         ISpecifyValueOrValuePriorityOrPick<T>,
-        ISpecifyValueOrValuePriority<T>,
+        /* ISpecifyValueOrValuePriority<T>, redundant because of ISpecifyValueOrValuePriorityOrPick<T> */
         ISpecifyValuePrioritiesOrPick<T>,
 
         ISpecifyPercentageValue<T>,
