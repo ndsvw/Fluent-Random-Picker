@@ -27,25 +27,25 @@ namespace FluentRandomPicker.Shuffle
         /// <summary>
         /// Shuffles the elements and respects the probabilities in O(n) time.
         /// </summary>
-        /// <param name="pairs">The elements (value and probability) to shuffle.</param>
+        /// <param name="elements">The elements (value and probability) to shuffle.</param>
         /// <returns>The shuffled elements.</returns>
-        public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> pairs)
+        public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> elements)
         {
-            return Shuffle(pairs, pairs.Count());
+            return Shuffle(elements, elements.Count());
         }
 
         /// <summary>
         /// Shuffles the first n elements and respects the probabilities in O(n) time.
         /// </summary>
-        /// <param name="pairs">The elements (value and probability) to shuffle.</param>
+        /// <param name="elements">The elements (value and probability) to shuffle.</param>
         /// <param name="firstN">Limits how many of the first elements to shuffle.</param>
         /// <returns>The shuffled elements.</returns>
-        public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> pairs, int firstN)
+        public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> elements, int firstN)
         {
-            var max = pairs.Max(v => v.Priority);
+            var max = elements.Max(v => v.Priority);
 
-            var list = new List<ValuePriorityPair<T>>(pairs);
-            var lastIndex = firstN < pairs.Count() ? firstN - 1 : firstN - 2;
+            var list = new List<ValuePriorityPair<T>>(elements);
+            var lastIndex = firstN < elements.Count() ? firstN - 1 : firstN - 2;
             for (int i = 0; i <= lastIndex; i++)
             {
                 int randomIndex = RouletteWheelSelection(list, i, max);
