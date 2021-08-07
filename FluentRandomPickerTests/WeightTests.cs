@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentRandomPicker;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -160,5 +161,41 @@ namespace FluentRandomPickerTests
             }
             Assert.ThrowsException<ArgumentException>(Execute);
         }
+
+        #region Sum exceeds Int32.MaxValue
+
+        [TestMethod]
+        public void PickOne_WeightSumExceedsInt32Max_NoExceptionIsThrown()
+        {
+            var value = Out.Of()
+                .Values(new[] { 'a', 'b', 'c' }).WithWeights(new[] { 2, Int32.MaxValue, 10 })
+                .PickOne();
+
+            Assert.IsTrue(value == 'a' || value == 'b' || value == 'c');
+        }
+
+        [TestMethod]
+        public void Pick_WeightSumExceedsInt32Max_NoExceptionIsThrown()
+        {
+            var values = Out.Of()
+                .Values(new[] { 'a', 'b', 'c' }).WithWeights(new[] { Int32.MaxValue, 2, 10 })
+                .Pick(2)
+                .ToList();
+
+            Assert.AreEqual(2, values.Count);
+        }
+
+        [TestMethod]
+        public void PickDistinct_WeightSumExceedsInt32Max_NoExceptionIsThrown()
+        {
+            var values = Out.Of()
+                .Values(new[] { 'a', 'b', 'c' }).WithWeights(new[] { 2, Int32.MaxValue, Int32.MaxValue })
+                .PickDistinct(2)
+                .ToList();
+
+            Assert.AreEqual(2, values.Count);
+        }
+
+        #endregion Sum exceeds Int32.MaxValue
     }
 }

@@ -58,6 +58,9 @@ namespace FluentRandomPicker
             if (numericPriority <= 0)
                 throw new ArgumentException("Value priorities must be larger than 0.", nameof(numericPriority));
 
+            if (type == PriorityType.Percentage && numericPriority > 100)
+                throw new ArgumentException("Value percentages must not be larger than 100.", nameof(numericPriority));
+
             var additionalDefaultEntries = _values.Count - _priorities.Count - 1;
             if (additionalDefaultEntries > 0)
                 _priorities.AddRange(Enumerable.Repeat(default(int?), additionalDefaultEntries));
@@ -73,6 +76,9 @@ namespace FluentRandomPicker
 
             if (numericPriorities.Any(p => p <= 0))
                 throw new ArgumentException("Value priorities must be larger than 0.", nameof(numericPriorities));
+
+            if (type == PriorityType.Percentage && numericPriorities.Any(p => p > 100))
+                throw new ArgumentException("Value percentages must not be larger than 100.", nameof(numericPriorities));
 
             _priorities.AddRange(numericPriorities);
 

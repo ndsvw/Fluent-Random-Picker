@@ -52,16 +52,16 @@ namespace FluentRandomPicker.Picker
             if (_numberOfElements == 0)
                 return new PickResult<IEnumerable<T>>(Enumerable.Empty<T>());
 
-            var prioritySum = _pairs.Sum(v => v.Priority);
+            var prioritySum = _pairs.Sum(v => (long)v.Priority);
             var values = Enumerable.Repeat(PickPrioritized(prioritySum), _numberOfElements);
             return new PickResult<IEnumerable<T>>(values);
         }
 
-        private T PickPrioritized(int prioritySum)
+        private T PickPrioritized(long prioritySum)
         {
-            var n = _rng.NextInt(prioritySum);
+            var n = (long)(_rng.NextDouble() * prioritySum);
 
-            int localSum = 0;
+            long localSum = 0;
             foreach (var pair in _pairs)
             {
                 localSum += pair.Priority;

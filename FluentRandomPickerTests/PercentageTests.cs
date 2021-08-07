@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentRandomPicker;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -152,6 +153,20 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
+        public void PercentageProbabilityIsOver100_ExceptionIsThrown()
+        {
+            static void Execute()
+            {
+                Out.Of()
+                    .Value('a').WithPercentage(100)
+                    .AndValue('b').WithPercentage(1)
+                    .AndValue('c').WithPercentage(1)
+                    .PickOne();
+            }
+            Assert.ThrowsException<ArgumentException>(Execute);
+        }
+
+        [TestMethod]
         public void PercentagesAProbabilityIsNegative_ExceptionIsThrown()
         {
             static void Execute()
@@ -174,5 +189,48 @@ namespace FluentRandomPickerTests
             }
             Assert.ThrowsException<ArgumentException>(Execute);
         }
+
+        #region Sum exceeds Int32.MaxValue
+
+        [TestMethod]
+        public void PickOne_PercentageSumExceedsInt32Max_ThrowsException()
+        {
+            static void Execute()
+            {
+                Out.Of()
+                .Values(new[] { 'a', 'b', 'c' }).WithPercentages(new[] { 2, Int32.MaxValue, 10 })
+                .PickOne();
+            }
+
+            Assert.ThrowsException<ArgumentException>(Execute);
+        }
+
+        [TestMethod]
+        public void Pick_PercentageSumExceedsInt32Max_ThrowsException()
+        {
+            static void Execute()
+            {
+                Out.Of()
+                .Values(new[] { 'a', 'b', 'c' }).WithPercentages(new[] { Int32.MaxValue, 2, 10 })
+                .Pick(2);
+            }
+
+            Assert.ThrowsException<ArgumentException>(Execute);
+        }
+
+        [TestMethod]
+        public void PickDistinct_PercentageSumExceedsInt32Max_ThrowsException()
+        {
+            static void Execute()
+            {
+                Out.Of()
+                .Values(new[] { 'a', 'b', 'c' }).WithPercentages(new[] { 2, Int32.MaxValue, Int32.MaxValue })
+                .PickDistinct(2);
+            }
+
+            Assert.ThrowsException<ArgumentException>(Execute);
+        }
+
+        #endregion Sum exceeds Int32.MaxValue
     }
 }
