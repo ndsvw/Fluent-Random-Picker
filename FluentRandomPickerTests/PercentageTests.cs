@@ -158,7 +158,7 @@ namespace FluentRandomPickerTests
             static void Execute()
             {
                 Out.Of()
-                    .Value('a').WithPercentage(100)
+                    .Value('a').WithPercentage(101)
                     .AndValue('b').WithPercentage(1)
                     .AndValue('c').WithPercentage(1)
                     .PickOne();
