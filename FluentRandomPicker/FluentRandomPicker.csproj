@@ -10,7 +10,7 @@
     <Description>Fluent Random Picker is a nice, performant, fluent way to pick random values. Probabilities can be specified, values can be weighted.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SynchReleaseVersion>true</SynchReleaseVersion>
-    <ReleaseVersion>3.0.1</ReleaseVersion> <!-- change version in solution options! -->
+    <ReleaseVersion>3.0.2</ReleaseVersion> <!-- change version in solution options! -->
     <LibraryVersion>$(ReleaseVersion)</LibraryVersion>
     <VersionPrefix>$(ReleaseVersion)</VersionPrefix>
     <AssemblyVersion>$(ReleaseVersion)</AssemblyVersion>
@@ -43,7 +43,9 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
-    <PackageReleaseNotes>v 3.0.1
+    <PackageReleaseNotes>v 3.0.2
+- Added .Net6 as compatibility to README file.
+v 3.0.1
 - Prevented arithmetic overflows when percentage sums / weights sums are too high.
 v 3.0.0
 - Changed namespace from Fluent_Random_Picker to FluentRandomPicker
