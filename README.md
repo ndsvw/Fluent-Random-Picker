@@ -30,6 +30,7 @@ Probabilities can be specified, values can be weighted.
 
 ## Compatibility
 
+- ✔️ .Net 6
 - ✔️ .Net 5
 - ✔️ .Net Standard 2.0
   - ✔️ .Net Core 2.0
