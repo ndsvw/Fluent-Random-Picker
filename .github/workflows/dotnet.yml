@@ -26,4 +26,4 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:ExcludeByFile="**/Exceptions/*Exception.cs"
     - name: Codecov
-      uses: codecov/codecov-action@v1.5.2
+      uses: codecov/codecov-action@v2
