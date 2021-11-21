@@ -88,7 +88,7 @@ v 2.1.0
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.9.1"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="6.0.0"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
