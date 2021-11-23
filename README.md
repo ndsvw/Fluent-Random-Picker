@@ -162,7 +162,17 @@ var value2 = Out.Of(seed).Values(new[] { 1, 2, 3, 4 }).PickOne();
 ```
 
 ### Using a different random number generator
-The default random number generator is System.Random
+The default random number generator uses System.Random.
+
+Alternative: Using a cryptographically secure implementation that uses System.Security.Cryptography.RandomNumberGenerator:
+
+```c#
+var secureRng = new FluentRandomPicker.Random.SecureRandomNumberGenerator();
+var value = Out.Of(secureRng).Values(new[] { 1, 2, 3, 4 }).PickOne();
+```
+
+Alternative: Using own implementation:
+
 ```c#
 public class MyOwnRandomNumberGenerator : IRandomNumberGenerator
 {
