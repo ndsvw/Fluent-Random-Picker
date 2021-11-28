@@ -43,7 +43,9 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
-    <PackageReleaseNotes>v 3.0.2
+    <PackageReleaseNotes>v 3.1.0
+- Implemented class SecureRandomNumberGenerator (secure implementation of IRandomNumberGenerator).
+v 3.0.2
 - Added .Net6 as compatibility to README file.
 v 3.0.1
 - Prevented arithmetic overflows when percentage sums / weights sums are too high.
