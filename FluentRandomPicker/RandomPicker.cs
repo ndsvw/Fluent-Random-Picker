@@ -18,18 +18,7 @@ namespace FluentRandomPicker
     /// values, specifying priorities, picking, ...
     /// </summary>
     /// <typeparam name="T">The type of the value(s).</typeparam>
-    internal sealed class RandomPicker<T> : ISpecifyValueOrGenesisValuePriority<T>,
-        ISpecifyValueOrValuePriorityOrPick<T>,
-        /* ISpecifyValueOrValuePriority<T>, redundant because of ISpecifyValueOrValuePriorityOrPick<T> */
-        ISpecifyValuePrioritiesOrPick<T>,
-
-        ISpecifyPercentageValue<T>,
-        ISpecifyPercentageValueOrPick<T>,
-        ISpecifyPercentageValueOrValuePercentageOrPick<T>,
-
-        ISpecifyWeightValue<T>,
-        ISpecifyWeightValueOrPick<T>,
-        ISpecifyWeightValueOrValueWeightOrPick<T>
+    internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     {
         private readonly IRandomNumberGenerator _rng;
 
