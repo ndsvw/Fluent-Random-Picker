@@ -30,13 +30,21 @@ Probabilities can be specified, values can be weighted.
 
 ## Compatibility
 
+Fluent Random Picker uses .Net Standard 2.0. That means, it can be used in projects with the following target frameworks:
+
 - ✔️ .Net 6
 - ✔️ .Net 5
+- ✔️ .Net Core 3.X
+- ✔️ .Net Core 2.X
+- ❌ .Net Core 1.X
+- 
+- ✔️ .Net Standard 2.1
 - ✔️ .Net Standard 2.0
-  - ✔️ .Net Core 2.0
-  - ✔️ .Net Framework 4.8
-  - ✔️ .Net Framework 4.7.2
-  - ❌ .Net Framework 4.6.X
+- ❌ .Net Standard 1.X
+-
+- ✔️ .Net Framework 4.8
+- ✔️ .Net Framework 4.7.2
+- ❌ .Net Framework 4.6.X
 
 ## Getting started
 
