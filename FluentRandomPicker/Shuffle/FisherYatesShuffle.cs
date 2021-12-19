@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentRandomPicker.Random;
 
@@ -24,18 +25,19 @@ namespace FluentRandomPicker.Shuffle
         /// <inheritdoc/>
         public IEnumerable<T> Shuffle(IEnumerable<T> elements)
         {
-            return Shuffle(elements, elements.Count());
+            var elementsList = elements.ToList();
+            return Shuffle(elementsList, elementsList.Count);
         }
 
         /// <inheritdoc/>
         public IEnumerable<T> Shuffle(IEnumerable<T> elements, int firstN)
         {
-            var list = new List<T>(elements);
-            var lastIndex = firstN < elements.Count() ? firstN - 1 : firstN - 2;
+            var list = elements.ToList();
+            var lastIndex = Math.Min(firstN, list.Count) - 1;
             for (int i = 0; i <= lastIndex; i++)
             {
                 int k = _rng.NextInt(i, list.Count);
-                T tmp = list[i];
+                var tmp = list[i];
                 list[i] = list[k];
                 list[k] = tmp;
             }

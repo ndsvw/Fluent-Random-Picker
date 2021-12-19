@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentRandomPicker.Random;
 using FluentRandomPicker.ValuePriorities;
@@ -31,7 +32,8 @@ namespace FluentRandomPicker.Shuffle
         /// <returns>The shuffled elements.</returns>
         public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> elements)
         {
-            return Shuffle(elements, elements.Count());
+            var elementsList = elements.ToList();
+            return Shuffle(elementsList, elementsList.Count);
         }
 
         /// <summary>
@@ -44,8 +46,8 @@ namespace FluentRandomPicker.Shuffle
         {
             var max = elements.Max(v => v.Priority);
 
-            var list = new List<ValuePriorityPair<T>>(elements);
-            var lastIndex = firstN < elements.Count() ? firstN - 1 : firstN - 2;
+            var list = elements.ToList();
+            var lastIndex = Math.Min(firstN, list.Count) - 1;
             for (int i = 0; i <= lastIndex; i++)
             {
                 int randomIndex = RouletteWheelSelection(list, i, max);
@@ -57,7 +59,7 @@ namespace FluentRandomPicker.Shuffle
             return list;
         }
 
-        private static void Swap<TEelment>(IList<TEelment> elements, int index1, int index2)
+        private static void Swap<TElement>(IList<TElement> elements, int index1, int index2)
         {
             var tmp = elements[index1];
             elements[index1] = elements[index2];
@@ -66,11 +68,12 @@ namespace FluentRandomPicker.Shuffle
 
         private int RouletteWheelSelection(IList<ValuePriorityPair<T>> pairs, int startIndex, int max)
         {
+            var castedMax = (double)max;
             while (true)
             {
                 var randomDouble = _rng.NextDouble();
                 var randomIndex = _rng.NextInt(startIndex, pairs.Count);
-                if (randomDouble <= pairs[randomIndex].Priority / (double)max)
+                if (randomDouble <= pairs[randomIndex].Priority / castedMax)
                     return randomIndex;
             }
         }
