@@ -7,7 +7,7 @@ using FluentRandomPicker.ValuePriorities;
 namespace FluentRandomPicker.Shuffle
 {
     /// <summary>
-    /// A shuffle algorithm that respects probabilities.
+    /// A shuffle algorithm that respects weights.
     /// This is an O(n*log(n)) implementation.
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>

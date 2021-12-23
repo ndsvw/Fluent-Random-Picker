@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FluentRandomPickerTests.Shuffle
 {
     [TestClass]
-    public class PrioritizedLeftShuffleTests
+    public class SortingBasedWeightedLeftShuffleTests
     {
         [TestMethod]
         public void Shuffle_WithoutNParameter_AllValuesCanChangePosition()

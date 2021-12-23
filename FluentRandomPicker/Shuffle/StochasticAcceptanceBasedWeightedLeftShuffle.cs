@@ -7,22 +7,22 @@ using FluentRandomPicker.ValuePriorities;
 namespace FluentRandomPicker.Shuffle
 {
     /// <summary>
-    /// A shuffle algorithm that respects probabilities.
+    /// A shuffle algorithm that respects weights.
     /// This is a ~ linear run time implementation.
     /// More: https://www.researchgate.net/publication/51962025_Roulette-wheel_selection_via_stochastic_acceptance.
     /// Please not: The performance can be pretty bad if at least one weight is very high and others are very low
     ///             (e.g. [100.000.000, 1, 2, 3]).
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    internal class PrioritizedLeftShuffle<T> : IShuffle<ValuePriorityPair<T>>
+    internal class StochasticAcceptanceBasedWeightedLeftShuffle<T> : IShuffle<ValuePriorityPair<T>>
     {
         private readonly IRandomNumberGenerator _rng;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PrioritizedLeftShuffle{T}"/> class.
+        /// Initializes a new instance of the <see cref="StochasticAcceptanceBasedWeightedLeftShuffle{T}"/> class.
         /// </summary>
         /// <param name="rng">The random number generator.</param>
-        public PrioritizedLeftShuffle(IRandomNumberGenerator rng)
+        public StochasticAcceptanceBasedWeightedLeftShuffle(IRandomNumberGenerator rng)
         {
             _rng = rng;
         }
