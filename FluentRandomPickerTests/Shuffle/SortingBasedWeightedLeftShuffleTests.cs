@@ -5,13 +5,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FluentRandomPickerTests.Shuffle
 {
     [TestClass]
-    public class SortingBasedWeightedLeftShuffleTests
+    public class PrioritizedLeftShuffleTests
     {
         [TestMethod]
         public void Shuffle_WithoutNParameter_AllValuesCanChangePosition()
         {
             var rng = new DefaultRandomNumberGenerator();
-            var shuffle = new PrioritizedLeftShuffle<int>(rng);
+            var shuffle = new SortingBasedWeightedLeftShuffle<int>(rng);
 
             Assert.That.AllValuesCanChangePositions(shuffle);
         }
@@ -20,7 +20,7 @@ namespace FluentRandomPickerTests.Shuffle
         public void Shuffle_WithNParameter_AllNValuesCanChangePosition()
         {
             var rng = new DefaultRandomNumberGenerator();
-            var shuffle = new PrioritizedLeftShuffle<int>(rng);
+            var shuffle = new SortingBasedWeightedLeftShuffle<int>(rng);
 
             Assert.That.AllNValuesCanChangePositions(shuffle);
         }

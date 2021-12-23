@@ -8,8 +8,10 @@ namespace FluentRandomPicker.Shuffle
 {
     /// <summary>
     /// A shuffle algorithm that respects probabilities.
-    /// This is a high-performance O(n) implementation.
+    /// This is a ~ linear run time implementation.
     /// More: https://www.researchgate.net/publication/51962025_Roulette-wheel_selection_via_stochastic_acceptance.
+    /// Please not: The performance can be pretty bad if at least one weight is very high and others are very low
+    ///             (e.g. [100.000.000, 1, 2, 3]).
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
     internal class PrioritizedLeftShuffle<T> : IShuffle<ValuePriorityPair<T>>
