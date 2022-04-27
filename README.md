@@ -166,7 +166,7 @@ var seed = 1234567;
 
 var value1 = Out.Of(seed).Values(new[] { 1, 2, 3, 4 }).PickOne();
 var value2 = Out.Of(seed).Values(new[] { 1, 2, 3, 4 }).PickOne();
-// value1 und value2 are always equal.
+// value1 and value2 are always equal.
 ```
 
 ### Using a different random number generator
