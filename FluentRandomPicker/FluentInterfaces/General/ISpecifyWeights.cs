@@ -10,6 +10,7 @@ namespace FluentRandomPicker.FluentInterfaces.General
     {
         /// <summary>
         /// Specifies the weights of all values.
+        /// The order matters. The nth weight will be linked with the nth value.
         /// </summary>
         /// <param name="ws">The weights.</param>
         /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
@@ -17,6 +18,7 @@ namespace FluentRandomPicker.FluentInterfaces.General
 
         /// <summary>
         /// Specifies the weights of all values.
+        /// The order matters. The nth weight will be linked with the nth value.
         /// </summary>
         /// <param name="ws">The weights.</param>
         /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
@@ -24,6 +26,7 @@ namespace FluentRandomPicker.FluentInterfaces.General
 
         /// <summary>
         /// Specifies the weights of all values.
+        /// The order matters. The nth weight will be linked with the nth value.
         /// </summary>
         /// <param name="ws">The weights.</param>
         /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
@@ -31,6 +34,7 @@ namespace FluentRandomPicker.FluentInterfaces.General
 
         /// <summary>
         /// Specifies the weights of all values.
+        /// The order matters. The nth weight will be linked with the nth value.
         /// </summary>
         /// <param name="ws">The weights.</param>
         /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
