@@ -36,6 +36,9 @@ namespace FluentRandomPicker.ValuePriorities
             if (sumOfPercentages == 100 && numberOfNullPriorities > 0)
                 throw new ArgumentException("There can't be omitted percentage values when the existing percentage values do already sum up to 100.", nameof(priorities));
 
+            if (sumOfPercentages < 100 && numberOfNullPriorities == 0)
+                throw new ArgumentException("The sum of the percentages must not be lower than 100.", nameof(priorities));
+
             if (numberOfNullPriorities == 0)
                 return Zip(values, priorities.Cast<int>());
 
