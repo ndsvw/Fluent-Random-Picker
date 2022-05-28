@@ -58,8 +58,6 @@ namespace FluentRandomPickerTests.Random
             {
                 var rng = new DefaultRandomNumberGenerator(seed);
                 randomValues[i] = rng.NextDouble();
-                var a = randomValues[i];
-                Console.WriteLine(randomValues[i]);
             }
 
             // Assert
@@ -103,8 +101,6 @@ namespace FluentRandomPickerTests.Random
             {
                 var rng = new DefaultRandomNumberGenerator(seed);
                 randomValues[i] = rng.NextInt();
-                var a = randomValues[i];
-                Console.WriteLine(randomValues[i]);
             }
 
             // Assert
@@ -142,8 +138,6 @@ namespace FluentRandomPickerTests.Random
             {
                 var rng = new DefaultRandomNumberGenerator(seed);
                 randomValues[i] = rng.NextInt(1_200);
-                var a = randomValues[i];
-                Console.WriteLine(randomValues[i]);
             }
 
             // Assert
@@ -181,8 +175,6 @@ namespace FluentRandomPickerTests.Random
             {
                 var rng = new DefaultRandomNumberGenerator(seed);
                 randomValues[i] = rng.NextInt(1_200, 3_600);
-                var a = randomValues[i];
-                Console.WriteLine(randomValues[i]);
             }
 
             // Assert

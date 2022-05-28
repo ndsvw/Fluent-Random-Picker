@@ -23,7 +23,7 @@ namespace FluentRandomPickerTests.Picking
         }
 
         [TestMethod]
-        public void PickDistinct_ResultValuesAreDistict()
+        public void PickDistinct_ResultValuesAreDistinct()
         {
             var values = Out.Of()
                 .Value('a').WithPercentage(1)

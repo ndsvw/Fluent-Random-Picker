@@ -45,7 +45,7 @@ namespace FluentRandomPickerTests.Random
         }
 
         [TestMethod]
-        public void Of_WithRngReturnsValuesAccoringToTheRng()
+        public void Of_WithRngReturnsValuesAccordingToTheRng()
         {
             var rng1 = new DefaultRandomNumberGenerator(987654);
             var rng2 = new DefaultRandomNumberGenerator(987654);
@@ -56,7 +56,7 @@ namespace FluentRandomPickerTests.Random
         }
 
         [TestMethod]
-        public void OfOfT_WithRngReturnsValuesAccoringToTheRng()
+        public void OfOfT_WithRngReturnsValuesAccordingToTheRng()
         {
             var rng1 = new DefaultRandomNumberGenerator(987654);
             var rng2 = new DefaultRandomNumberGenerator(987654);

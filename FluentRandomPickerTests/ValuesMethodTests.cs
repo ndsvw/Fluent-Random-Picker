@@ -46,7 +46,6 @@ namespace FluentRandomPickerTests
         [TestMethod]
         public void ValuesArrayWithSeveralElements_AllSpecifiedValuesAndNoOthersArePossible()
         {
-            var random = new System.Random();
             var possibleValues = Enumerable.Range(1, 25).ToHashSet();
             Func<int> pickValues = () => Out.Of<int>().Values(possibleValues).PickOne();
             TestUtils.AssertAllSpecifiedValuesAndNoOthersArePossible(pickValues, possibleValues);
@@ -89,7 +88,7 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void ValuesNoPercentags_ThrowsException()
+        public void ValuesNoPercentages_ThrowsException()
         {
             var values = new List<byte> { 1, 2 };
             Assert.ThrowsException<NumberOfValuesDoesNotMatchNumberOfPrioritiesException>(() => Out.Of().Values(values).WithPercentages(Array.Empty<int>()).PickOne());

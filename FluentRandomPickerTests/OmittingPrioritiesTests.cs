@@ -42,7 +42,7 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void OmittingPercentage_PermittedPercentgesSumUpTo100_ThrowsException()
+        public void OmittingPercentage_PermittedPercentagesSumUpTo100_ThrowsException()
         {
             var pickable1 = Out.Of()
                 .Value('a').WithPercentage(20)
@@ -59,7 +59,7 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void OmittingPercentagesAsParamsArray_PermittedPercentgesSumUpTo100_ThrowsException()
+        public void OmittingPercentagesAsParamsArray_PermittedPercentagesSumUpTo100_ThrowsException()
         {
             var pickable1 = Out.Of()
                 .Values(new[] { 'a', 'b', 'c' })
@@ -74,7 +74,7 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void OmittingPercentagesAsIEnumerable_PermittedPercentgesSumUpTo100_ThrowsException()
+        public void OmittingPercentagesAsIEnumerable_PermittedPercentagesSumUpTo100_ThrowsException()
         {
             var pickable1 = Out.Of()
                 .Values(new[] { 'a', 'b', 'c' })
@@ -89,7 +89,7 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void OmittingPercentage_RemainingPercentgesAreNotEquallyDivisible_ThrowsException()
+        public void OmittingPercentage_RemainingPercentagesAreNotEquallyDivisible_ThrowsException()
         {
             var pickable1 = Out.Of()
                 .Value('a').WithPercentage(99)
@@ -107,7 +107,7 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void OmittingPercentagesAsParamsArray_RemainingPercentgesAreNotEquallyDivisible_ThrowsException()
+        public void OmittingPercentagesAsParamsArray_RemainingPercentagesAreNotEquallyDivisible_ThrowsException()
         {
             var pickable1 = Out.Of()
                 .Values(new[] { 'a', 'b', 'c' })
@@ -122,7 +122,7 @@ namespace FluentRandomPickerTests
         }
 
         [TestMethod]
-        public void OmittingPercentagesAsIEnumerable_RemainingPercentgesAreNotEquallyDivisible_ThrowsException()
+        public void OmittingPercentagesAsIEnumerable_RemainingPercentagesAreNotEquallyDivisible_ThrowsException()
         {
             var pickable1 = Out.Of()
                 .Values(new[] { 'a', 'b', 'c' })
