@@ -28,26 +28,19 @@ namespace FluentRandomPicker.ValuePriorities
 
         private ValuePriorityPairs<T> GeneratePairs(IEnumerable<T> values, IEnumerable<int?> priorities)
         {
+            var valuePriorityPairs = new ValuePriorityPairs<T>();
             var numberOfNullPriorities = priorities.Count(x => x == default);
 
             if (numberOfNullPriorities == 0)
-                return Zip(values, priorities.Cast<int>());
+            {
+                valuePriorityPairs.AddRange(values, priorities.Cast<int>());
+                return valuePriorityPairs;
+            }
 
             const int replacementValue = 1;
             var numericPriorities = priorities.Select(x => x ?? replacementValue);
-            return Zip(values, numericPriorities);
-        }
 
-        private static ValuePriorityPairs<T> Zip(IEnumerable<T> values, IEnumerable<int> priorities)
-        {
-            var valuePriorityPairs = new ValuePriorityPairs<T>();
-            var priorityEnumerator = priorities.GetEnumerator();
-            foreach (var value in values)
-            {
-                priorityEnumerator.MoveNext();
-                valuePriorityPairs.Add(new ValuePriorityPair<T>(value, priorityEnumerator.Current));
-            }
-
+            valuePriorityPairs.AddRange(values, numericPriorities);
             return valuePriorityPairs;
         }
     }

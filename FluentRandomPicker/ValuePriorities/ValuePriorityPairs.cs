@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FluentRandomPicker.ValuePriorities
 {
@@ -20,10 +21,23 @@ namespace FluentRandomPicker.ValuePriorities
             get { return _pairs[i]; }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Adds the pair to the existing paris.
+        /// </summary>
+        /// <param name="pair">The new pair.</param>
         public void Add(ValuePriorityPair<T> pair)
         {
             _pairs.Add(pair);
+        }
+
+        /// <summary>
+        /// Adds the values with their priorities to the existing pairs.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <param name="priorities">The priorities.</param>
+        public void AddRange(IEnumerable<T> values, IEnumerable<int> priorities)
+        {
+            _pairs.AddRange(values.Zip(priorities, (v, p) => new ValuePriorityPair<T>(v, p)));
         }
 
         /// <inheritdoc/>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace FluentRandomPicker.ValuePriorities
 {
@@ -13,10 +14,7 @@ namespace FluentRandomPicker.ValuePriorities
         public ValuePriorityPairs<T> Generate(IEnumerable<T> values, IEnumerable<int?> priorities)
         {
             var valuePriorityPairs = new ValuePriorityPairs<T>();
-            foreach (var value in values)
-            {
-                valuePriorityPairs.Add(new ValuePriorityPair<T>(value, 1));
-            }
+            valuePriorityPairs.AddRange(values, Enumerable.Repeat(1, values.Count()));
 
             return valuePriorityPairs;
         }

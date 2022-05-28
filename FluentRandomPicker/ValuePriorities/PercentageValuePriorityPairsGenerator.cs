@@ -39,8 +39,13 @@ namespace FluentRandomPicker.ValuePriorities
             if (sumOfPercentages < 100 && numberOfNullPriorities == 0)
                 throw new ArgumentException("The sum of the percentages must not be lower than 100.", nameof(priorities));
 
+            var valuePriorityPairs = new ValuePriorityPairs<T>();
+
             if (numberOfNullPriorities == 0)
-                return Zip(values, priorities.Cast<int>());
+            {
+                valuePriorityPairs.AddRange(values, priorities.Cast<int>());
+                return valuePriorityPairs;
+            }
 
             if ((100 - sumOfPercentages) % numberOfNullPriorities != 0)
                 throw new ArgumentException("The percentages missing to reach 100 is not divisible by the number of omitted values without reminder.", nameof(priorities));
@@ -48,19 +53,7 @@ namespace FluentRandomPicker.ValuePriorities
             var replacementValue = (100 - sumOfPercentages) / numberOfNullPriorities;
             var numericPriorities = priorities.Select(x => x ?? replacementValue);
 
-            return Zip(values, numericPriorities);
-        }
-
-        private static ValuePriorityPairs<T> Zip(IEnumerable<T> values, IEnumerable<int> priorities)
-        {
-            var valuePriorityPairs = new ValuePriorityPairs<T>();
-            var priorityEnumerator = priorities.GetEnumerator();
-            foreach (var value in values)
-            {
-                priorityEnumerator.MoveNext();
-                valuePriorityPairs.Add(new ValuePriorityPair<T>(value, priorityEnumerator.Current));
-            }
-
+            valuePriorityPairs.AddRange(values, numericPriorities);
             return valuePriorityPairs;
         }
     }
