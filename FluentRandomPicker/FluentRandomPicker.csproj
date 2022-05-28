@@ -64,19 +64,20 @@ v 2.1.0
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Interfaces\Weight\" />
-    <Folder Include="Interfaces\Percentage\" />
+    <Compile Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <None Remove="Interfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Picker\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Shuffle\" />
     <Folder Include="Random\" />
-    <Folder Include="Interfaces\General\" />
     <Folder Include="ValuePriorities\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Interfaces\General\" />
     <None Remove="ValuePriorities\" />
   </ItemGroup>
   <ItemGroup>
