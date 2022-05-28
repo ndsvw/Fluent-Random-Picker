@@ -68,12 +68,12 @@ namespace FluentRandomPicker.Shuffle
 
         private int RouletteWheelSelection(IList<ValuePriorityPair<T>> pairs, int startIndex, int max)
         {
-            var castedMax = (double)max;
+            var castMax = (double)max;
             while (true)
             {
                 var randomDouble = _rng.NextDouble();
                 var randomIndex = _rng.NextInt(startIndex, pairs.Count);
-                if (randomDouble <= pairs[randomIndex].Priority / castedMax)
+                if (randomDouble <= pairs[randomIndex].Priority / castMax)
                     return randomIndex;
             }
         }

@@ -20,7 +20,7 @@ namespace FluentRandomPicker.ValuePriorities
             switch (priorityType)
             {
                 case PriorityType.None:
-                    return new NoValuePrioriyPairsGenerator<T>();
+                    return new NoValuePriorityPairsGenerator<T>();
                 case PriorityType.Percentage:
                     return new PercentageValuePriorityPairsGenerator<T>();
                 case PriorityType.Weight:

@@ -14,7 +14,7 @@ namespace FluentRandomPicker.ValuePriorities
         /// </summary>
         /// <param name="values">The values.</param>
         /// <param name="priorities">The priorities (some may be null).</param>
-        /// <returns>A collection of value-proprity-pairs (an <see cref="ValuePriorityPairs{T}"/> instance).</returns>
+        /// <returns>A collection of value-priority-pairs (an <see cref="ValuePriorityPairs{T}"/> instance).</returns>
         ValuePriorityPairs<T> Generate(IEnumerable<T> values, IEnumerable<int?> priorities);
     }
 }

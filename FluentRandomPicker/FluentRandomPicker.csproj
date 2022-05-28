@@ -74,7 +74,6 @@ v 2.1.0
     <Folder Include="Exceptions\" />
     <Folder Include="Shuffle\" />
     <Folder Include="Random\" />
-    <Folder Include="ValuePriorities\" />
   </ItemGroup>
 
   <ItemGroup>
