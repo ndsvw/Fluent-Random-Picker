@@ -34,12 +34,10 @@ namespace FluentRandomPicker.Shuffle
         {
             var list = elements.ToList();
             var lastIndex = Math.Min(firstN, list.Count) - 1;
-            for (int i = 0; i <= lastIndex; i++)
+            for (var i = 0; i <= lastIndex; i++)
             {
-                int k = _rng.NextInt(i, list.Count);
-                var tmp = list[i];
-                list[i] = list[k];
-                list[k] = tmp;
+                var k = _rng.NextInt(i, list.Count);
+                (list[i], list[k]) = (list[k], list[i]);
             }
 
             return list;

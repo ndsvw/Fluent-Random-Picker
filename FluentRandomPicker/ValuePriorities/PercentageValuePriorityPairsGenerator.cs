@@ -28,7 +28,7 @@ namespace FluentRandomPicker.ValuePriorities
 
         private ValuePriorityPairs<T> GeneratePairs(IEnumerable<T> values, IEnumerable<int?> priorities)
         {
-            var sumOfPercentages = priorities.Where(x => x != null).Sum();
+            var sumOfPercentages = priorities.Where(x => x != null).Sum(x => x!.Value);
             if (sumOfPercentages > 100)
                 throw new ArgumentException("The sum of the percentages must not be larger than 100.", nameof(priorities));
 
@@ -46,9 +46,9 @@ namespace FluentRandomPicker.ValuePriorities
                 throw new ArgumentException("The percentages missing to reach 100 is not divisible by the number of omitted values without reminder.", nameof(priorities));
 
             var replacementValue = (100 - sumOfPercentages) / numberOfNullPriorities;
-            priorities = priorities.Select(x => x == null ? replacementValue : x);
+            var numericPriorities = priorities.Select(x => x ?? replacementValue);
 
-            return Zip(values, priorities.Cast<int>());
+            return Zip(values, numericPriorities);
         }
 
         private static ValuePriorityPairs<T> Zip(IEnumerable<T> values, IEnumerable<int> priorities)

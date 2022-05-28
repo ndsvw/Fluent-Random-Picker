@@ -33,10 +33,9 @@ namespace FluentRandomPicker.ValuePriorities
             if (numberOfNullPriorities == 0)
                 return Zip(values, priorities.Cast<int>());
 
-            const int ReplacementValue = 1;
-            priorities = priorities.Select(x => x == null ? ReplacementValue : x);
-
-            return Zip(values, priorities.Cast<int>());
+            const int replacementValue = 1;
+            var numericPriorities = priorities.Select(x => x ?? replacementValue);
+            return Zip(values, numericPriorities);
         }
 
         private static ValuePriorityPairs<T> Zip(IEnumerable<T> values, IEnumerable<int> priorities)

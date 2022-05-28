@@ -63,9 +63,7 @@ namespace FluentRandomPicker.Shuffle
 
         private static void Swap<TElement>(IList<TElement> elements, int index1, int index2)
         {
-            var tmp = elements[index1];
-            elements[index1] = elements[index2];
-            elements[index2] = tmp;
+            (elements[index1], elements[index2]) = (elements[index2], elements[index1]);
         }
 
         private int RouletteWheelSelection(IList<ValuePriorityPair<T>> pairs, int startIndex, int max)
