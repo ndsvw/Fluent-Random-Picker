@@ -42,6 +42,11 @@ namespace FluentRandomPicker
             _values.Add(t);
         }
 
+        private void AddValues(IEnumerable<T> ts)
+        {
+            _values.AddRange(ts);
+        }
+
         private void SetPriority(int numericPriority, PriorityType type)
         {
             if (numericPriority <= 0)
@@ -94,13 +99,11 @@ namespace FluentRandomPicker
         /// <returns>An <see cref="ISpecifyValuePrioritiesOrPick{T}"/> instance.</returns>
         public ISpecifyValuePrioritiesOrPick<T> Values(IEnumerable<T> ts)
         {
-            if (ts.Count() <= 1)
+            var values = ts.ToList();
+            if (values.Count <= 1)
                 throw new NotEnoughValuesToPickException();
 
-            foreach (var t in ts)
-            {
-                AddValue(t);
-            }
+            AddValues(values);
 
             return this;
         }
