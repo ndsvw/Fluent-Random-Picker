@@ -49,11 +49,7 @@ namespace FluentRandomPicker
 
         private void SetPriority(int numericPriority, PriorityType type)
         {
-            if (numericPriority <= 0)
-                throw new ArgumentException("Value priorities must be larger than 0.", nameof(numericPriority));
-
-            if (type == PriorityType.Percentage && numericPriority > 100)
-                throw new ArgumentException("Value percentages must not be larger than 100.", nameof(numericPriority));
+            ValidatePriority(numericPriority, type);
 
             var additionalDefaultEntries = _values.Count - _priorities.Count - 1;
             if (additionalDefaultEntries > 0)
@@ -63,20 +59,28 @@ namespace FluentRandomPicker
             _priority = type;
         }
 
-        private void SetPriorities(IEnumerable<int?> numericPriorities, PriorityType type)
+        private void SetPriorities(IReadOnlyCollection<int?> numericPriorities, PriorityType type)
         {
-            if (numericPriorities.Count() != _values.Count)
+            if (numericPriorities.Count != _values.Count)
                 throw new NumberOfValuesDoesNotMatchNumberOfPrioritiesException();
 
-            if (numericPriorities.Any(p => p <= 0))
-                throw new ArgumentException("Value priorities must be larger than 0.", nameof(numericPriorities));
-
-            if (type == PriorityType.Percentage && numericPriorities.Any(p => p > 100))
-                throw new ArgumentException("Value percentages must not be larger than 100.", nameof(numericPriorities));
+            foreach (var numericPriority in numericPriorities)
+                ValidatePriority(numericPriority, type);
 
             _priorities.AddRange(numericPriorities);
-
             _priority = type;
+        }
+
+        private static void ValidatePriority(int? numericPriority, PriorityType type)
+        {
+            if (numericPriority is null)
+                return;
+
+            if (numericPriority <= 0)
+                throw new ArgumentException("Value priorities must be larger than 0.", nameof(numericPriority));
+
+            if (type == PriorityType.Percentage && numericPriority > 100)
+                throw new ArgumentException("Value percentages must not be larger than 100.", nameof(numericPriority));
         }
 
         // Adding initial value(s)
@@ -150,21 +154,21 @@ namespace FluentRandomPicker
         /// <inheritdoc/>
         public IPick<T> WithPercentages(IEnumerable<int> ps)
         {
-            SetPriorities(ps.Cast<int?>(), PriorityType.Percentage);
+            SetPriorities(ps.Cast<int?>().ToList(), PriorityType.Percentage);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithPercentages(params int[] ps)
         {
-            SetPriorities(ps.Cast<int?>(), PriorityType.Percentage);
+            SetPriorities(ps.Cast<int?>().ToList(), PriorityType.Percentage);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithPercentages(IEnumerable<int?> ps)
         {
-            SetPriorities(ps, PriorityType.Percentage);
+            SetPriorities(ps.ToList(), PriorityType.Percentage);
             return this;
         }
 
@@ -194,21 +198,21 @@ namespace FluentRandomPicker
         /// <inheritdoc/>
         public IPick<T> WithWeights(IEnumerable<int> ws)
         {
-            SetPriorities(ws.Cast<int?>(), PriorityType.Weight);
+            SetPriorities(ws.Cast<int?>().ToList(), PriorityType.Weight);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithWeights(params int[] ws)
         {
-            SetPriorities(ws.Cast<int?>(), PriorityType.Weight);
+            SetPriorities(ws.Cast<int?>().ToList(), PriorityType.Weight);
             return this;
         }
 
         /// <inheritdoc/>
         public IPick<T> WithWeights(IEnumerable<int?> ws)
         {
-            SetPriorities(ws, PriorityType.Weight);
+            SetPriorities(ws.ToList(), PriorityType.Weight);
             return this;
         }
 
