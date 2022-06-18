@@ -103,5 +103,49 @@ namespace FluentRandomPickerTests
                 .AndValue(i => (int)Math.Pow(i, 2))
                 .AndValue(i => (int)Math.Pow(i, i));
         }
+
+        [TestMethod]
+        public void SelectorSystemTests()
+        {
+            var elements = new[] { new object(), "test" };
+
+            Out.Of<object>().PrioritizedElements(elements)
+                .WithPercentageSelector(x => 50)
+                .PickOne();
+
+            Out.Of().PrioritizedElements(elements)
+                .WithPercentageSelector(x => 50)
+                .PickOne();
+
+            Out.Of<object>().PrioritizedElements(elements)
+                .WithWeightSelector(x => x.GetHashCode())
+                .PickOne();
+
+            Out.Of().PrioritizedElements(elements)
+                .WithWeightSelector(x => x.GetHashCode())
+                .PickOne();
+
+
+
+            Out.Of<object>().PrioritizedElements(elements)
+                .WithValueSelector(x => x.ToString())
+                .WithPercentageSelector(x => 50)
+                .PickOne();
+
+            Out.Of().PrioritizedElements(elements)
+                .WithValueSelector(x => x.ToString())
+                .WithPercentageSelector(x => 50)
+                .PickOne();
+
+            Out.Of<object>().PrioritizedElements(elements)
+                .WithValueSelector(x => x.ToString())
+                .WithWeightSelector(x => x.GetHashCode())
+                .PickOne();
+
+            Out.Of().PrioritizedElements(elements)
+                .WithValueSelector(x => x.ToString())
+                .WithWeightSelector(x => x.GetHashCode())
+                .PickOne();
+        }
     }
 }
