@@ -97,7 +97,7 @@ namespace FluentRandomPicker
         }
 
         /// <summary>
-        /// Specifies all value.
+        /// Specifies all values.
         /// </summary>
         /// <param name="ts">The values.</param>
         /// <returns>An <see cref="ISpecifyValuePrioritiesOrPick{T}"/> instance.</returns>
