@@ -129,22 +129,22 @@ namespace FluentRandomPickerTests
 
             Out.Of<object>().PrioritizedElements(elements)
                 .WithValueSelector(x => x.ToString())
-                .WithPercentageSelector(x => 50)
+                .AndPercentageSelector(x => 50)
                 .PickOne();
 
             Out.Of().PrioritizedElements(elements)
                 .WithValueSelector(x => x.ToString())
-                .WithPercentageSelector(x => 50)
+                .AndPercentageSelector(x => 50)
                 .PickOne();
 
             Out.Of<object>().PrioritizedElements(elements)
                 .WithValueSelector(x => x.ToString())
-                .WithWeightSelector(x => x.GetHashCode())
+                .AndWeightSelector(x => x.GetHashCode())
                 .PickOne();
 
             Out.Of().PrioritizedElements(elements)
                 .WithValueSelector(x => x.ToString())
-                .WithWeightSelector(x => x.GetHashCode())
+                .AndWeightSelector(x => x.GetHashCode())
                 .PickOne();
         }
     }

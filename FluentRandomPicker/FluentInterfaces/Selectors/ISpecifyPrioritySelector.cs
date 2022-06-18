@@ -19,13 +19,13 @@ namespace FluentRandomPicker.FluentInterfaces.Selectors
         /// </summary>
         /// <param name="weightSelector">The weight selector.</param>
         /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
-        IPick<TValueSelector> WithWeightSelector(Func<T, int> weightSelector);
+        IPick<TValueSelector> AndWeightSelector(Func<T, int> weightSelector);
 
         /// <summary>
         /// Specifies a selector to determine the percentage(s).
         /// </summary>
         /// <param name="percentageSelector">The percentage selector.</param>
         /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
-        IPick<TValueSelector> WithPercentageSelector(Func<T, int> percentageSelector);
+        IPick<TValueSelector> AndPercentageSelector(Func<T, int> percentageSelector);
     }
 }

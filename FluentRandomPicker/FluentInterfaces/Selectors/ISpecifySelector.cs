@@ -12,8 +12,22 @@ namespace FluentRandomPicker.FluentInterfaces.Selectors
     /// </list>
     /// </summary>
     /// <typeparam name="T">The type of the element(s).</typeparam>
-    public interface ISpecifySelector<T> : ISpecifyPrioritySelector<T, T>
+    public interface ISpecifySelector<T>
     {
+        /// <summary>
+        /// Specifies a selector to determine the weight(s).
+        /// </summary>
+        /// <param name="weightSelector">The weight selector.</param>
+        /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
+        IPick<T> WithWeightSelector(Func<T, int> weightSelector);
+
+        /// <summary>
+        /// Specifies a selector to determine the percentage(s).
+        /// </summary>
+        /// <param name="percentageSelector">The percentage selector.</param>
+        /// <returns>An <see cref="IPick{T}"/> instance to pick one or multiple values.</returns>
+        IPick<T> WithPercentageSelector(Func<T, int> percentageSelector);
+
         /// <summary>
         /// Specifies a selector to determine the actual value(s).
         /// </summary>

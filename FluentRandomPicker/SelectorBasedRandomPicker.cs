@@ -96,14 +96,14 @@ namespace FluentRandomPicker
         private IList<T> Elements { get; }
 
         /// <inheritdoc/>
-        public IPick<TValueSelector> WithWeightSelector(Func<T, int> weightSelector)
+        public IPick<TValueSelector> AndWeightSelector(Func<T, int> weightSelector)
         {
             return Out.Of<TValueSelector>(_rng).Values(Elements.Select(_valueSelector))
                 .WithWeights(Elements.Select(weightSelector));
         }
 
         /// <inheritdoc/>
-        public IPick<TValueSelector> WithPercentageSelector(Func<T, int> percentageSelector)
+        public IPick<TValueSelector> AndPercentageSelector(Func<T, int> percentageSelector)
         {
             return Out.Of<TValueSelector>(_rng).Values(Elements.Select(_valueSelector))
                 .WithPercentages(Elements.Select(percentageSelector));
