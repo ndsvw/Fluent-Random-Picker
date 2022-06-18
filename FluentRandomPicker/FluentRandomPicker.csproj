@@ -67,6 +67,7 @@ v 2.1.0
     <Compile Remove="Interfaces\**" />
     <EmbeddedResource Remove="Interfaces\**" />
     <None Remove="Interfaces\**" />
+    <None Remove="FluentInterfaces\Selectors\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -74,6 +75,7 @@ v 2.1.0
     <Folder Include="Exceptions\" />
     <Folder Include="Shuffle\" />
     <Folder Include="Random\" />
+    <Folder Include="FluentInterfaces\Selectors\" />
   </ItemGroup>
 
   <ItemGroup>

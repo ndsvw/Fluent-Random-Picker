@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FluentRandomPicker.FluentInterfaces;
+using FluentRandomPicker.FluentInterfaces.Selectors;
 using FluentRandomPicker.Random;
 
 namespace FluentRandomPicker
@@ -79,6 +80,17 @@ namespace FluentRandomPicker
 #pragma warning restore CA1822 // Mark members as static
         {
             return new RandomPicker<T>(_rng).Values(ts);
+        }
+
+        /// <summary>
+        /// Specifies one or more elements that contain(s) information like weights or percentages.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="ts">The elements.</param>
+        /// <returns>An object that allows specifying selectors to determine how to get the value (picked instance) of the element or its weight/percentage.</returns>
+        public ISpecifySelector<T> PrioritizedElements<T>(IEnumerable<T> ts)
+        {
+            return new SelectorBasedRandomPicker<T>(_rng).PrioritizedElements(ts);
         }
     }
 }

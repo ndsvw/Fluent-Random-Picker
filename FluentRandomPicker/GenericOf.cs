@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FluentRandomPicker.FluentInterfaces;
+using FluentRandomPicker.FluentInterfaces.Selectors;
 using FluentRandomPicker.Random;
 
 namespace FluentRandomPicker
@@ -74,6 +75,16 @@ namespace FluentRandomPicker
         public ISpecifyValuePrioritiesOrPick<T> Values(IEnumerable<T> ts)
         {
             return new RandomPicker<T>(_rng).Values(ts);
+        }
+
+        /// <summary>
+        /// Specifies one or more elements that contain(s) information like weights or percentages.
+        /// </summary>
+        /// <param name="ts">The elements.</param>
+        /// <returns>An object that allows specifying selectors to determine how to get the value (picked instance) of the element or its weight/percentage.</returns>
+        public ISpecifySelector<T> PrioritizedElements(IEnumerable<T> ts)
+        {
+            return new SelectorBasedRandomPicker<T>(_rng).PrioritizedElements(ts);
         }
     }
 }
