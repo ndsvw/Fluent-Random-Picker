@@ -118,11 +118,11 @@ namespace FluentRandomPickerTests
                 .PickOne();
 
             Out.Of<object>().PrioritizedElements(elements)
-                .WithWeightSelector(x => x.GetHashCode())
+                .WithWeightSelector(x => Math.Abs(x.GetHashCode() % 100) + 1)
                 .PickOne();
 
             Out.Of().PrioritizedElements(elements)
-                .WithWeightSelector(x => x.GetHashCode())
+                .WithWeightSelector(x => Math.Abs(x.GetHashCode() % 100) + 1)
                 .PickOne();
 
 
@@ -139,12 +139,12 @@ namespace FluentRandomPickerTests
 
             Out.Of<object>().PrioritizedElements(elements)
                 .WithValueSelector(x => x.ToString())
-                .AndWeightSelector(x => x.GetHashCode())
+                .AndWeightSelector(x => Math.Abs(x.GetHashCode() % 100) + 1)
                 .PickOne();
 
             Out.Of().PrioritizedElements(elements)
                 .WithValueSelector(x => x.ToString())
-                .AndWeightSelector(x => x.GetHashCode())
+                .AndWeightSelector(x => Math.Abs(x.GetHashCode() % 100) + 1)
                 .PickOne();
         }
     }
