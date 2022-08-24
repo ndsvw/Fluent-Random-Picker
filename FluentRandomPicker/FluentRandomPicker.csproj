@@ -44,7 +44,9 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
-    <PackageReleaseNotes>v 3.2.0
+    <PackageReleaseNotes>v 3.3.0
+- Added 'PrioritizedElements' (a way to pick from an arbitrary collection via selectors).
+v 3.2.0
 - Cleaned up targets (.Net standard) supports various targets.
 - Improved implementation for when picking multiple distinct values.
 v 3.1.0
