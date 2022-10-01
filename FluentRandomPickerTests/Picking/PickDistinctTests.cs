@@ -205,5 +205,72 @@ namespace FluentRandomPickerTests.Picking
             Assert.IsTrue(counterCBA >= NumberOfTries * (0.1 * 2 / 9d) * (1 - AcceptedDeviation));
             Assert.IsTrue(counterCBA <= NumberOfTries * (0.1 * 2 / 9d) * (1 + AcceptedDeviation));
         }
+
+        [TestMethod]
+        public void PickDistinctWithDifferentLargeProbabilities_ProbabilitiesMatter()
+        {
+            const int NumberOfTries = 1_000_000;
+            const double AcceptedDeviation = 0.1;
+
+            var counterABC = 0;
+            var counterACB = 0;
+            var counterBAC = 0;
+            var counterBCA = 0;
+            var counterCAB = 0;
+            var counterCBA = 0;
+
+            for (var i = 0; i < NumberOfTries; i++)
+            {
+                var values = Out.Of()
+                    .Value('a').WithWeight(2_000_000_000)
+                    .AndValue('b').WithWeight(1_900_000_000)
+                    .AndValue('c').WithWeight(1_800_000_000)
+                    .PickDistinct(3)
+                    .Select(e => e.ToString());
+                if (String.Join("", values).Equals("abc"))
+                    counterABC++;
+                if (String.Join("", values).Equals("acb"))
+                    counterACB++;
+                if (String.Join("", values).Equals("bac"))
+                    counterBAC++;
+                if (String.Join("", values).Equals("bca"))
+                    counterBCA++;
+                if (String.Join("", values).Equals("cab"))
+                    counterCAB++;
+                if (String.Join("", values).Equals("cba"))
+                    counterCBA++;
+            }
+
+            var chancePickAFirst = 2_000_000_000 / ((double)2_000_000_000 + 1_999_000_000 + 1_800_000_000);
+            var chancePickBFirst = 1_999_000_000 / ((double)2_000_000_000 + 1_999_000_000 + 1_800_000_000);
+            var chancePickCFirst = 1_800_000_000 / ((double)2_000_000_000 + 1_999_000_000 + 1_800_000_000);
+
+            var chancePickBSecondThenC = 1_999_000_000 / ((double)1_999_000_000 + 1_800_000_000);
+            var chancePickCSecondThenB = 1_800_000_000 / ((double)1_999_000_000 + 1_800_000_000);
+
+            var chancePickASecondThenC = 2_000_000_000 / ((double)2_000_000_000 + 1_800_000_000);
+            var chancePickCSecondThenA = 1_800_000_000 / ((double)2_000_000_000 + 1_800_000_000);
+
+            var chancePickASecondThenB = 2_000_000_000 / ((double)2_000_000_000 + 1_999_000_000);
+            var chancePickBSecondThenA = 1_999_000_000 / ((double)2_000_000_000 + 1_999_000_000);
+
+            Assert.IsTrue(counterABC >= NumberOfTries * (chancePickAFirst * chancePickBSecondThenC) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterABC <= NumberOfTries * (chancePickAFirst * chancePickBSecondThenC) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterACB >= NumberOfTries * (chancePickAFirst * chancePickCSecondThenB) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterACB <= NumberOfTries * (chancePickAFirst * chancePickCSecondThenB) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterBAC >= NumberOfTries * (chancePickBFirst * chancePickASecondThenC) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterBAC <= NumberOfTries * (chancePickBFirst * chancePickASecondThenC) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterBCA >= NumberOfTries * (chancePickBFirst * chancePickCSecondThenA) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterBCA <= NumberOfTries * (chancePickBFirst * chancePickCSecondThenA) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterCAB >= NumberOfTries * (chancePickCFirst * chancePickASecondThenB) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterCAB <= NumberOfTries * (chancePickCFirst * chancePickASecondThenB) * (1 + AcceptedDeviation));
+
+            Assert.IsTrue(counterCBA >= NumberOfTries * (chancePickCFirst * chancePickBSecondThenA) * (1 - AcceptedDeviation));
+            Assert.IsTrue(counterCBA <= NumberOfTries * (chancePickCFirst * chancePickBSecondThenA) * (1 + AcceptedDeviation));
+        }
     }
 }
