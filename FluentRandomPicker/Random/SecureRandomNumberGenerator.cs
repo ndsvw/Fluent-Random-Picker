@@ -23,21 +23,33 @@ namespace FluentRandomPicker.Random
         /// <inheritdoc/>
         public int NextInt()
         {
+#if NET5_0_OR_GREATER
+            return RandomNumberGenerator.GetInt32(int.MaxValue);
+#else
             _secureRng.GetBytes(_tmpBytes, 4, 4);
             var bytesAsInt32 = BitConverter.ToInt32(_tmpBytes, 4);
             return Math.Abs(bytesAsInt32);
+#endif
         }
 
         /// <inheritdoc/>
         public int NextInt(int n)
         {
+#if NET5_0_OR_GREATER
+            return RandomNumberGenerator.GetInt32(n);
+#else
             return NextInt() % n;
+#endif
         }
 
         /// <inheritdoc/>
         public int NextInt(int min, int max)
         {
+#if NET5_0_OR_GREATER
+            return RandomNumberGenerator.GetInt32(min, max);
+#else
             return min + NextInt(max - min);
+#endif
         }
     }
 }
