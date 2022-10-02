@@ -19,7 +19,7 @@
         int NextInt(int n);
 
         /// <summary>
-        /// Generates a random int32 value &gt;= min and &lt; max
+        /// Generates a random int32 value &gt;= min and &lt; max.
         /// </summary>
         /// <param name="min">The lower limit of the random int (inclusive).</param>
         /// <param name="max">The upper limit of the random int (exclusive).</param>
