@@ -16,4 +16,4 @@ jobs:
     - name: Build (Release)
       run: dotnet build --configuration Release
     - name: Push to NuGet
-    - runs: dotnet nuget push "FluentRandomPicker/bin/Release/*.nupkg" -k '${{ secrets.NUGET_KEY }}' --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push "FluentRandomPicker/bin/Release/*.nupkg" -k '${{ secrets.NUGET_KEY }}' --source https://api.nuget.org/v3/index.json
