@@ -192,7 +192,7 @@ namespace FluentRandomPickerTests.Shuffle
             var rng = new DefaultRandomNumberGenerator();
             var shuffle = new SortingBasedWeightedLeftShuffle<char>(rng);
 
-            var ranks = new (int Index, double Rank)[]{ };
+            var ranks = Array.Empty<(int Index, double Rank)>();
 
             var elements = new List<ValuePriorityPair<char>>(){ };
 
