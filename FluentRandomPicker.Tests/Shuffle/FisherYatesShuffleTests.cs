@@ -3,7 +3,7 @@ using FluentRandomPicker.Shuffle;
 using FluentRandomPicker.ValuePriorities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FluentRandomPickerTests.Shuffle
+namespace FluentRandomPicker.Tests.Shuffle
 {
     [TestClass]
     public class FisherYatesShuffleTests

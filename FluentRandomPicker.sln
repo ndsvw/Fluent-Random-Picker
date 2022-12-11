@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.809.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentRandomPicker", "FluentRandomPicker\FluentRandomPicker.csproj", "{99061B65-6100-49F6-B4DB-83A13CEFE3A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentRandomPickerTests", "FluentRandomPickerTests\FluentRandomPickerTests.csproj", "{53E1178B-35EA-4220-B434-DADB703A664D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentRandomPicker.Tests", "FluentRandomPicker.Tests\FluentRandomPicker.Tests.csproj", "{53E1178B-35EA-4220-B434-DADB703A664D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Projektmappenelemente", "{29A96B51-B383-47D5-98DC-FD9C9DE5A5D7}"
 	ProjectSection(SolutionItems) = preProject

@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace FluentRandomPickerTests
+namespace FluentRandomPicker.Tests
 {
     [TestClass]
     public class OmittingPrioritiesTests

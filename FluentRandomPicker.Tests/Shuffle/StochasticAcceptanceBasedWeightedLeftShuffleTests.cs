@@ -2,7 +2,7 @@
 using FluentRandomPicker.Shuffle;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FluentRandomPickerTests.Shuffle
+namespace FluentRandomPicker.Tests.Shuffle
 {
     [TestClass]
     public class StochasticAcceptanceBasedWeightedLeftShuffleTests

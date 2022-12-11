@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- standard 2.0 supports Framework 4.8, 4.7.X, Core 2.X, 3.X, 5, 6, ... -->
+    <!-- standard 2.0 supports Framework 4.8, 4.7.X, Core 2.X, 3.X, 5, 6, 7, ... -->
     <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
     <LangVersion>latest</LangVersion>
@@ -114,6 +114,6 @@ v 2.1.0
 
 
   <ItemGroup>
-    <InternalsVisibleTo Include="FluentRandomPickerTests" />
+    <InternalsVisibleTo Include="FluentRandomPicker.Tests" />
   </ItemGroup>
 </Project>

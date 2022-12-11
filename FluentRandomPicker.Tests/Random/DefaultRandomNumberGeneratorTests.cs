@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace FluentRandomPickerTests.Random
+namespace FluentRandomPicker.Tests.Random
 {
     [TestClass]
     public class DefaultRandomNumberGeneratorTests

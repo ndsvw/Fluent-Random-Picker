@@ -4,7 +4,7 @@ using System.Linq;
 using FluentRandomPicker.FluentInterfaces.General;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FluentRandomPickerTests
+namespace FluentRandomPicker.Tests
 {
     public static class TestUtils
     {

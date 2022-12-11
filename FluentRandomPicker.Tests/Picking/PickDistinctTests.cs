@@ -5,7 +5,7 @@ using FluentRandomPicker;
 using FluentRandomPicker.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FluentRandomPickerTests.Picking
+namespace FluentRandomPicker.Tests.Picking
 {
     [TestClass]
     public class PickDistinctTests

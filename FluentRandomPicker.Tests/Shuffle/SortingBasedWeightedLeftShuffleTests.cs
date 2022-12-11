@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace FluentRandomPickerTests.Shuffle
+namespace FluentRandomPicker.Tests.Shuffle
 {
     [TestClass]
     public class SortingBasedWeightedLeftShuffleTests

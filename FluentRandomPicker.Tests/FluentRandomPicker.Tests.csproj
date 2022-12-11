@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>FluentRandomPickerTests</RootNamespace>
+    <RootNamespace>FluentRandomPicker.Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
     <ReleaseVersion>3.3.0</ReleaseVersion>

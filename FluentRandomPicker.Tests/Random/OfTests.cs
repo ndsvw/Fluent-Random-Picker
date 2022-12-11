@@ -3,7 +3,7 @@ using FluentRandomPicker;
 using FluentRandomPicker.Random;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FluentRandomPickerTests.Random
+namespace FluentRandomPicker.Tests.Random
 {
     [TestClass]
     public class OfTests

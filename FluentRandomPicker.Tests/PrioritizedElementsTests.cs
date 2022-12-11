@@ -2,7 +2,7 @@
 using FluentRandomPicker;
 using FluentRandomPicker.Exceptions;
 
-namespace FluentRandomPickerTests
+namespace FluentRandomPicker.Tests
 {
 	[TestClass]
 	public class PrioritizedElementsTests
