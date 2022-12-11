@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentRandomPicker.Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Projektmappenelemente", "{29A96B51-B383-47D5-98DC-FD9C9DE5A5D7}"
 	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
+		.globalconfig = .globalconfig
 	EndProjectSection
 EndProject
 Global

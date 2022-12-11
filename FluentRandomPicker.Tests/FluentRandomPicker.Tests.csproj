@@ -31,7 +31,7 @@
     <None Remove="Shuffle\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\.editorconfig" />
+    <None Include="..\.globalconfig" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Picking\" />
