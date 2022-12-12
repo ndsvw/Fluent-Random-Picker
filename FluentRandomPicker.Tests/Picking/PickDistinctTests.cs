@@ -112,23 +112,24 @@ namespace FluentRandomPicker.Tests.Picking
 
             for (var i = 0; i < NumberOfTries; i++)
             {
-                var values = Out.Of()
+                var combination = Out.Of()
                     .Value('a')
                     .AndValue('b')
                     .AndValue('c')
                     .PickDistinct(3)
-                    .Select(e => e.ToString());
-                if (String.Join("", values).Equals("abc"))
+                    .ToArray();
+
+                if (combination is ['a', 'b', 'c'])
                     counterABC++;
-                if (String.Join("", values).Equals("acb"))
+                else if (combination is ['a', 'c', 'b'])
                     counterACB++;
-                if (String.Join("", values).Equals("bac"))
+                else if (combination is ['b', 'a', 'c'])
                     counterBAC++;
-                if (String.Join("", values).Equals("bca"))
+                else if (combination is ['b', 'c', 'a'])
                     counterBCA++;
-                if (String.Join("", values).Equals("cab"))
+                else if (combination is ['c', 'a', 'b'])
                     counterCAB++;
-                if (String.Join("", values).Equals("cba"))
+                else if (combination is ['c', 'b', 'a'])
                     counterCBA++;
             }
 
@@ -167,23 +168,24 @@ namespace FluentRandomPicker.Tests.Picking
 
             for (var i = 0; i < NumberOfTries; i++)
             {
-                var values = Out.Of()
+                var combination = Out.Of()
                     .Value('a').WithPercentage(70)
                     .AndValue('b').WithPercentage(20)
                     .AndValue('c').WithPercentage(10)
                     .PickDistinct(3)
-                    .Select(e => e.ToString());
-                if (String.Join("", values).Equals("abc"))
+                    .ToArray();
+
+                if (combination is ['a', 'b', 'c'])
                     counterABC++;
-                if (String.Join("", values).Equals("acb"))
+                else if (combination is ['a', 'c', 'b'])
                     counterACB++;
-                if (String.Join("", values).Equals("bac"))
+                else if (combination is ['b', 'a', 'c'])
                     counterBAC++;
-                if (String.Join("", values).Equals("bca"))
+                else if (combination is ['b', 'c', 'a'])
                     counterBCA++;
-                if (String.Join("", values).Equals("cab"))
+                else if (combination is ['c', 'a', 'b'])
                     counterCAB++;
-                if (String.Join("", values).Equals("cba"))
+                else if (combination is ['c', 'b', 'a'])
                     counterCBA++;
             }
 
@@ -221,23 +223,24 @@ namespace FluentRandomPicker.Tests.Picking
 
             for (var i = 0; i < NumberOfTries; i++)
             {
-                var values = Out.Of()
+                var combination = Out.Of()
                     .Value('a').WithWeight(2_000_000_000)
                     .AndValue('b').WithWeight(1_900_000_000)
                     .AndValue('c').WithWeight(1_800_000_000)
                     .PickDistinct(3)
-                    .Select(e => e.ToString());
-                if (String.Join("", values).Equals("abc"))
+                    .ToArray();
+
+                if (combination is ['a', 'b', 'c'])
                     counterABC++;
-                if (String.Join("", values).Equals("acb"))
+                else if (combination is ['a', 'c', 'b'])
                     counterACB++;
-                if (String.Join("", values).Equals("bac"))
+                else if (combination is ['b', 'a', 'c'])
                     counterBAC++;
-                if (String.Join("", values).Equals("bca"))
+                else if (combination is ['b', 'c', 'a'])
                     counterBCA++;
-                if (String.Join("", values).Equals("cab"))
+                else if (combination is ['c', 'a', 'b'])
                     counterCAB++;
-                if (String.Join("", values).Equals("cba"))
+                else if (combination is ['c', 'b', 'a'])
                     counterCBA++;
             }
 
