@@ -12,21 +12,21 @@ namespace FluentRandomPicker.ValuePriorities
     internal class WeightValuePriorityPairsGenerator<T> : IValuePriorityPairsGenerator<T>
     {
         /// <inheritdoc/>
-        public ValuePriorityPairs<T> Generate(IEnumerable<T> values, IEnumerable<int?> priorities)
+        public ValuePriorityPairs<T> Generate(IReadOnlyCollection<T> values, IReadOnlyCollection<int?> priorities)
         {
-            var numberOfValues = values.Count();
-            var numberOfPriorities = priorities.Count();
+            var numberOfValues = values.Count;
+            var numberOfPriorities = priorities.Count;
             if (numberOfValues == numberOfPriorities)
                 return GeneratePairs(values, priorities);
             if (numberOfValues < numberOfPriorities)
                 throw new ArgumentException("The number of values must not be smaller than the number of priorities.", nameof(priorities));
 
-            priorities = priorities.Union(Enumerable.Repeat(default(int?), numberOfValues - numberOfPriorities));
+            priorities = priorities.Union(Enumerable.Repeat(default(int?), numberOfValues - numberOfPriorities)).ToList();
 
             return GeneratePairs(values, priorities);
         }
 
-        private ValuePriorityPairs<T> GeneratePairs(IEnumerable<T> values, IEnumerable<int?> priorities)
+        private ValuePriorityPairs<T> GeneratePairs(IReadOnlyCollection<T> values, IReadOnlyCollection<int?> priorities)
         {
             var valuePriorityPairs = new ValuePriorityPairs<T>();
             var numberOfNullPriorities = priorities.Count(x => x == default);

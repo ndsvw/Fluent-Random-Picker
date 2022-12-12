@@ -46,9 +46,10 @@ namespace FluentRandomPicker.Shuffle
         /// <returns>The shuffled elements.</returns>
         public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> elements, int firstN)
         {
-            var max = elements.Max(v => v.Priority);
-
             var list = elements.ToList();
+
+            var max = list.Max(v => v.Priority);
+
             var lastIndex = Math.Min(firstN, list.Count) - 1;
             for (int i = 0; i <= lastIndex; i++)
             {

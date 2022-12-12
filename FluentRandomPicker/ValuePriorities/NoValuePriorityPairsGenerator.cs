@@ -11,10 +11,10 @@ namespace FluentRandomPicker.ValuePriorities
     internal class NoValuePriorityPairsGenerator<T> : IValuePriorityPairsGenerator<T>
     {
         /// <inheritdoc/>
-        public ValuePriorityPairs<T> Generate(IEnumerable<T> values, IEnumerable<int?> priorities)
+        public ValuePriorityPairs<T> Generate(IReadOnlyCollection<T> values, IReadOnlyCollection<int?> priorities)
         {
             var valuePriorityPairs = new ValuePriorityPairs<T>();
-            valuePriorityPairs.AddRange(values, Enumerable.Repeat(1, values.Count()));
+            valuePriorityPairs.AddRange(values, Enumerable.Repeat(1, values.Count));
 
             return valuePriorityPairs;
         }
