@@ -31,11 +31,9 @@ namespace FluentRandomPicker.Shuffle
         /// Shuffles the elements and respects the probabilities in O(n) time.
         /// </summary>
         /// <param name="elements">The elements (value and probability) to shuffle.</param>
-        /// <returns>The shuffled elements.</returns>
-        public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> elements)
+        public void Shuffle(IList<ValuePriorityPair<T>> elements)
         {
-            var elementsList = elements.ToList();
-            return Shuffle(elementsList, elementsList.Count);
+            Shuffle(elements, elements.Count);
         }
 
         /// <summary>
@@ -43,23 +41,18 @@ namespace FluentRandomPicker.Shuffle
         /// </summary>
         /// <param name="elements">The elements (value and probability) to shuffle.</param>
         /// <param name="firstN">Limits how many of the first elements to shuffle.</param>
-        /// <returns>The shuffled elements.</returns>
-        public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> elements, int firstN)
+        public void Shuffle(IList<ValuePriorityPair<T>> elements, int firstN)
         {
-            var list = elements.ToList();
+            var max = elements.Max(v => v.Priority);
 
-            var max = list.Max(v => v.Priority);
-
-            var lastIndex = Math.Min(firstN, list.Count) - 1;
+            var lastIndex = Math.Min(firstN, elements.Count) - 1;
             for (int i = 0; i <= lastIndex; i++)
             {
-                int randomIndex = RouletteWheelSelection(list, i, max);
-                Swap(list, i, randomIndex);
+                int randomIndex = RouletteWheelSelection(elements, i, max);
+                Swap(elements, i, randomIndex);
 
                 // could be optimized by updating the max sometimes, but it's O(n)..
             }
-
-            return list;
         }
 
         private static void Swap<TElement>(IList<TElement> elements, int index1, int index2)

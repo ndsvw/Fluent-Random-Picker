@@ -19,7 +19,7 @@ namespace FluentRandomPicker.Tests.Shuffle
                 new ValuePriorityPair<int>(3, 3),
                 new ValuePriorityPair<int>(4, 4),
                 new ValuePriorityPair<int>(5, 5),
-            };
+            }.ToList(); // todo improvable
 
             var value1Set = new HashSet<int>();
             var value2Set = new HashSet<int>();
@@ -29,12 +29,12 @@ namespace FluentRandomPicker.Tests.Shuffle
 
             for (var i = 0; i < _iterations; i++)
             {
-                var shuffled = shuffle.Shuffle(elements).ToList();
-                value1Set.Add(shuffled[0].Value);
-                value2Set.Add(shuffled[1].Value);
-                value3Set.Add(shuffled[2].Value);
-                value4Set.Add(shuffled[3].Value);
-                value5Set.Add(shuffled[4].Value);
+                shuffle.Shuffle(elements);
+                value1Set.Add(elements[0].Value);
+                value2Set.Add(elements[1].Value);
+                value3Set.Add(elements[2].Value);
+                value4Set.Add(elements[3].Value);
+                value5Set.Add(elements[4].Value);
             }
 
             Assert.AreEqual(elements.Count(), value1Set.Count);
@@ -53,7 +53,7 @@ namespace FluentRandomPicker.Tests.Shuffle
                 new ValuePriorityPair<int>(3, 3),
                 new ValuePriorityPair<int>(4, 4),
                 new ValuePriorityPair<int>(5, 5),
-            };
+            }.ToList(); // todo improvable
 
             var value1Set = new HashSet<int>();
             var value2Set = new HashSet<int>();
@@ -61,10 +61,10 @@ namespace FluentRandomPicker.Tests.Shuffle
 
             for (var i = 0; i < _iterations; i++)
             {
-                var shuffled = shuffle.Shuffle(elements, 3).ToList();
-                value1Set.Add(shuffled[0].Value);
-                value2Set.Add(shuffled[1].Value);
-                value3Set.Add(shuffled[2].Value);
+                shuffle.Shuffle(elements, 3);
+                value1Set.Add(elements[0].Value);
+                value2Set.Add(elements[1].Value);
+                value3Set.Add(elements[2].Value);
             }
 
             Assert.AreEqual(elements.Count(), value1Set.Count);

@@ -61,16 +61,18 @@ namespace FluentRandomPicker.Picker
 
         private IEnumerable<T> PickDistinctElementsWithDifferentPriorities()
         {
+            var pairs = _pairs.ToList(); // todo improvable
             var shuffle = new SortingBasedWeightedLeftShuffle<T>(_rng);
-            var shuffledElements = shuffle.Shuffle(_pairs, _numberOfElements);
-            return shuffledElements.Take(_numberOfElements).Select(x => x.Value).ToList();
+            shuffle.Shuffle(pairs, _numberOfElements);
+            return pairs.Take(_numberOfElements).Select(x => x.Value).ToList();
         }
 
         private IEnumerable<T> PickDistinctElementsWithEqualPriorities()
         {
+            var values = _pairs.Select(p => p.Value).ToList(); // todo improvable
             var shuffle = new FisherYatesShuffle<T>(_rng);
-            var shuffledElements = shuffle.Shuffle(_pairs.Select(p => p.Value), _numberOfElements);
-            return shuffledElements.Take(_numberOfElements).ToList();
+            shuffle.Shuffle(values, _numberOfElements);
+            return values.Take(_numberOfElements).ToList();
         }
     }
 }

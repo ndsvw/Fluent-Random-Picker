@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentRandomPicker.ExtensionMethods;
 using FluentRandomPicker.Random;
 using FluentRandomPicker.ValuePriorities;
 
@@ -30,11 +31,9 @@ namespace FluentRandomPicker.Shuffle
         /// Shuffles the elements and respects the probabilities in O(n*log(n)) time.
         /// </summary>
         /// <param name="elements">The elements (value and probability) to shuffle.</param>
-        /// <returns>The shuffled elements.</returns>
-        public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> elements)
+        public void Shuffle(IList<ValuePriorityPair<T>> elements)
         {
-            var elementsList = elements.ToList();
-            return Shuffle(elementsList, elementsList.Count);
+            Shuffle(elements, elements.Count);
         }
 
         /// <summary>
@@ -42,21 +41,21 @@ namespace FluentRandomPicker.Shuffle
         /// </summary>
         /// <param name="elements">The elements (value and probability) to shuffle.</param>
         /// <param name="firstN">Limits how many of the first elements to shuffle.</param>
-        /// <returns>The shuffled elements.</returns>
-        public IEnumerable<ValuePriorityPair<T>> Shuffle(IEnumerable<ValuePriorityPair<T>> elements, int firstN)
+        public void Shuffle(IList<ValuePriorityPair<T>> elements, int firstN)
         {
-            var elementsList = elements.ToList();
-            var n = elementsList.Count;
+            var n = elements.Count;
 
             var ranks = Enumerable.Range(0, n)
-                            .Select(i => (Index: i, Rank: CalculateRank(elementsList[i].Priority)))
+                            .Select(i => (Index: i, Rank: CalculateRank(elements[i].Priority)))
                             .ToArray();
 
             Array.Sort(ranks, _indexRankTupleComparer);
 
-            ImproveAccuracyIfNecessary(ranks, elementsList);
+            ImproveAccuracyIfNecessary(ranks, elements);
 
-            return ranks.Take(firstN).Select(x => elementsList[x.Index]);
+            var newElements = ranks.Take(firstN).Select(x => elements[x.Index]).ToArray();
+            elements.Clear();
+            elements.AddRange(newElements); // todo improvable in situ?
         }
 
         private double CalculateRank(int priority)
