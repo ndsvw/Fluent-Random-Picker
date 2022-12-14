@@ -28,6 +28,11 @@ namespace FluentRandomPicker.Random
 #else
             _secureRng.GetBytes(_tmpBytes, 4, 4);
             var bytesAsInt32 = BitConverter.ToInt32(_tmpBytes, 4);
+
+            // because Math.Abs(Int32.MinValue) throws exception.
+            if(bytesAsInt32 == Int32.MinValue)
+                return NextInt();
+
             return Math.Abs(bytesAsInt32);
 #endif
         }
