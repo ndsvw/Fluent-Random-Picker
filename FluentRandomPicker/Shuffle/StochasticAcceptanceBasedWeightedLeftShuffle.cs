@@ -14,7 +14,7 @@ namespace FluentRandomPicker.Shuffle
     ///             (e.g. [100.000.000, 1, 2, 3]).
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    internal class StochasticAcceptanceBasedWeightedLeftShuffle<T> : IShuffle<ValuePriorityPair<T>>
+    internal sealed class StochasticAcceptanceBasedWeightedLeftShuffle<T> : IShuffle<ValuePriorityPair<T>>
     {
         private readonly IRandomNumberGenerator _rng;
 

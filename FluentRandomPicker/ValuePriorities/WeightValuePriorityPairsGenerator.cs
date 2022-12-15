@@ -9,7 +9,7 @@ namespace FluentRandomPicker.ValuePriorities
     /// values with weights.
     /// </summary>
     /// <typeparam name="T">The type of the value(s).</typeparam>
-    internal class WeightValuePriorityPairsGenerator<T> : IValuePriorityPairsGenerator<T>
+    internal sealed class WeightValuePriorityPairsGenerator<T> : IValuePriorityPairsGenerator<T>
     {
         /// <inheritdoc/>
         public ValuePriorityPairs<T> Generate(IReadOnlyCollection<T> values, IReadOnlyCollection<int?> priorities)

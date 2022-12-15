@@ -11,7 +11,7 @@ namespace FluentRandomPicker.Picker
     /// An implementation of a picker that picks distinct values.
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    internal class DistinctPicker<T> : IPicker<IEnumerable<T>>
+    internal sealed class DistinctPicker<T> : IPicker<IEnumerable<T>>
     {
         private readonly int _numberOfElements;
         private readonly IRandomNumberGenerator _rng;

@@ -4,7 +4,7 @@
     /// A pair of a value and its priority.
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    internal class ValuePriorityPair<T>
+    internal sealed class ValuePriorityPair<T>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ValuePriorityPair{T}"/> class.

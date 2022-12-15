@@ -8,7 +8,7 @@ namespace FluentRandomPicker.ValuePriorities
     /// values without priorities.
     /// </summary>
     /// <typeparam name="T">The type of the value(s).</typeparam>
-    internal class NoValuePriorityPairsGenerator<T> : IValuePriorityPairsGenerator<T>
+    internal sealed class NoValuePriorityPairsGenerator<T> : IValuePriorityPairsGenerator<T>
     {
         /// <inheritdoc/>
         public ValuePriorityPairs<T> Generate(IReadOnlyCollection<T> values, IReadOnlyCollection<int?> priorities)

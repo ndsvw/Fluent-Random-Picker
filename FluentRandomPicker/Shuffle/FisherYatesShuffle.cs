@@ -9,7 +9,7 @@ namespace FluentRandomPicker.Shuffle
     /// The Fisher-Yates shuffle algorithm.
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    internal class FisherYatesShuffle<T> : IShuffle<T>
+    internal sealed class FisherYatesShuffle<T> : IShuffle<T>
     {
         private readonly IRandomNumberGenerator _rng;
 

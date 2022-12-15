@@ -30,7 +30,8 @@ dotnet_diagnostic.SA1309.severity = none
 # CA1851: Possible multiple enumerations of 'IEnumerable' collection.
 dotnet_diagnostic.CA1851.severity = warning
 
-
+# CA1852: Seal internal types
+dotnet_diagnostic.CA1852.severity = warning
 
 # naming rules:
 dotnet_naming_rule.private_members_with_underscore.symbols  = private_fields

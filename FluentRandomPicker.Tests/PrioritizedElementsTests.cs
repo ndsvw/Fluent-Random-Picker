@@ -7,7 +7,7 @@ namespace FluentRandomPicker.Tests
 	[TestClass]
 	public class PrioritizedElementsTests
 	{
-		private class PrioritizedElement<T>
+		private sealed class PrioritizedElement<T>
         {
 			public T Value { get; set; }
 

@@ -30,7 +30,7 @@ namespace FluentRandomPicker.Random
             var bytesAsInt32 = BitConverter.ToInt32(_tmpBytes, 4);
 
             // because Math.Abs(Int32.MinValue) throws exception.
-            if(bytesAsInt32 == Int32.MinValue)
+            if (bytesAsInt32 == int.MinValue)
                 return NextInt();
 
             return Math.Abs(bytesAsInt32);

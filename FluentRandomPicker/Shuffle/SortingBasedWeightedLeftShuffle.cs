@@ -12,7 +12,7 @@ namespace FluentRandomPicker.Shuffle
     /// This is an O(n*log(n)) implementation.
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    internal class SortingBasedWeightedLeftShuffle<T> : IShuffle<ValuePriorityPair<T>>
+    internal sealed class SortingBasedWeightedLeftShuffle<T> : IShuffle<ValuePriorityPair<T>>
     {
         private readonly IRandomNumberGenerator _rng;
 

@@ -11,7 +11,7 @@ namespace FluentRandomPicker.Picker
     /// A default implementation of a picker.
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    internal class DefaultPicker<T> : IPicker<IEnumerable<T>>
+    internal sealed class DefaultPicker<T> : IPicker<IEnumerable<T>>
     {
         private readonly int _numberOfElements;
         private readonly IRandomNumberGenerator _rng;
