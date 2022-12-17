@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using FluentRandomPicker.ExtensionMethods;
 using FluentRandomPicker.Random;
@@ -31,9 +32,9 @@ namespace FluentRandomPicker.Shuffle
         /// Shuffles the elements and respects the probabilities in O(n*log(n)) time.
         /// </summary>
         /// <param name="elements">The elements (value and probability) to shuffle.</param>
-        public void Shuffle(IList<ValuePriorityPair<T>> elements)
+        public void Shuffle(ValuePriorityPair<T>[] elements)
         {
-            Shuffle(elements, elements.Count);
+            Shuffle(elements, elements.Length);
         }
 
         /// <summary>
@@ -41,26 +42,32 @@ namespace FluentRandomPicker.Shuffle
         /// </summary>
         /// <param name="elements">The elements (value and probability) to shuffle.</param>
         /// <param name="firstN">Limits how many of the first elements to shuffle.</param>
-        public void Shuffle(IList<ValuePriorityPair<T>> elements, int firstN)
+        public void Shuffle(ValuePriorityPair<T>[] elements, int firstN)
         {
-            var n = elements.Count;
+            var n = elements.Length;
 
             var ranks = Enumerable.Range(0, n)
                             .Select(i => (Index: i, Rank: CalculateRank(elements[i].Priority)))
                             .ToArray();
 
-            Array.Sort(ranks, _indexRankTupleComparer);
-
-            ImproveAccuracyIfNecessary(ranks, elements);
-
-            var newElements = ranks.Take(firstN).Select(x => elements[x.Index]).ToArray();
-            elements.Clear();
-            elements.AddRange(newElements); // todo improvable in situ?
+            Array.Sort(ranks, elements, 0, elements.Length, _indexRankTupleComparer);
         }
 
-        private double CalculateRank(int priority)
+        /// <summary>
+        /// Calculates a rank based on a priority and a generated random number.
+        /// </summary>
+        /// <param name="priority">The priority.</param>
+        /// <param name="baseValue">The minimum value of the rank.</param>
+        /// <returns>A ranks based on the priority.</returns>
+        internal double CalculateRank(int priority, int baseValue = 0)
         {
-            return Math.Pow(GenerateRandomDoubleBetween0ExclusiveAnd1Exclusive(), 1.0 / priority);
+            var rank = Math.Pow(GenerateRandomDoubleBetween0ExclusiveAnd1Exclusive(), 1.0 / priority);
+
+            // comparison without delta is intended
+            if (rank == 1)
+                return CalculateRank(priority / 2, baseValue + 1);
+
+            return baseValue + rank;
         }
 
         private double GenerateRandomDoubleBetween0ExclusiveAnd1Exclusive()
@@ -73,38 +80,6 @@ namespace FluentRandomPicker.Shuffle
 
             // comparison without delta is intended
             return randomDouble != 0 ? randomDouble : GenerateRandomDoubleBetween0ExclusiveAnd1Exclusive();
-        }
-
-        /// <summary>
-        /// Improves the accuracy of the ranks if necessary.
-        /// In rarer cases, multiple ranks can be exactly 1 although the priorities differ a lot:
-        /// https://github.com/ndsvw/Fluent-Random-Picker/issues/14#issuecomment-1264280921
-        /// This solves this problem.
-        /// </summary>
-        /// <param name="sortedRanks">The already generated ranks (sorted descending).</param>
-        /// <param name="elementsList">The elements.</param>
-        /// <param name="level">The accuracy level. The longer there are multiple ranks being exactly 1, the higher the level.</param>
-        internal void ImproveAccuracyIfNecessary((int Index, double Rank)[] sortedRanks, IList<ValuePriorityPair<T>> elementsList, int level = 2)
-        {
-            if (sortedRanks.Length == 0)
-                return;
-
-            int numberOf1Ranks = 0;
-
-            // comparison without delta is intended
-            while (sortedRanks[numberOf1Ranks].Rank == 1)
-            {
-                var index = sortedRanks[numberOf1Ranks].Index;
-                var newRank = level + CalculateRank(elementsList[index].Priority / level);
-                sortedRanks[numberOf1Ranks] = (index, newRank);
-                numberOf1Ranks++;
-            }
-
-            if (numberOf1Ranks >= 2)
-            {
-                Array.Sort(sortedRanks, 0, numberOf1Ranks, _indexRankTupleComparer);
-                ImproveAccuracyIfNecessary(sortedRanks, elementsList, level * 2);
-            }
         }
 
         private sealed class IndexRankTupleComparer : IComparer<(int Index, double Rank)>

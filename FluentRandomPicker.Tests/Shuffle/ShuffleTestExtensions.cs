@@ -19,7 +19,7 @@ namespace FluentRandomPicker.Tests.Shuffle
                 new ValuePriorityPair<int>(3, 3),
                 new ValuePriorityPair<int>(4, 4),
                 new ValuePriorityPair<int>(5, 5),
-            }.ToList(); // todo improvable
+            }.ToArray(); // todo improvable
 
             var value1Set = new HashSet<int>();
             var value2Set = new HashSet<int>();
@@ -37,11 +37,11 @@ namespace FluentRandomPicker.Tests.Shuffle
                 value5Set.Add(elements[4].Value);
             }
 
-            Assert.AreEqual(elements.Count, value1Set.Count);
-            Assert.AreEqual(elements.Count, value2Set.Count);
-            Assert.AreEqual(elements.Count, value3Set.Count);
-            Assert.AreEqual(elements.Count, value4Set.Count);
-            Assert.AreEqual(elements.Count, value5Set.Count);
+            Assert.AreEqual(elements.Length, value1Set.Count);
+            Assert.AreEqual(elements.Length, value2Set.Count);
+            Assert.AreEqual(elements.Length, value3Set.Count);
+            Assert.AreEqual(elements.Length, value4Set.Count);
+            Assert.AreEqual(elements.Length, value5Set.Count);
         }
 
         internal static void AllNValuesCanChangePositions(this Assert _, IShuffle<ValuePriorityPair<int>> shuffle)
@@ -53,7 +53,7 @@ namespace FluentRandomPicker.Tests.Shuffle
                 new ValuePriorityPair<int>(3, 3),
                 new ValuePriorityPair<int>(4, 4),
                 new ValuePriorityPair<int>(5, 5),
-            }.ToList(); // todo improvable
+            }.ToArray(); // todo improvable
 
             var value1Set = new HashSet<int>();
             var value2Set = new HashSet<int>();
@@ -67,9 +67,9 @@ namespace FluentRandomPicker.Tests.Shuffle
                 value3Set.Add(elements[2].Value);
             }
 
-            Assert.AreEqual(elements.Count, value1Set.Count);
-            Assert.AreEqual(elements.Count, value2Set.Count);
-            Assert.AreEqual(elements.Count, value3Set.Count);
+            Assert.AreEqual(elements.Length, value1Set.Count);
+            Assert.AreEqual(elements.Length, value2Set.Count);
+            Assert.AreEqual(elements.Length, value3Set.Count);
         }
     }
 }

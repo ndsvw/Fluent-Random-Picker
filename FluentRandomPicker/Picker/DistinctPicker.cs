@@ -61,7 +61,7 @@ namespace FluentRandomPicker.Picker
 
         private IEnumerable<T> PickDistinctElementsWithDifferentPriorities()
         {
-            var pairs = _pairs.ToList(); // todo improvable
+            var pairs = _pairs.ToArray();
             var shuffle = new SortingBasedWeightedLeftShuffle<T>(_rng);
             shuffle.Shuffle(pairs, _numberOfElements);
             return pairs.Take(_numberOfElements).Select(x => x.Value).ToList();
@@ -69,7 +69,7 @@ namespace FluentRandomPicker.Picker
 
         private IEnumerable<T> PickDistinctElementsWithEqualPriorities()
         {
-            var values = _pairs.Select(p => p.Value).ToList(); // todo improvable
+            var values = _pairs.Select(p => p.Value).ToArray();
             var shuffle = new FisherYatesShuffle<T>(_rng);
             shuffle.Shuffle(values, _numberOfElements);
             return values.Take(_numberOfElements).ToList();

@@ -133,23 +133,25 @@ namespace FluentRandomPicker.Tests.Picking
                     counterCBA++;
             }
 
-            Assert.IsTrue(counterABC >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterABC <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+            var distribution = $"abc={counterABC}, acb={counterACB}, bac={counterBAC}, bca={counterBCA}, cab={counterCAB}, cba={counterCBA}";
 
-            Assert.IsTrue(counterACB >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterACB <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterABC >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterABC <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterBAC >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterBAC <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterACB >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterACB <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterBCA >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterBCA <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterBAC >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterBAC <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterCAB >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterCAB <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterBCA >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterBCA <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterCBA >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterCBA <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterCAB >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterCAB <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation), distribution);
+
+            Assert.IsTrue(counterCBA >= NumberOfTries * (1 / 6d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterCBA <= NumberOfTries * (1 / 6d) * (1 + AcceptedDeviation), distribution);
         }
 
 
@@ -189,23 +191,25 @@ namespace FluentRandomPicker.Tests.Picking
                     counterCBA++;
             }
 
-            Assert.IsTrue(counterABC >= NumberOfTries * (0.7 * 2 / 3d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterABC <= NumberOfTries * (0.7 * 2 / 3d) * (1 + AcceptedDeviation));
+            var distribution = $"abc={counterABC}, acb={counterACB}, bac={counterBAC}, bca={counterBCA}, cab={counterCAB}, cba={counterCBA}";
 
-            Assert.IsTrue(counterACB >= NumberOfTries * (0.7 * 1 / 3d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterACB <= NumberOfTries * (0.7 * 1 / 3d) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterABC >= NumberOfTries * (0.7 * 2 / 3d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterABC <= NumberOfTries * (0.7 * 2 / 3d) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterBAC >= NumberOfTries * (0.2 * 7 / 8d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterBAC <= NumberOfTries * (0.2 * 7 / 8d) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterACB >= NumberOfTries * (0.7 * 1 / 3d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterACB <= NumberOfTries * (0.7 * 1 / 3d) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterBCA >= NumberOfTries * (0.2 * 1 / 8d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterBCA <= NumberOfTries * (0.2 * 1 / 8d) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterBAC >= NumberOfTries * (0.2 * 7 / 8d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterBAC <= NumberOfTries * (0.2 * 7 / 8d) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterCAB >= NumberOfTries * (0.1 * 7 / 9d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterCAB <= NumberOfTries * (0.1 * 7 / 9d) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterBCA >= NumberOfTries * (0.2 * 1 / 8d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterBCA <= NumberOfTries * (0.2 * 1 / 8d) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterCBA >= NumberOfTries * (0.1 * 2 / 9d) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterCBA <= NumberOfTries * (0.1 * 2 / 9d) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterCAB >= NumberOfTries * (0.1 * 7 / 9d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterCAB <= NumberOfTries * (0.1 * 7 / 9d) * (1 + AcceptedDeviation), distribution);
+
+            Assert.IsTrue(counterCBA >= NumberOfTries * (0.1 * 2 / 9d) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterCBA <= NumberOfTries * (0.1 * 2 / 9d) * (1 + AcceptedDeviation), distribution);
         }
 
         [TestMethod]
@@ -257,23 +261,25 @@ namespace FluentRandomPicker.Tests.Picking
             var chancePickASecondThenB = 2_000_000_000 / ((double)2_000_000_000 + 1_999_000_000);
             var chancePickBSecondThenA = 1_999_000_000 / ((double)2_000_000_000 + 1_999_000_000);
 
-            Assert.IsTrue(counterABC >= NumberOfTries * (chancePickAFirst * chancePickBSecondThenC) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterABC <= NumberOfTries * (chancePickAFirst * chancePickBSecondThenC) * (1 + AcceptedDeviation));
+            var distribution = $"abc={counterABC}, acb={counterACB}, bac={counterBAC}, bca={counterBCA}, cab={counterCAB}, cba={counterCBA}";
 
-            Assert.IsTrue(counterACB >= NumberOfTries * (chancePickAFirst * chancePickCSecondThenB) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterACB <= NumberOfTries * (chancePickAFirst * chancePickCSecondThenB) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterABC >= NumberOfTries * (chancePickAFirst * chancePickBSecondThenC) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterABC <= NumberOfTries * (chancePickAFirst * chancePickBSecondThenC) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterBAC >= NumberOfTries * (chancePickBFirst * chancePickASecondThenC) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterBAC <= NumberOfTries * (chancePickBFirst * chancePickASecondThenC) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterACB >= NumberOfTries * (chancePickAFirst * chancePickCSecondThenB) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterACB <= NumberOfTries * (chancePickAFirst * chancePickCSecondThenB) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterBCA >= NumberOfTries * (chancePickBFirst * chancePickCSecondThenA) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterBCA <= NumberOfTries * (chancePickBFirst * chancePickCSecondThenA) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterBAC >= NumberOfTries * (chancePickBFirst * chancePickASecondThenC) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterBAC <= NumberOfTries * (chancePickBFirst * chancePickASecondThenC) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterCAB >= NumberOfTries * (chancePickCFirst * chancePickASecondThenB) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterCAB <= NumberOfTries * (chancePickCFirst * chancePickASecondThenB) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterBCA >= NumberOfTries * (chancePickBFirst * chancePickCSecondThenA) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterBCA <= NumberOfTries * (chancePickBFirst * chancePickCSecondThenA) * (1 + AcceptedDeviation), distribution);
 
-            Assert.IsTrue(counterCBA >= NumberOfTries * (chancePickCFirst * chancePickBSecondThenA) * (1 - AcceptedDeviation));
-            Assert.IsTrue(counterCBA <= NumberOfTries * (chancePickCFirst * chancePickBSecondThenA) * (1 + AcceptedDeviation));
+            Assert.IsTrue(counterCAB >= NumberOfTries * (chancePickCFirst * chancePickASecondThenB) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterCAB <= NumberOfTries * (chancePickCFirst * chancePickASecondThenB) * (1 + AcceptedDeviation), distribution);
+
+            Assert.IsTrue(counterCBA >= NumberOfTries * (chancePickCFirst * chancePickBSecondThenA) * (1 - AcceptedDeviation), distribution);
+            Assert.IsTrue(counterCBA <= NumberOfTries * (chancePickCFirst * chancePickBSecondThenA) * (1 + AcceptedDeviation), distribution);
         }
     }
 }

@@ -12,13 +12,13 @@ namespace FluentRandomPicker.Shuffle
         /// Shuffles the elements.
         /// </summary>
         /// <param name="elements">The elements to shuffle.</param>
-        void Shuffle(IList<T> elements);
+        void Shuffle(T[] elements);
 
         /// <summary>
         /// Shuffles the first n elements.
         /// </summary>
         /// <param name="elements">The elements to shuffle.</param>
         /// <param name="firstN">Specifies that only the first n elements will be shuffled.</param>
-        void Shuffle(IList<T> elements, int firstN);
+        void Shuffle(T[] elements, int firstN);
     }
 }

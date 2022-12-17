@@ -23,18 +23,18 @@ namespace FluentRandomPicker.Shuffle
         }
 
         /// <inheritdoc/>
-        public void Shuffle(IList<T> elements)
+        public void Shuffle(T[] elements)
         {
-            Shuffle(elements, elements.Count);
+            Shuffle(elements, elements.Length);
         }
 
         /// <inheritdoc/>
-        public void Shuffle(IList<T> elements, int firstN)
+        public void Shuffle(T[] elements, int firstN)
         {
-            var lastIndex = Math.Min(firstN, elements.Count) - 1;
+            var lastIndex = Math.Min(firstN, elements.Length) - 1;
             for (var i = 0; i <= lastIndex; i++)
             {
-                var k = _rng.NextInt(i, elements.Count);
+                var k = _rng.NextInt(i, elements.Length);
                 (elements[i], elements[k]) = (elements[k], elements[i]);
             }
         }

@@ -31,9 +31,9 @@ namespace FluentRandomPicker.Shuffle
         /// Shuffles the elements and respects the probabilities in O(n) time.
         /// </summary>
         /// <param name="elements">The elements (value and probability) to shuffle.</param>
-        public void Shuffle(IList<ValuePriorityPair<T>> elements)
+        public void Shuffle(ValuePriorityPair<T>[] elements)
         {
-            Shuffle(elements, elements.Count);
+            Shuffle(elements, elements.Length);
         }
 
         /// <summary>
@@ -41,11 +41,11 @@ namespace FluentRandomPicker.Shuffle
         /// </summary>
         /// <param name="elements">The elements (value and probability) to shuffle.</param>
         /// <param name="firstN">Limits how many of the first elements to shuffle.</param>
-        public void Shuffle(IList<ValuePriorityPair<T>> elements, int firstN)
+        public void Shuffle(ValuePriorityPair<T>[] elements, int firstN)
         {
             var max = elements.Max(v => v.Priority);
 
-            var lastIndex = Math.Min(firstN, elements.Count) - 1;
+            var lastIndex = Math.Min(firstN, elements.Length) - 1;
             for (int i = 0; i <= lastIndex; i++)
             {
                 int randomIndex = RouletteWheelSelection(elements, i, max);
