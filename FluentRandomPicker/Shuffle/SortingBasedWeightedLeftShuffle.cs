@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using FluentRandomPicker.ExtensionMethods;
 using FluentRandomPicker.Random;
 using FluentRandomPicker.ValuePriorities;
 
@@ -17,7 +16,7 @@ namespace FluentRandomPicker.Shuffle
     {
         private readonly IRandomNumberGenerator _rng;
 
-        private static readonly IndexRankTupleComparer _indexRankTupleComparer = new();
+        private static readonly RankComparer _rankComparer = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SortingBasedWeightedLeftShuffle{T}"/> class.
@@ -47,10 +46,10 @@ namespace FluentRandomPicker.Shuffle
             var n = elements.Length;
 
             var ranks = Enumerable.Range(0, n)
-                            .Select(i => (Index: i, Rank: CalculateRank(elements[i].Priority)))
+                            .Select(i => CalculateRank(elements[i].Priority))
                             .ToArray();
 
-            Array.Sort(ranks, elements, 0, elements.Length, _indexRankTupleComparer);
+            Array.Sort(ranks, elements, 0, elements.Length, _rankComparer);
         }
 
         /// <summary>
@@ -82,11 +81,11 @@ namespace FluentRandomPicker.Shuffle
             return randomDouble != 0 ? randomDouble : GenerateRandomDoubleBetween0ExclusiveAnd1Exclusive();
         }
 
-        private sealed class IndexRankTupleComparer : IComparer<(int Index, double Rank)>
+        private sealed class RankComparer : IComparer<double>
         {
-            public int Compare((int Index, double Rank) value1, (int Index, double Rank) value2)
+            public int Compare(double value1, double value2)
             {
-                return -value1.Rank.CompareTo(value2.Rank);
+                return -value1.CompareTo(value2);
             }
         }
     }
