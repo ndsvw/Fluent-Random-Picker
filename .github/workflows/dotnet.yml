@@ -25,5 +25,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
+    - name: Benchmark
+      run: dotnet run -c Release --project FluentRandomPicker.Benchmarks/FluentRandomPicker.Benchmarks.csproj
     - name: Codecov
       uses: codecov/codecov-action@v3
