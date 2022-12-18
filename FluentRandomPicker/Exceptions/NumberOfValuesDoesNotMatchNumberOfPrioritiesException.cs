@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace FluentRandomPicker.Exceptions
@@ -7,6 +8,7 @@ namespace FluentRandomPicker.Exceptions
     /// An exception indicating that the number of values does not match the number of provided priorities.
     /// </summary>
     [Serializable]
+    [ExcludeFromCodeCoverage]
     public class NumberOfValuesDoesNotMatchNumberOfPrioritiesException : Exception
     {
         /// <summary>

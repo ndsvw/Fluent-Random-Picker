@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace FluentRandomPicker.Exceptions
@@ -7,6 +8,7 @@ namespace FluentRandomPicker.Exceptions
     /// An exception indicating that picking a negative amount of values is not possible.
     /// </summary>
     [Serializable]
+    [ExcludeFromCodeCoverage]
     public class PickingNegativeNumberOfValuesNotPossibleException : Exception
     {
         /// <summary>
