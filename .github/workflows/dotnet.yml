@@ -24,6 +24,6 @@ jobs:
     - name: Build (Release)
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal /p:ExcludeByFile="**/Exceptions/*Exception.cs" --collect:"XPlat Code Coverage"
+      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
     - name: Codecov
       uses: codecov/codecov-action@v3
