@@ -1,6 +1,10 @@
 is_global = true
 
 
+# IDE0160: Convert to file-scoped namespace
+csharp_style_namespace_declarations = file_scoped:warning
+
+
 # SA1200: Using directives should be placed correctly
 dotnet_diagnostic.SA1200.severity = none
 

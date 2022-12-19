@@ -2,27 +2,26 @@
 using FluentRandomPicker.Shuffle;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FluentRandomPicker.Tests.Shuffle
+namespace FluentRandomPicker.Tests.Shuffle;
+
+[TestClass]
+public class StochasticAcceptanceBasedWeightedLeftShuffleTests
 {
-    [TestClass]
-    public class StochasticAcceptanceBasedWeightedLeftShuffleTests
+    [TestMethod]
+    public void Shuffle_WithoutNParameter_AllValuesCanChangePosition()
     {
-        [TestMethod]
-        public void Shuffle_WithoutNParameter_AllValuesCanChangePosition()
-        {
-            var rng = new DefaultRandomNumberGenerator();
-            var shuffle = new StochasticAcceptanceBasedWeightedLeftShuffle<int>(rng);
+        var rng = new DefaultRandomNumberGenerator();
+        var shuffle = new StochasticAcceptanceBasedWeightedLeftShuffle<int>(rng);
 
-            Assert.That.AllValuesCanChangePositions(shuffle);
-        }
+        Assert.That.AllValuesCanChangePositions(shuffle);
+    }
 
-        [TestMethod]
-        public void Shuffle_WithNParameter_AllNValuesCanChangePosition()
-        {
-            var rng = new DefaultRandomNumberGenerator();
-            var shuffle = new StochasticAcceptanceBasedWeightedLeftShuffle<int>(rng);
+    [TestMethod]
+    public void Shuffle_WithNParameter_AllNValuesCanChangePosition()
+    {
+        var rng = new DefaultRandomNumberGenerator();
+        var shuffle = new StochasticAcceptanceBasedWeightedLeftShuffle<int>(rng);
 
-            Assert.That.AllNValuesCanChangePositions(shuffle);
-        }
+        Assert.That.AllNValuesCanChangePositions(shuffle);
     }
 }

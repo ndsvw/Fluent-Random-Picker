@@ -8,16 +8,15 @@ using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Running;
 using FluentRandomPicker;
 
-namespace FluentRandomPicker.Benchmarks
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var summary0 = BenchmarkRunner.Run<CompareAllPossibilitiesBenchmark>();
+namespace FluentRandomPicker.Benchmarks;
 
-            var summary1 = BenchmarkRunner.Run<PickDistinctWithPrioritiesBenchmark>();
-            var summary2 = BenchmarkRunner.Run<PickDistinctWithoutPrioritiesBenchmark>();
-        }
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var summary0 = BenchmarkRunner.Run<CompareAllPossibilitiesBenchmark>();
+
+        var summary1 = BenchmarkRunner.Run<PickDistinctWithPrioritiesBenchmark>();
+        var summary2 = BenchmarkRunner.Run<PickDistinctWithoutPrioritiesBenchmark>();
     }
 }
