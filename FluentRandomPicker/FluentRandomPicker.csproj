@@ -11,7 +11,7 @@
     <Description>Fluent Random Picker is a nice, performant, fluent way to pick random values. Probabilities can be specified, values can be weighted.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SynchReleaseVersion>true</SynchReleaseVersion>
-    <ReleaseVersion>3.3.0</ReleaseVersion> <!-- change version in solution options! -->
+    <ReleaseVersion>3.4.0</ReleaseVersion> <!-- change version in solution options! -->
     <LibraryVersion>$(ReleaseVersion)</LibraryVersion>
     <VersionPrefix>$(ReleaseVersion)</VersionPrefix>
     <AssemblyVersion>$(ReleaseVersion)</AssemblyVersion>
@@ -46,7 +46,18 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
-    <PackageReleaseNotes>v 3.3.0
+    <!-- How to release: -->
+    <!-- Increment versions in csproj and sln files -->
+    <!-- Prepend changes to PackageReleaseNotes -->
+    <!-- git tag -a v3.4.0 <commithash> -m "3.4.0" -->
+    <!-- git push origin v3.4.0 -->
+    <!-- Run the "Update" workflow on GitHub -->
+    <PackageReleaseNotes>v 3.4.0
+- Added .Net7 as compatibility to README file.
+- Fixed rare cases where weights/percentages did not matter (#15)
+- Fixed rare, but possible OverflowException (#16)
+- Improved performance
+v 3.3.0
 - Added 'PrioritizedElements' (a way to pick from an arbitrary collection via selectors).
 v 3.2.0
 - Cleaned up targets (.Net standard) supports various targets.
