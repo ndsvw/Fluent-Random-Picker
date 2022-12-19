@@ -30,7 +30,6 @@ Probabilities can be specified, values can be weighted.
         - [Specifying a seed](#specifying-a-seed)
         - [Using a different random number generator](#using-a-different-random-number-generator)
     - [Migration to version 3](#migration-to-version-3)
-    - [Migration to version 2](#migration-to-version-2)
 
 <!-- /TOC -->
 
@@ -256,21 +255,3 @@ using FluentRandomPicker;
 ```
 
 Some method parameter identifiers do also have  changed to match [the coding conventions of Microsoft](https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions).
-
-
-## Migration to version 2
-
-The params array is not supported anymore for the Values method. Please replace 
-```c#
-Out.Of().Values(1, 2, 3)...
-```
-with
-```c#
-Out.Of().Value(1).AndValue(2).AndValue(3)...
-```
-or
-```c#
-Out.Of().Values(new List<int>{ 1, 2, 3 })...
-```
-
-Reason: https://github.com/ndsvw/Fluent-Random-Picker/commit/da9af06bda215d0983e428072febed8f33577041
