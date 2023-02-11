@@ -79,24 +79,6 @@ v 2.1.0
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Interfaces\**" />
-    <EmbeddedResource Remove="Interfaces\**" />
-    <None Remove="Interfaces\**" />
-    <None Remove="FluentInterfaces\Selectors\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Picker\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Shuffle\" />
-    <Folder Include="Random\" />
-    <Folder Include="FluentInterfaces\Selectors\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="ValuePriorities\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="../README.md" Pack="true" PackagePath="\" />
     <None Include="icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
@@ -123,7 +105,6 @@ v 2.1.0
   <ItemGroup Label="Source link - dev only asset. It adds source link (https://github.com/dotnet/sourcelink) capabilities to the nuget package.">
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
-
 
   <ItemGroup>
     <InternalsVisibleTo Include="FluentRandomPicker.Tests" />
