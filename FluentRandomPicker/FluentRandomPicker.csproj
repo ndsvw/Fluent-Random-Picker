@@ -48,34 +48,11 @@
 
     <!-- How to release: -->
     <!-- Increment versions in csproj and sln files -->
-    <!-- Prepend changes to PackageReleaseNotes -->
+    <!-- Prepend changes to RELEASENODES.md -->
     <!-- git tag -a v3.4.0 <commithash> -m "3.4.0" -->
     <!-- git push origin v3.4.0 -->
-    <!-- Run the "Update" workflow on GitHub -->
-    <PackageReleaseNotes>v 3.4.0
-- Added .Net7 as compatibility to README file.
-- Fixed rare cases where weights/percentages did not matter (#15)
-- Fixed rare, but possible OverflowException (#16)
-- Improved performance
-v 3.3.0
-- Added 'PrioritizedElements' (a way to pick from an arbitrary collection via selectors).
-v 3.2.0
-- Cleaned up targets (.Net standard) supports various targets.
-- Improved implementation for when picking multiple distinct values.
-v 3.1.0
-- Implemented class SecureRandomNumberGenerator (secure implementation of IRandomNumberGenerator).
-v 3.0.2
-- Added .Net6 as compatibility to README file.
-v 3.0.1
-- Prevented arithmetic overflows when percentage sums / weights sums are too high.
-v 3.0.0
-- Changed namespace from Fluent_Random_Picker to FluentRandomPicker
-- Allowed omitting percentages and weights. E.g. Out.Of().Value('a').WithWeight(2).AndValue('b').PickOne();
-- Fixed bug: The shuffle algorithm was not working correctly.
-- Improved documentation
-- Renamed multiple interfaces, method parameters, ...
-v 2.1.0
-- Improved package generation process, used SourceLink, fixed version differences of dll, package, ...</PackageReleaseNotes>
+    <!-- Run the "Publish" workflow on GitHub -->
+    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../RELEASENOTES.md"))</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
