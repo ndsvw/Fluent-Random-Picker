@@ -10,6 +10,8 @@ Probabilities can be specified, values can be weighted.
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ndsvw_Fluent-Random-Picker&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ndsvw_Fluent-Random-Picker)
 [![Code coverage](https://img.shields.io/codecov/c/github/ndsvw/Fluent-Random-Picker)](https://app.codecov.io/gh/ndsvw/Fluent-Random-Picker)
 [![Nuget version](https://img.shields.io/nuget/v/FluentRandomPicker)](https://www.nuget.org/packages/FluentRandomPicker)
+[![Release notes](https://img.shields.io/badge/release%20notes-%F0%9F%97%92-green
+)](RELEASENOTES.md)
 [![NuGet downloads](https://img.shields.io/nuget/dt/FluentRandomPicker.svg)](https://www.nuget.org/packages/FluentRandomPicker)
 
 <!-- TOC -->
