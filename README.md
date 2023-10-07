@@ -39,6 +39,7 @@ Probabilities can be specified, values can be weighted.
 
 Fluent Random Picker uses .Net Standard 2.0. That means, it can be used in projects with the following target frameworks:
 
+- ✔️ .Net 8
 - ✔️ .Net 7
 - ✔️ .Net 6
 - ✔️ .Net 5
