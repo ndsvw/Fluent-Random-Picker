@@ -2,8 +2,7 @@
 
 ![Fluent Random Picker](https://raw.githubusercontent.com/ndsvw/Fluent-Random-Picker/main/FluentRandomPicker/icon48x48.png "Fluent Random Picker")
 
-Fluent Random Picker is a nice, performant fluent way to pick random values.
-Probabilities can be specified, values can be weighted.
+Fluent Random Picker is a user-friendly, but also performant .NET library that simplifies random value selection / picking. It allows you to specify probabilities and weights for each value, making it easy to handle complex randomization tasks.
 
 [![License MIT](https://img.shields.io/github/license/ndsvw/Fluent-Random-Picker)](https://github.com/ndsvw/Fluent-Random-Picker/blob/main/LICENSE)
 [![Build status](https://github.com/ndsvw/Fluent-Random-Picker/actions/workflows/dotnet.yml/badge.svg)](https://github.com/ndsvw/Fluent-Random-Picker)
@@ -37,7 +36,7 @@ Probabilities can be specified, values can be weighted.
 
 ## Compatibility
 
-Fluent Random Picker uses .Net Standard 2.0. That means, it can be used in projects with the following target frameworks:
+Fluent Random Picker targets .Net Standard 2.0 and is therefore compatible with the following target frameworks:
 
 - ✔️ .Net 8
 - ✔️ .Net 7
@@ -64,11 +63,7 @@ Add the using directive:
 using FluentRandomPicker;
 ```
 
-Begin with Out.Of() (see the examples).
-```c#
-Out.Of()...
-```
-
+To get started, use the `Out.Of()` syntax as shown in the examples below:
 
 ## Examples
 
@@ -212,7 +207,7 @@ var secureRng = new FluentRandomPicker.Random.SecureRandomNumberGenerator();
 var value = Out.Of(secureRng).Values(new[] { 1, 2, 3, 4 }).PickOne();
 ```
 
-Alternative: Using own implementation:
+Alternative: Using a custom implementation:
 
 ```c#
 public class MyOwnRandomNumberGenerator : IRandomNumberGenerator
@@ -257,4 +252,4 @@ with
 using FluentRandomPicker;
 ```
 
-Some method parameter identifiers do also have  changed to match [the coding conventions of Microsoft](https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions).
+Some method parameter identifiers do also have changed to match [the coding conventions of Microsoft](https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions).
