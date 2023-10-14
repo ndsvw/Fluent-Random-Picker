@@ -28,8 +28,6 @@ Fluent Random Picker is a user-friendly, but also performant .NET library that s
         - [Omitting percentages or weights](#omitting-percentages-or-weights)
         - [Specifying the returned type explicitly](#specifying-the-returned-type-explicitly)
     - [Advanced](#advanced)
-        - [Specifying a seed](#specifying-a-seed)
-        - [Using a different random number generator](#using-a-different-random-number-generator)
     - [Migration to version 3](#migration-to-version-3)
 
 <!-- /TOC -->
@@ -188,56 +186,11 @@ var result = operation(10);
 
 ## Advanced
 
-### Specifying a seed
-```c#
-var seed = 1234567;
+Please see [README-Advanced.md](README-Advanced.md) for more advanced topics like:
 
-var value1 = Out.Of(seed).Values(new[] { 1, 2, 3, 4 }).PickOne();
-var value2 = Out.Of(seed).Values(new[] { 1, 2, 3, 4 }).PickOne();
-// value1 and value2 are always equal.
-```
-
-### Using a different random number generator
-The default random number generator uses System.Random.
-
-Alternative: Using a cryptographically secure implementation that uses System.Security.Cryptography.RandomNumberGenerator:
-
-```c#
-var secureRng = new FluentRandomPicker.Random.SecureRandomNumberGenerator();
-var value = Out.Of(secureRng).Values(new[] { 1, 2, 3, 4 }).PickOne();
-```
-
-Alternative: Using a custom implementation:
-
-```c#
-public class MyOwnRandomNumberGenerator : IRandomNumberGenerator
-{
-    public double NextDouble()
-    {
-        // ...
-    }
-
-    public int NextInt()
-    {
-        // ...
-    }
-
-    public int NextInt(int n)
-    {
-        // ...
-    }
-
-    public int NextInt(int min, int max)
-    {
-        // ...
-    }
-}
-
-var myRng = new MyOwnRandomNumberGenerator();
-var value = Out.Of(myRng).Values(new[] { 1, 2, 3, 4 }).PickOne();
-// value gets picked via a specified random number generator.
-```
-
+- [specifying a seed](README-Advanced.md#specifying-a-seed)
+- [using a secure RNG](README-Advanced.md#using-a-secure-rng)
+- [using a custom RNG](README-Advanced.md#using-a-custom-rng)
 
 ## Migration to version 3
 
