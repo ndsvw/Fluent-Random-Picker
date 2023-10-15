@@ -36,21 +36,10 @@ Fluent Random Picker is a user-friendly, but also performant .NET library that s
 
 Fluent Random Picker targets .Net Standard 2.0 and is therefore compatible with the following target frameworks:
 
-- ✔️ .Net 8
-- ✔️ .Net 7
-- ✔️ .Net 6
-- ✔️ .Net 5
-- ✔️ .Net Core 3.X
-- ✔️ .Net Core 2.X
-- ❌ .Net Core 1.X
-- 
-- ✔️ .Net Standard 2.1
-- ✔️ .Net Standard 2.0
-- ❌ .Net Standard 1.X
--
-- ✔️ .Net Framework 4.8
-- ✔️ .Net Framework 4.7.2
-- ❌ .Net Framework 4.6.X
+- ✔️ .Net 5, 6, 7, 8
+- ✔️ .Net Core 2.X, 3.X
+- ✔️ .Net Standard 2.0, 2.1
+- ✔️ .Net Framework 4.7.2, 4.8
 
 ## Getting started
 
