@@ -172,11 +172,13 @@ var result = operation(10);
 
 ## Advanced
 
-Please see [README-Advanced.md](README-Advanced.md) for more advanced topics like:
+[//]: # (comment: links are absolute, so that they work on nuget.org, too)
 
-- [specifying a seed](README-Advanced.md#specifying-a-seed)
-- [using a secure RNG](README-Advanced.md#using-a-secure-rng)
-- [using a custom RNG](README-Advanced.md#using-a-custom-rng)
+Please see [README-Advanced.md](https://github.com/ndsvw/Fluent-Random-Picker/blob/main/README-Advanced.md) for more advanced topics like:
+
+- [specifying a seed](https://github.com/ndsvw/Fluent-Random-Picker/blob/main/README-Advanced.md#specifying-a-seed)
+- [using a secure RNG](https://github.com/ndsvw/Fluent-Random-Picker/blob/main/README-Advanced.md#using-a-secure-rng)
+- [using a custom RNG](https://github.com/ndsvw/Fluent-Random-Picker/blob/main/README-Advanced.md#using-a-custom-rng)
 
 ## Migration to version 3
 
