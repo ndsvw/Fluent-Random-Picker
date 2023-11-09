@@ -1,3 +1,7 @@
+- v 3.5.0
+    - Added .Net8 as compatibility to README file.
+    - Improved structure of README
+    - Fixed exception when calling Pick(n) when there were less than n values. (#48)
 - v 3.4.0
     - Added .Net7 as compatibility to README file.
     - Fixed rare cases where weights/percentages did not matter (#15)
