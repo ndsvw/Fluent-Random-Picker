@@ -13,7 +13,7 @@ namespace FluentRandomPicker.Picker;
 /// <typeparam name="T">The type of the values.</typeparam>
 internal sealed class DistinctPicker<T> : IPicker<IEnumerable<T>>
 {
-    private readonly int _numberOfElements;
+    private readonly int _numberOfElementsToPick;
     private readonly IRandomNumberGenerator _rng;
     private readonly ValuePriorityPairs<T> _pairs;
 
@@ -32,24 +32,24 @@ internal sealed class DistinctPicker<T> : IPicker<IEnumerable<T>>
     /// </summary>
     /// <param name="rng">The random number generator.</param>
     /// <param name="pairs">The value-priority paris to pick from.</param>
-    /// <param name="numberOfElements">The number of elements to pick.</param>
-    public DistinctPicker(IRandomNumberGenerator rng, ValuePriorityPairs<T> pairs, int numberOfElements)
+    /// <param name="numberOfElementsToPick">The number of elements to pick.</param>
+    public DistinctPicker(IRandomNumberGenerator rng, ValuePriorityPairs<T> pairs, int numberOfElementsToPick)
     {
         _rng = rng;
-        _numberOfElements = numberOfElements;
+        _numberOfElementsToPick = numberOfElementsToPick;
         _pairs = pairs;
     }
 
     /// <inheritdoc/>
     public PickResult<IEnumerable<T>> Pick()
     {
-        if (_numberOfElements > _pairs.Count())
+        if (_numberOfElementsToPick > _pairs.Count())
             throw new NotEnoughValuesToPickException();
 
-        if (_numberOfElements < 0)
+        if (_numberOfElementsToPick < 0)
             throw new PickingNegativeNumberOfValuesNotPossibleException();
 
-        if (_numberOfElements == 0)
+        if (_numberOfElementsToPick == 0)
             return new PickResult<IEnumerable<T>>(Enumerable.Empty<T>());
 
         var firstPriority = _pairs.First().Priority;
@@ -63,15 +63,15 @@ internal sealed class DistinctPicker<T> : IPicker<IEnumerable<T>>
     {
         var pairs = _pairs.ToArray();
         var shuffle = new SortingBasedWeightedLeftShuffle<T>(_rng);
-        shuffle.Shuffle(pairs, _numberOfElements);
-        return pairs.Take(_numberOfElements).Select(x => x.Value).ToList();
+        shuffle.Shuffle(pairs, _numberOfElementsToPick);
+        return pairs.Take(_numberOfElementsToPick).Select(x => x.Value).ToList();
     }
 
     private IEnumerable<T> PickDistinctElementsWithEqualPriorities()
     {
         var values = _pairs.Select(p => p.Value).ToArray();
         var shuffle = new FisherYatesShuffle<T>(_rng);
-        shuffle.Shuffle(values, _numberOfElements);
-        return values.Take(_numberOfElements).ToList();
+        shuffle.Shuffle(values, _numberOfElementsToPick);
+        return values.Take(_numberOfElementsToPick).ToList();
     }
 }

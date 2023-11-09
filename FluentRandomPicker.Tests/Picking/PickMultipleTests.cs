@@ -22,19 +22,17 @@ public class PickMultipleTests
     }
 
     [TestMethod]
-    public void PickTryingToPickTooManyValues_ThrowsException()
+    public void PickMoreValuesThanSpecified_ReturnsAtLeast1Duplicate()
     {
-        static void Execute()
-        {
-            Out.Of()
-                .Value('a').WithPercentage(1)
-                .AndValue('b').WithPercentage(1)
-                .AndValue('c').WithPercentage(97)
-                .AndValue('d').WithPercentage(1)
-                .Pick(5);
-        }
+        var values = Out.Of()
+            .Value(1).WithPercentage(70)
+            .AndValue(10).WithPercentage(15)
+            .AndValue(100).WithPercentage(10)
+            .AndValue(1000).WithPercentage(5)
+            .Pick(5).ToList();
 
-        Assert.ThrowsException<NotEnoughValuesToPickException>(Execute);
+        Assert.AreEqual(5, values.Count);
+        Assert.IsTrue(values.Distinct().Count() <= 4);
     }
 
     [TestMethod]
