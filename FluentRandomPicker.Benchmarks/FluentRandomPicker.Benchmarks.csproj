@@ -8,7 +8,7 @@
     <RootNamespace>FluentRandomPicker.Benchmarks</RootNamespace>
     <Description>A benchmarks project for FluentRandomPicker</Description>
     <SynchReleaseVersion>true</SynchReleaseVersion>
-    <ReleaseVersion>3.4.0</ReleaseVersion> <!-- change version in solution options! -->
+    <ReleaseVersion>3.5.0</ReleaseVersion> <!-- change version in solution options! -->
     <LibraryVersion>$(ReleaseVersion)</LibraryVersion>
     <VersionPrefix>$(ReleaseVersion)</VersionPrefix>
     <AssemblyVersion>$(ReleaseVersion)</AssemblyVersion>

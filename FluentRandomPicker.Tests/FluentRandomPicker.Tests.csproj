@@ -5,7 +5,7 @@
     <RootNamespace>FluentRandomPicker.Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
-    <ReleaseVersion>3.4.0</ReleaseVersion>
+    <ReleaseVersion>3.5.0</ReleaseVersion>
 
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
