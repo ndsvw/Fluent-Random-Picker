@@ -80,7 +80,7 @@
   </ItemGroup>
 
   <ItemGroup Label="Source link - dev only asset. It adds source link (https://github.com/dotnet/sourcelink) capabilities to the nuget package.">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
