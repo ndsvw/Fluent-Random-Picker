@@ -8,6 +8,7 @@ using FluentRandomPicker.FluentInterfaces.Percentage;
 using FluentRandomPicker.FluentInterfaces.Weight;
 using FluentRandomPicker.Picker;
 using FluentRandomPicker.Random;
+using FluentRandomPicker.UserInput;
 using FluentRandomPicker.ValuePriorities;
 
 namespace FluentRandomPicker;
@@ -21,6 +22,8 @@ namespace FluentRandomPicker;
 internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
 {
     private readonly IRandomNumberGenerator _rng;
+
+    private readonly IUserInput<T> _userInput = new NonPrioritizedUserInput<T>();
 
     private readonly List<T> _values = new List<T>();
 
@@ -92,7 +95,8 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <returns>An <see cref="ISpecifyValueOrGenesisValuePriority{T}"/> instance.</returns>
     public ISpecifyValueOrGenesisValuePriority<T> Value(T t)
     {
-        AddValue(t);
+        _userInput.Containers.AddLast(new ValueContainer<T>(t));
+        AddValue(t); // todo
         return this;
     }
 
@@ -103,7 +107,8 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <returns>An <see cref="ISpecifyValuePrioritiesOrPick{T}"/> instance.</returns>
     public ISpecifyValuePrioritiesOrPick<T> Values(IEnumerable<T> ts)
     {
-        var values = ts.ToList();
+        _userInput.Containers.AddLast(new MultiValuesContainer<T>(ts));
+        var values = ts.ToList(); // todo
         if (values.Count <= 1)
             throw new NotEnoughValuesToPickException();
 
@@ -117,6 +122,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public ISpecifyValueOrValuePriorityOrPick<T> AndValue(T value)
     {
+        _userInput.Containers.AddLast(new ValueContainer<T>(value));
         AddValue(value);
         return this;
     }
@@ -124,6 +130,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     ISpecifyPercentageValueOrValuePercentageOrPick<T> ISpecifyAdditionalValue<T, ISpecifyPercentageValueOrValuePercentageOrPick<T>>.AndValue(T value)
     {
+        _userInput.Containers.AddLast(new ValueContainer<T>(value));
         AddValue(value);
         return this;
     }
@@ -131,6 +138,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     ISpecifyWeightValueOrValueWeightOrPick<T> ISpecifyAdditionalValue<T, ISpecifyWeightValueOrValueWeightOrPick<T>>.AndValue(T value)
     {
+        _userInput.Containers.AddLast(new ValueContainer<T>(value));
         AddValue(value);
         return this;
     }
@@ -140,6 +148,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public ISpecifyPercentageValue<T> WithPercentage(int p)
     {
+        _userInput.SpecifyPriority(PriorityType.Percentage, p);
         SetPriority(p, PriorityType.Percentage);
         return this;
     }
@@ -147,6 +156,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     ISpecifyPercentageValueOrPick<T> ISpecifyPercentage<ISpecifyPercentageValueOrPick<T>>.WithPercentage(int p)
     {
+        _userInput.SpecifyPriority(PriorityType.Percentage, p);
         SetPriority(p, PriorityType.Percentage);
         return this;
     }
@@ -154,6 +164,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public IPick<T> WithPercentages(IEnumerable<int> ps)
     {
+        _userInput.SpecifyPriorities(PriorityType.Percentage, ps);
         SetPriorities(ps.Cast<int?>().ToList(), PriorityType.Percentage);
         return this;
     }
@@ -161,6 +172,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public IPick<T> WithPercentages(params int[] ps)
     {
+        _userInput.SpecifyPriorities(PriorityType.Percentage, ps);
         SetPriorities(ps.Cast<int?>().ToList(), PriorityType.Percentage);
         return this;
     }
@@ -168,6 +180,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public IPick<T> WithPercentages(IEnumerable<int?> ps)
     {
+        _userInput.SpecifyPriorities(PriorityType.Percentage, ps);
         SetPriorities(ps.ToList(), PriorityType.Percentage);
         return this;
     }
@@ -175,6 +188,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public IPick<T> WithPercentages(params int?[] ps)
     {
+        _userInput.SpecifyPriorities(PriorityType.Percentage, ps);
         SetPriorities(ps, PriorityType.Percentage);
         return this;
     }
@@ -184,6 +198,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public ISpecifyWeightValue<T> WithWeight(int w)
     {
+        _userInput.SpecifyPriority(PriorityType.Weight, w);
         SetPriority(w, PriorityType.Weight);
         return this;
     }
@@ -191,6 +206,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     ISpecifyWeightValueOrPick<T> ISpecifyWeight<ISpecifyWeightValueOrPick<T>>.WithWeight(int w)
     {
+        _userInput.SpecifyPriority(PriorityType.Weight, w);
         SetPriority(w, PriorityType.Weight);
         return this;
     }
@@ -198,6 +214,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public IPick<T> WithWeights(IEnumerable<int> ws)
     {
+        _userInput.SpecifyPriorities(PriorityType.Weight, ws);
         SetPriorities(ws.Cast<int?>().ToList(), PriorityType.Weight);
         return this;
     }
@@ -205,6 +222,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public IPick<T> WithWeights(params int[] ws)
     {
+        _userInput.SpecifyPriorities(PriorityType.Weight, ws);
         SetPriorities(ws.Cast<int?>().ToList(), PriorityType.Weight);
         return this;
     }
@@ -212,6 +230,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public IPick<T> WithWeights(IEnumerable<int?> ws)
     {
+        _userInput.SpecifyPriorities(PriorityType.Weight, ws);
         SetPriorities(ws.ToList(), PriorityType.Weight);
         return this;
     }
@@ -219,6 +238,7 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public IPick<T> WithWeights(params int?[] ws)
     {
+        _userInput.SpecifyPriorities(PriorityType.Weight, ws);
         SetPriorities(ws, PriorityType.Weight);
         return this;
     }
@@ -228,18 +248,21 @@ internal sealed class RandomPicker<T> : IFluentRandomPicker<T>
     /// <inheritdoc/>
     public IEnumerable<T> Pick(int n)
     {
+        _userInput.Evaluate();
         return new DefaultPicker<T>(_rng, GeneratePairs(), n).Pick().Result;
     }
 
     /// <inheritdoc/>
     public T PickOne()
     {
+        _userInput.Evaluate();
         return new DefaultPicker<T>(_rng, GeneratePairs()).Pick().Result.First();
     }
 
     /// <inheritdoc/>
     public IEnumerable<T> PickDistinct(int n)
     {
+        _userInput.Evaluate();
         return new DistinctPicker<T>(_rng, GeneratePairs(), n).Pick().Result;
     }
 
