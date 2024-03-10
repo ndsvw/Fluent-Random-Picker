@@ -46,4 +46,27 @@ public static class TestUtils
             Assert.IsTrue(occurrences[value] <= tries * chance * (1 + acceptedDeviation));
         }
     }
+
+    public static void PickNProbabilitiesMatter<T>(this Assert _, IPick<T> pickable, int tries = 1_000_000,
+        double acceptedDeviation = 0.25, params (T value, double chance)[] valueChancesPairs)
+    {
+        var occurrences = new Dictionary<T, long>(valueChancesPairs.Length);
+
+        foreach (T value in pickable.Pick(tries))
+        {
+            if (occurrences.ContainsKey(value))
+                occurrences[value]++;
+            else
+                occurrences.Add(value, 1);
+        }
+
+        foreach(var (value, chance) in valueChancesPairs)
+        {
+            if (chance == 0 && !occurrences.ContainsKey(value))
+                continue;
+
+            Assert.IsTrue(occurrences[value] >= tries * chance * (1 - acceptedDeviation));
+            Assert.IsTrue(occurrences[value] <= tries * chance * (1 + acceptedDeviation));
+        }
+    }
 }
