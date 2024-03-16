@@ -26,6 +26,13 @@ public static class TestUtils
     public static void ProbabilitiesMatter<T>(this Assert assert, IPick<T> pickable,
         int tries = 1_000_000, double acceptedDeviation = 0.25, params (T value, double chance)[] valueChancesPairs)
     {
+        Assert.That.PickOneProbabilitiesMatter(pickable, tries, acceptedDeviation, valueChancesPairs);
+        Assert.That.PickNProbabilitiesMatter(pickable, tries, acceptedDeviation, valueChancesPairs);
+    }
+
+    private static void PickOneProbabilitiesMatter<T>(this Assert assert, IPick<T> pickable,
+        int tries = 1_000_000, double acceptedDeviation = 0.25, params (T value, double chance)[] valueChancesPairs)
+    {
         var occurrences = new Dictionary<T, long>();
 
         for (var i = 0; i < tries; i++)
@@ -37,22 +44,15 @@ public static class TestUtils
                 occurrences.Add(value, 1);
         }
 
-        foreach(var (value, chance) in valueChancesPairs)
-        {
-            if (chance == 0 && !occurrences.ContainsKey(value))
-                continue;
-
-            Assert.IsTrue(occurrences[value] >= tries * chance * (1 - acceptedDeviation));
-            Assert.IsTrue(occurrences[value] <= tries * chance * (1 + acceptedDeviation));
-        }
+        Assert.That.EvaluateOccurrences(occurrences, tries, acceptedDeviation, valueChancesPairs);
     }
 
-    public static void PickNProbabilitiesMatter<T>(this Assert _, IPick<T> pickable, int tries = 1_000_000,
+    private static void PickNProbabilitiesMatter<T>(this Assert _, IPick<T> pickable, int tries = 1_000_000,
         double acceptedDeviation = 0.25, params (T value, double chance)[] valueChancesPairs)
     {
         var occurrences = new Dictionary<T, long>(valueChancesPairs.Length);
 
-        foreach (T value in pickable.Pick(tries))
+        foreach (var value in pickable.Pick(tries))
         {
             if (occurrences.ContainsKey(value))
                 occurrences[value]++;
@@ -60,6 +60,11 @@ public static class TestUtils
                 occurrences.Add(value, 1);
         }
 
+        Assert.That.EvaluateOccurrences(occurrences, tries, acceptedDeviation, valueChancesPairs);
+    }
+
+    private static void EvaluateOccurrences<T>(this Assert _, Dictionary<T, long> occurrences, int tries, double acceptedDeviation, params (T value, double chance)[] valueChancesPairs)
+    {
         foreach(var (value, chance) in valueChancesPairs)
         {
             if (chance == 0 && !occurrences.ContainsKey(value))
