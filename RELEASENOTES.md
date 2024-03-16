@@ -1,3 +1,5 @@
+- v 3.5.1
+    - Fixed case when Pick(n) did not work correctly & returned the same element repeatedly. Thanks, https://github.com/SapiensAnatis (#62)
 - v 3.5.0
     - Added .Net8 as compatibility to README file.
     - Improved structure of README
