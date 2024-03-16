@@ -50,33 +50,23 @@ internal sealed class DefaultPicker<T> : IPicker<IEnumerable<T>>
             return new PickResult<IEnumerable<T>>(Enumerable.Empty<T>());
 
         var prioritySum = _pairs.Sum(v => (long)v.Priority);
-        var values = PickPrioritized(prioritySum);
+        var values = Enumerable.Range(0, _numberOfElementsToPick).Select(_ => PickPrioritized(prioritySum));
         return new PickResult<IEnumerable<T>>(values);
     }
 
-    private IEnumerable<T> PickPrioritized(long prioritySum)
+    private T PickPrioritized(long prioritySum)
     {
-        for (var i = 0; i < _numberOfElementsToPick; i++)
+        var n = (long)(_rng.NextDouble() * prioritySum);
+
+        long localSum = 0;
+        foreach (var pair in _pairs)
         {
-            yield return GetValue();
+            localSum += pair.Priority;
+
+            if (localSum >= n + 1)
+                return pair.Value;
         }
 
-        yield break;
-
-        T GetValue()
-        {
-            var n = (long)(_rng.NextDouble() * prioritySum);
-
-            long localSum = 0;
-            foreach (var pair in _pairs)
-            {
-                localSum += pair.Priority;
-
-                if (localSum >= n + 1)
-                    return pair.Value;
-            }
-
-            throw new ArgumentException("Sum of priorities was wrong", nameof(prioritySum));
-        }
+        throw new ArgumentException("Sum of priorities was wrong", nameof(prioritySum));
     }
 }
