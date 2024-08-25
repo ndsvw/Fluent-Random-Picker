@@ -3,7 +3,7 @@
 {
 	"name": "C# (.NET)",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/dotnet:0-8.0",
+	"image": "mcr.microsoft.com/devcontainers/dotnet:8.0",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -17,6 +17,15 @@
 				"streetsidesoftware.code-spell-checker"
 			]
 		}
+	},
+
+	"runArgs": [
+		"--userns=keep-id:uid=1000,gid=1000"
+	],
+	"containerUser": "vscode",
+	"updateRemoteUserUID": true,
+	"containerEnv": {
+		"HOME": "/home/vscode"
 	},
 
 	// Use 'portsAttributes' to set default properties for specific forwarded ports. 
