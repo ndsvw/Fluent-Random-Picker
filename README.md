@@ -6,7 +6,6 @@ Fluent Random Picker is a user-friendly, but also performant .NET library that s
 
 [![License MIT](https://img.shields.io/github/license/ndsvw/Fluent-Random-Picker)](https://github.com/ndsvw/Fluent-Random-Picker/blob/main/LICENSE)
 [![Build status](https://github.com/ndsvw/Fluent-Random-Picker/actions/workflows/dotnet.yml/badge.svg)](https://github.com/ndsvw/Fluent-Random-Picker)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ndsvw_Fluent-Random-Picker&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ndsvw_Fluent-Random-Picker)
 [![Code coverage](https://img.shields.io/codecov/c/github/ndsvw/Fluent-Random-Picker)](https://app.codecov.io/gh/ndsvw/Fluent-Random-Picker)
 [![Nuget version](https://img.shields.io/nuget/v/FluentRandomPicker)](https://www.nuget.org/packages/FluentRandomPicker)
 [![Release notes](https://img.shields.io/badge/release%20notes-%F0%9F%97%92-green
