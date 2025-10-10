@@ -43,7 +43,7 @@ public class SecureRandomNumberGenerator : IRandomNumberGenerator
 #if NET5_0_OR_GREATER
             return RandomNumberGenerator.GetInt32(n);
 #else
-        return NextInt() % n;
+        return (int)(NextDouble() * n); // working with NextInt() + modulo instead casuses modulo bias!
 #endif
     }
 
