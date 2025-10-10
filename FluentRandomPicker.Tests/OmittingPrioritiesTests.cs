@@ -54,8 +54,8 @@ public class OmittingPrioritiesTests
             .AndValue('b')
             .AndValue('c').WithPercentage(80);
 
-        Assert.ThrowsException<ArgumentException>(() => pickable1.PickOne());
-        Assert.ThrowsException<ArgumentException>(() => pickable2.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable1.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable2.PickOne());
     }
 
     [TestMethod]
@@ -69,8 +69,8 @@ public class OmittingPrioritiesTests
             .Values(new[] { 'a', 'b', 'c' })
             .WithPercentages(20, null, 80);
 
-        Assert.ThrowsException<ArgumentException>(() => pickable1.PickOne());
-        Assert.ThrowsException<ArgumentException>(() => pickable2.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable1.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable2.PickOne());
     }
 
     [TestMethod]
@@ -84,8 +84,8 @@ public class OmittingPrioritiesTests
             .Values(new[] { 'a', 'b', 'c' })
             .WithPercentages(new List<int?> { 20, null, 80 });
 
-        Assert.ThrowsException<ArgumentException>(() => pickable1.PickOne());
-        Assert.ThrowsException<ArgumentException>(() => pickable2.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable1.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable2.PickOne());
     }
 
     [TestMethod]
@@ -102,8 +102,8 @@ public class OmittingPrioritiesTests
             .AndValue('c')
             .AndValue('d').WithPercentage(90);
 
-        Assert.ThrowsException<ArgumentException>(() => pickable1.PickOne());
-        Assert.ThrowsException<ArgumentException>(() => pickable2.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable1.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable2.PickOne());
     }
 
     [TestMethod]
@@ -117,8 +117,8 @@ public class OmittingPrioritiesTests
             .Values(new[] { 'a', 'b', 'c', 'd' })
             .WithPercentages(3, null, null, 90);
 
-        Assert.ThrowsException<ArgumentException>(() => pickable1.PickOne());
-        Assert.ThrowsException<ArgumentException>(() => pickable2.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable1.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable2.PickOne());
     }
 
     [TestMethod]
@@ -132,8 +132,8 @@ public class OmittingPrioritiesTests
             .Values(new[] { 'a', 'b', 'c', 'd' })
             .WithPercentages(new List<int?> { 3, null, null, 90 });
 
-        Assert.ThrowsException<ArgumentException>(() => pickable1.PickOne());
-        Assert.ThrowsException<ArgumentException>(() => pickable2.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable1.PickOne());
+        Assert.ThrowsExactly<ArgumentException>(() => pickable2.PickOne());
     }
 
     [TestMethod]

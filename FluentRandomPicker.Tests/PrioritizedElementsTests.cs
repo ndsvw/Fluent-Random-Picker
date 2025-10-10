@@ -21,7 +21,7 @@ public class PrioritizedElementsTests
 
         void Act() => Out.Of().PrioritizedElements(arr);
 
-        Assert.ThrowsException<NotEnoughValuesToPickException>(Act);
+        Assert.ThrowsExactly<NotEnoughValuesToPickException>(Act);
     }
 
     [TestMethod]

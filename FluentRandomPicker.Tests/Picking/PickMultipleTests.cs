@@ -61,6 +61,6 @@ public class PickMultipleTests
                 .Pick(-1);
         }
 
-        Assert.ThrowsException<PickingNegativeNumberOfValuesNotPossibleException>(Execute);
+        Assert.ThrowsExactly<PickingNegativeNumberOfValuesNotPossibleException>(Execute);
     }
 }

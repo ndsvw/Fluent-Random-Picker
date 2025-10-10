@@ -121,7 +121,7 @@ public class PercentageTests
                 .AndValue('c').WithPercentage(15)
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -135,7 +135,7 @@ public class PercentageTests
                 .AndValue('c').WithPercentage(15)
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -149,7 +149,7 @@ public class PercentageTests
                 .AndValue('c').WithPercentage(15)
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -163,7 +163,7 @@ public class PercentageTests
                 .AndValue('c').WithPercentage(15)
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -177,7 +177,7 @@ public class PercentageTests
                 .AndValue('c').WithPercentage(1)
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -189,7 +189,7 @@ public class PercentageTests
                 .Values(new[] { 'a', 'b', 'c', 'd' }).WithPercentages(new[] { -25, 50, 50, 25 })
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -201,7 +201,7 @@ public class PercentageTests
                 .Values(new[] { 'a', 'b', 'c', 'd' }).WithPercentages(new[] { 0, 50, 50, 25 })
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     #region Sum exceeds Int32.MaxValue
@@ -216,7 +216,7 @@ public class PercentageTests
                 .PickOne();
         }
 
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -229,7 +229,7 @@ public class PercentageTests
                 .Pick(2);
         }
 
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -242,7 +242,7 @@ public class PercentageTests
                 .PickDistinct(2);
         }
 
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     #endregion Sum exceeds Int32.MaxValue

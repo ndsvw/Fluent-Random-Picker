@@ -121,7 +121,7 @@ public class WeightTests
                 .AndValue('c').WithWeight(2)
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -135,7 +135,7 @@ public class WeightTests
                 .AndValue('c').WithWeight(2)
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -147,7 +147,7 @@ public class WeightTests
                 .Values(new[] { 'a', 'b', 'c', 'd' }).WithWeights(new[] { 2, 2, -1, 1 })
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     [TestMethod]
@@ -159,7 +159,7 @@ public class WeightTests
                 .Values(new[] { 'a', 'b', 'c', 'd' }).WithWeights(new[] { 2, 2, 0, 1 })
                 .PickOne();
         }
-        Assert.ThrowsException<ArgumentException>(Execute);
+        Assert.ThrowsExactly<ArgumentException>(Execute);
     }
 
     #region Sum exceeds Int32.MaxValue

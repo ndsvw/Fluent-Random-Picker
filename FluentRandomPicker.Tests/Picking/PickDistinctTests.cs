@@ -65,7 +65,7 @@ public class PickDistinctTests
                 .PickDistinct(5);
         }
 
-        Assert.ThrowsException<NotEnoughValuesToPickException>(Execute);
+        Assert.ThrowsExactly<NotEnoughValuesToPickException>(Execute);
     }
 
     [TestMethod]
@@ -94,7 +94,7 @@ public class PickDistinctTests
                 .PickDistinct(-1);
         }
 
-        Assert.ThrowsException<PickingNegativeNumberOfValuesNotPossibleException>(Execute);
+        Assert.ThrowsExactly<PickingNegativeNumberOfValuesNotPossibleException>(Execute);
     }
 
     [TestMethod]
