@@ -7,10 +7,28 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
+  build_and_test:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        dotnet: [ '3.0.x', '9.0.x' ] # old and new (because there are conditionals in the code for older/newer versions)
+    name: Dotnet ${{ matrix.dotnet }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build (Debug)
+        run: dotnet build --no-restore
+      - name: Build (Release)
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
+  benchmark:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v5
     - name: Setup .NET
@@ -19,13 +37,5 @@ jobs:
         dotnet-version: 9.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build (Debug)
-      run: dotnet build --no-restore
-    - name: Build (Release)
-      run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
     - name: Benchmark
       run: dotnet run -c Release --project FluentRandomPicker.Benchmarks/FluentRandomPicker.Benchmarks.csproj
-    - name: Codecov
-      uses: codecov/codecov-action@v3
