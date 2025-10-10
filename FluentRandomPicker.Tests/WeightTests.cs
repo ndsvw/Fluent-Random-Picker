@@ -197,4 +197,37 @@ public class WeightTests
     }
 
     #endregion Sum exceeds Int32.MaxValue
+
+    #region Bug: Duplicated weights
+
+    [TestMethod]
+    public void DuplicateWeights_WithOmittedWeight_AllValuesArePossible()
+    {
+        const int NumberOfTries = 100_000;
+        var aCounter = 0;
+        var bCounter = 0;
+        var cCounter = 0;
+
+        for (var i = 0; i < NumberOfTries; i++)
+        {
+            var value = Out.Of()
+                .Value('a').WithWeight(2)
+                .AndValue('b').WithWeight(2)  // Duplicate weight!
+                .AndValue('c')  // Omitted weight (should default to 1)
+                .PickOne();
+            
+            if (value == 'a') aCounter++;
+            else if (value == 'b') bCounter++;
+            else if (value == 'c') cCounter++;
+        }
+
+        // All three values should be possible
+        Assert.IsTrue(aCounter > 0, "Value 'a' was never picked");
+        Assert.IsTrue(bCounter > 0, "Value 'b' was never picked");
+        Assert.IsTrue(cCounter > 0, "Value 'c' was never picked");
+        
+        // Expected probabilities: a=2/5 (40%), b=2/5 (40%), c=1/5 (20%)
+    }
+
+    #endregion Bug: Union vs Concat with duplicate weights
 }

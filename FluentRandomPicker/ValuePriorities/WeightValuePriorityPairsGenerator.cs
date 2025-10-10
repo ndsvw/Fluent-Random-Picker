@@ -21,7 +21,7 @@ internal sealed class WeightValuePriorityPairsGenerator<T> : IValuePriorityPairs
         if (numberOfValues < numberOfPriorities)
             throw new ArgumentException("The number of values must not be smaller than the number of priorities.", nameof(priorities));
 
-        priorities = priorities.Union(Enumerable.Repeat(default(int?), numberOfValues - numberOfPriorities)).ToList();
+        priorities = priorities.Concat(Enumerable.Repeat(default(int?), numberOfValues - numberOfPriorities)).ToList();
 
         return GeneratePairs(values, priorities);
     }
