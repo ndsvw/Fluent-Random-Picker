@@ -36,14 +36,4 @@ public class NotEnoughValuesToPickException : Exception
         : base(message, innerException)
     {
     }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="NotEnoughValuesToPickException"/> class.
-    /// </summary>
-    /// <param name="info">Information.</param>
-    /// <param name="context">The context.</param>
-    protected NotEnoughValuesToPickException(SerializationInfo info, StreamingContext context)
-        : base(info, context)
-    {
-    }
 }

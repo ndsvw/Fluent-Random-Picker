@@ -36,14 +36,4 @@ public class NumberOfValuesDoesNotMatchNumberOfPrioritiesException : Exception
         : base(message, innerException)
     {
     }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="NumberOfValuesDoesNotMatchNumberOfPrioritiesException"/> class.
-    /// </summary>
-    /// <param name="info">Information.</param>
-    /// <param name="context">The context.</param>
-    protected NumberOfValuesDoesNotMatchNumberOfPrioritiesException(SerializationInfo info, StreamingContext context)
-        : base(info, context)
-    {
-    }
 }

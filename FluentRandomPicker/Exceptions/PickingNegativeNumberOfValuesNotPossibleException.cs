@@ -36,14 +36,4 @@ public class PickingNegativeNumberOfValuesNotPossibleException : Exception
         : base(message, innerException)
     {
     }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="PickingNegativeNumberOfValuesNotPossibleException"/> class.
-    /// </summary>
-    /// <param name="info">Information.</param>
-    /// <param name="context">The context.</param>
-    protected PickingNegativeNumberOfValuesNotPossibleException(SerializationInfo info, StreamingContext context)
-        : base(info, context)
-    {
-    }
 }
