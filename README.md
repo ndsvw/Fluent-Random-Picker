@@ -93,13 +93,19 @@ var randomChar = Out.Of().Values(new HashSet<string> { "hello", "world" })
 ### Picking multiple values
 ```c#
 var randomInts = Out.Of()
-                  .Value(1).WithPercentage(70)
-                  .AndValue(10).WithPercentage(15)
-                  .AndValue(100).WithPercentage(10)
-                  .AndValue(1000).WithPercentage(5)
-                  .Pick(5);
-// randomInts can be [1, 1, 1, 1, 1] with a higher probability or [1, 1, 100, 10, 1]
-// or even [1000, 1000, 1000, 1000, 1000] with a very small probability.
+                  .Value(1).WithPercentage(50)
+                  .AndValue(10).WithPercentage(30)
+                  .AndValue(100).WithPercentage(20)
+                  .Pick(4);
+// randomInts can be
+// - [1, 1, 1, 1] with the highest probability (6.25%)
+// - 3x 1 and 1x 10 (with each 3.75% probability)
+//      - [1, 1, 1, 10]
+//      - [1, 1, 10, 1]
+//      - [1, 10, 1, 1]
+//      - [10, 1, 1, 1]
+// - ...
+// - [1000, 1000, 1000, 1000] with the lowest probability (0.16%)
 ```
 
 ### Picking distinct values
