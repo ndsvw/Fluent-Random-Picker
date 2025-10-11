@@ -37,11 +37,11 @@ public static class ShuffleTestExtensions
             value5Set.Add(elements[4].Value);
         }
 
-        Assert.AreEqual(elements.Length, value1Set.Count);
-        Assert.AreEqual(elements.Length, value2Set.Count);
-        Assert.AreEqual(elements.Length, value3Set.Count);
-        Assert.AreEqual(elements.Length, value4Set.Count);
-        Assert.AreEqual(elements.Length, value5Set.Count);
+        Assert.HasCount(value1Set.Count, elements);
+        Assert.HasCount(value2Set.Count, elements);
+        Assert.HasCount(value3Set.Count, elements);
+        Assert.HasCount(value4Set.Count, elements);
+        Assert.HasCount(value5Set.Count, elements);
     }
 
     internal static void AllNValuesCanChangePositions(this Assert _, IShuffle<ValuePriorityPair<int>> shuffle)
@@ -67,8 +67,8 @@ public static class ShuffleTestExtensions
             value3Set.Add(elements[2].Value);
         }
 
-        Assert.AreEqual(elements.Length, value1Set.Count);
-        Assert.AreEqual(elements.Length, value2Set.Count);
-        Assert.AreEqual(elements.Length, value3Set.Count);
+        Assert.HasCount(value1Set.Count, elements);
+        Assert.HasCount(value2Set.Count, elements);
+        Assert.HasCount(value3Set.Count, elements);
     }
 }
