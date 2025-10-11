@@ -1,6 +1,7 @@
 - v 3.6.0
     - Fixed bug of impossibility to pick one of multiple values with weights, if same weight was present multiple times.
     - Fixed small bias in SecureRandomNumberGenerator.NextInt(int n) for older .Net versions caused by module operation.
+    - Added .Net 10 as compatibility to README file.
 - v 3.5.1
     - Fixed case when Pick(n) did not work correctly & returned the same element repeatedly. Thanks, https://github.com/SapiensAnatis (#62)
 - v 3.5.0
