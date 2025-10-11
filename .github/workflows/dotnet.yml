@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet: [ '3.0.x', '9.0.x' ] # old and new (because there are conditionals in the code for older/newer versions)
+        dotnet: [ '2.0.x', '9.0.x' ] # old and new (because there are conditionals in the code for older/newer versions)
     name: Dotnet ${{ matrix.dotnet }}
     steps:
       - uses: actions/checkout@v5
