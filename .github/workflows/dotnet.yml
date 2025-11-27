@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet: [ '2.0.x', '9.0.x' ] # old and new (because there are conditionals in the code for older/newer versions)
+        dotnet: [ '2.0.x', '10.0.x' ] # old and new (because there are conditionals in the code for older/newer versions)
     name: Dotnet ${{ matrix.dotnet }}
     steps:
       - uses: actions/checkout@v5
@@ -34,7 +34,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Benchmark
