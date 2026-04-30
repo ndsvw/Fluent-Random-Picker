@@ -23,7 +23,9 @@ public class SecureRandomNumberGenerator : IRandomNumberGenerator
         _secureRng.GetBytes(tmpBytes);
         var bytesAsLong = BitConverter.ToInt64(tmpBytes, 0);
 #endif
-        return (double)(bytesAsLong & long.MaxValue) / long.MaxValue;
+        // Use (long.MaxValue + 1.0) as divisor to guarantee result is in [0, 1).
+        // long.MaxValue + 1.0 == 9223372036854775808.0, exactly representable as a double (power of 2).
+        return (double)(bytesAsLong & long.MaxValue) / (long.MaxValue + 1.0);
     }
 
     /// <inheritdoc/>
@@ -50,7 +52,8 @@ public class SecureRandomNumberGenerator : IRandomNumberGenerator
 #if NET5_0_OR_GREATER
         return RandomNumberGenerator.GetInt32(n);
 #else
-        return (int)(NextDouble() * n); // working with NextInt() + modulo instead casuses modulo bias!
+        var result = (int)(NextDouble() * n);
+        return Math.Min(result, n - 1); // clamp to [0, n) as a safety net
 #endif
     }
 
